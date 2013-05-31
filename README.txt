@@ -1,15 +1,6 @@
 ====
 Pysa
 ====
-pysa
-====
-
-Section: pysa man page (8)
-Updated: 16 May 2013
-`Index <#index>`_ `Return to Main Contents <#>`_
-
---------------
-
  
 
 NAME
@@ -471,4 +462,4 @@ Index
 --------------
 
 This document was created by `man2html <#>`_, using the manual pages.
- Time: 06:15:05 GMT, May 31, 2013
+ Time: 07:57:25 GMT, May 31, 2013

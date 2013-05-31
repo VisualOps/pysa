@@ -26,11 +26,16 @@ from common.exception import *
 class puppet_objects():
     @staticmethod
     def puppet_file_dir_obj(dr):
+        # get owner, group and mode
+        s = utils.get_stat(dr)
         return {
             'path'      : dr,
             'recurse'   : 'true',
             'ensure'    : 'directory',
-            'name'      : dr
+            'name'      : dr,
+            'owner'     : s[0],
+            'group'     : s[1],
+            'mode'      : s[2]
             }
 
 PUPPET_OBJ_MAKER = {
