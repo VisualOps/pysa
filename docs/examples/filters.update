@@ -1,0 +1,15 @@
+# Part of pysa utility
+#
+# Filtering file example
+# Please see pysa man page for section description - man(8) pysa
+#
+
+[update]
+# set filtering mode
+# def: _update = true/false
+# required
+_update = false
+
+# list exception(s) (use package name, see man(8) pysa)
+# def: except = package1, ...
+except = selinux*, libipa_hbac-python, kernel-firmware, libsss_idmap, sssd-client, perf

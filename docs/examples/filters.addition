@@ -1,0 +1,42 @@
+# Part of pysa utility
+#
+# Filtering file example
+# Please see pysa man page for section description - man(8) pysa
+#
+
+[addition.source]
+# set global user/password for all sources
+# def: xxx = xxx
+ownner = root
+password = whatever
+
+[addition.source.name.myproject]
+# add devops source's password
+# def: xxx = xxx
+ownner = root
+password = secure-password
+
+[addition.source.scm.hg]
+# change the mode of all the hg source
+# def: xxx = xxx
+mode = 0744
+
+[addition.package.name.zip]
+# change package's architecture
+# def: xxx = xxx
+platform = i386
+
+[addition.user.name.imauser]
+# change user's shell
+# def: xxx = xxx
+shell = /bin/sh
+
+[addition.service.name.imaservice]
+# change service's boot status
+# def: xxx = xxx
+ensure = False
+
+[addition.file.path./etc/test.conf]
+# change file's path
+# def: xxx = xxx
+path = /etc/test_1.conf

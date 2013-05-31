@@ -1,0 +1,42 @@
+# Part of pysa utility
+#
+# Filtering file example
+# Please see pysa man page for section description - man(8) pysa
+#
+
+# global item replacment
+[replace]
+
+# set filtering mode
+# def: _replaceall = true/false
+# required
+_replaceall = true
+
+# list replacment values
+# def: new_value = old_value(s)
+127.0.1.1 = 127.0.0.1
+myhost.com = localdomain
+
+
+# specific item replacment
+[replace.files.content]
+
+# set filtering mode
+# def: _replaceall = true/false
+# required
+_replaceall = false
+
+# list exception(s) (use object primary key, see man(8) pysa)
+# def: _except = key1, ...
+_except = /etc/foo.conf
+
+# list replacment values
+# def: new_value = old_value(s)
+192.168.0.12 = 192.168.12.34
+myolddomain.com = mynewdomain.com
+toto = tata, fwfw
+
+[replace.repos.content]
+# refer to previous section (duplicate content)
+# def: _contentrefer = section
+_contentrefer = replace.files.content
