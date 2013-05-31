@@ -188,11 +188,11 @@ to be installed on the new machine, not the original one.  
 Puppet modules
 --------------
 
-willdurand/nodejs:\ ``     ``\ add npm package manager support
+willdurand/nodejs: add npm package manager support
 
-nodes/php:\ ``      ``\ ``        ``\ add php package manager support
+nodes/php: add php package manager support
 
-puppetlabs/vcsrepo:\ ``     ``\ add scm (sources) support
+puppetlabs/vcsrepo: add scm (sources) support
 
 to install a *Puppet* module: puppet module install \*module-name\*  
 
@@ -349,10 +349,15 @@ section action keys
 USAGE EXAMPLES
 --------------
 
-See */usr/share/doc/pysa* for configuration file examples.  
+See *docs/examples* for configuration file examples.  
 
 NOTES
 -----
+
+**pysa** has been inspired by a software called *Blueprint* (more
+information at
+`http://devstructure.com/blueprint/ <http://devstructure.com/blueprint/>`_
+)
 
 **pysa** is currently in and so does not (always) provide 100%
 functional results. This comes from the architectural choices that we've
@@ -462,4 +467,4 @@ Index
 --------------
 
 This document was created by `man2html <#>`_, using the manual pages.
- Time: 09:08:44 GMT, May 31, 2013
+ Time: 11:12:49 GMT, May 31, 2013

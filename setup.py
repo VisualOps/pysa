@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-Installation script
+Installation script for setup from pip
 
     pysa - reverse a complete computer setup
     Copyright (C) 2013  MadeiraCloud Ltd.
@@ -46,7 +46,7 @@ DESCRIPTION         = 'reverse a complete computer setup'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.',
 MAINTAINER_EMAIL    = 'pysa@mc2.io',
-URL                 = 'http://pysa.madeiracloud.com/'
+URL                 = 'http://github.com/MadeiraCloud/pysa'
 LICENSE             = 'LICENSE.txt'
 DOWNLOAD_URL        = URL
 VERSION             = '0.1a'
@@ -71,15 +71,17 @@ def configuration(parent_package='', top_path=None, package_name=DISTNAME):
 if __name__ == "__main__":
     pkg = setuptools.find_packages(),
     setup(configuration = configuration,
-          install_requires = 'numpy',
+          install_requires = ['numpy'],
 #          namespace_packages = ['madeira'],
-          packages = ['pip'] + (pkg if pkg else []),
+          packages = None, #pkg,
           include_package_data = True,
           zip_safe = True,
-          classifiers =
-          [ 'Development Status :: 2 - Pre-Alpha',
+          classifiers = [
+            'Development Status :: 2 - Pre-Alpha',
             'Environment :: Console',
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
-            'Topic :: System'])
+            'Topic :: System',
+            ],
+          )

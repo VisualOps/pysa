@@ -1,3 +1,5 @@
+
+
                                       pysa
 
    Section: pysa man page (8)
@@ -159,11 +161,11 @@ AUTOCONF TOOLS MODULES
 
 Puppet modules
 
-   willdurand/nodejs:     add npm package manager support
+   willdurand/nodejs: add npm package manager support
 
-   nodes/php:              add php package manager support
+   nodes/php: add php package manager support
 
-   puppetlabs/vcsrepo:     add scm (sources) support
+   puppetlabs/vcsrepo: add scm (sources) support
 
    to install a Puppet module: puppet module install *module-name*
 
@@ -287,9 +289,12 @@ update section
 
 USAGE EXAMPLES
 
-   See /usr/share/doc/pysa for configuration file examples.
+   See docs/examples for configuration file examples.
 
 NOTES
+
+   pysa has been inspired by a software called Blueprint (more information
+   at [4]http://devstructure.com/blueprint/ )
 
    pysa is currently in and so does not (always) provide 100% functional
    results. This comes from the architectural choices that we've made. For
@@ -304,14 +309,14 @@ NOTES
    on Ubuntu.
 
    Please don't hesitate to contact us for any kind of feedback, advice or
-   requirement: [4]pysa@madeiracloud.com.
+   requirement: [5]pysa@madeiracloud.com.
 
    If you have a question about a specific source file, you can also
    contact the author directly (see the AUTHOR section)
 
 SEE ALSO
 
-   [5]puppet(1)
+   [6]puppet(1)
 
 BUGS
 
@@ -319,119 +324,120 @@ BUGS
 
 AUTHOR
 
-   MADEIRACLOUD LTD. ([6]www.madeiracloud.com)
+   MADEIRACLOUD LTD. ([7]www.madeiracloud.com)
 
-   Thibault BRONCHAIN ([7]thibault@mc2.io)
+   Thibault BRONCHAIN ([8]thibault@mc2.io)
 
-   Ken CHEN ([8]ken@mc2.io)
+   Ken CHEN ([9]ken@mc2.io)
 
-   Michael CHO ([9]michael@mc2.io)
+   Michael CHO ([10]michael@mc2.io)
      __________________________________________________________________
 
 
 
 Index
 
-   [10]NAME
+   [11]NAME
 
-   [11]SYNOPSIS
+   [12]SYNOPSIS
 
-   [12]DESCRIPTION
+   [13]DESCRIPTION
 
-   [13]OPTIONS
+   [14]OPTIONS
 
-   [14]RESOURCES
+   [15]RESOURCES
 
-   [15]configuration files - file
+   [16]configuration files - file
 
-   [16]packages - package
+   [17]packages - package
 
-   [17]services - service
+   [18]services - service
 
-   [18]hosts - host
+   [19]hosts - host
 
-   [19]users - user
+   [20]users - user
 
-   [20]groups - group
+   [21]groups - group
 
-   [21]mounts - mount
+   [22]mounts - mount
 
-   [22]crons - cron
+   [23]crons - cron
 
-   [23]ssh keys - key
+   [24]ssh keys - key
 
-   [24]sources repositories - source
+   [25]sources repositories - source
 
-   [25]package managers repositories - repository
+   [26]package managers repositories - repository
 
-   [26]AUTOCONF TOOLS MODULES
+   [27]AUTOCONF TOOLS MODULES
 
-   [27]Puppet modules
+   [28]Puppet modules
 
-   [28]FILTERS
+   [29]FILTERS
 
-   [29]common action keys
+   [30]common action keys
 
-   [30]addition section
+   [31]addition section
 
-   [31]discard section
+   [32]discard section
 
-   [32]replace section
+   [33]replace section
 
-   [33]update section
+   [34]update section
 
-   [34]USAGE EXAMPLES
+   [35]USAGE EXAMPLES
 
-   [35]NOTES
+   [36]NOTES
 
-   [36]SEE ALSO
+   [37]SEE ALSO
 
-   [37]BUGS
+   [38]BUGS
 
-   [38]AUTHOR
+   [39]AUTHOR
      __________________________________________________________________
 
-   This document was created by [39]man2html, using the manual pages.
-   Time: 09:08:44 GMT, May 31, 2013
+   This document was created by [40]man2html, using the manual pages.
+   Time: 11:12:50 GMT, May 31, 2013
 
 References
 
-   1. file://localhost/root/L2703-8348TMP.html#index
-   2. file://localhost/root/L2703-8348TMP.html
+   1. file://localhost/root/L6287-521TMP.html#index
+   2. file://localhost/root/L6287-521TMP.html
    3. http://docs.puppetlabs.com/man/
-   4. mailto:pysa@madeiracloud.com
-   5. http://docs.puppetlabs.com/man/
-   6. http://www.madeiracloud.com/
-   7. mailto:thibault@mc2.io
-   8. mailto:ken@mc2.io
-   9. mailto:michael@mc2.io
-  10. file://localhost/root/L2703-8348TMP.html#lbAB
-  11. file://localhost/root/L2703-8348TMP.html#lbAC
-  12. file://localhost/root/L2703-8348TMP.html#lbAD
-  13. file://localhost/root/L2703-8348TMP.html#lbAE
-  14. file://localhost/root/L2703-8348TMP.html#lbAF
-  15. file://localhost/root/L2703-8348TMP.html#lbAG
-  16. file://localhost/root/L2703-8348TMP.html#lbAH
-  17. file://localhost/root/L2703-8348TMP.html#lbAI
-  18. file://localhost/root/L2703-8348TMP.html#lbAJ
-  19. file://localhost/root/L2703-8348TMP.html#lbAK
-  20. file://localhost/root/L2703-8348TMP.html#lbAL
-  21. file://localhost/root/L2703-8348TMP.html#lbAM
-  22. file://localhost/root/L2703-8348TMP.html#lbAN
-  23. file://localhost/root/L2703-8348TMP.html#lbAO
-  24. file://localhost/root/L2703-8348TMP.html#lbAP
-  25. file://localhost/root/L2703-8348TMP.html#lbAQ
-  26. file://localhost/root/L2703-8348TMP.html#lbAR
-  27. file://localhost/root/L2703-8348TMP.html#lbAS
-  28. file://localhost/root/L2703-8348TMP.html#lbAT
-  29. file://localhost/root/L2703-8348TMP.html#lbAU
-  30. file://localhost/root/L2703-8348TMP.html#lbAV
-  31. file://localhost/root/L2703-8348TMP.html#lbAW
-  32. file://localhost/root/L2703-8348TMP.html#lbAX
-  33. file://localhost/root/L2703-8348TMP.html#lbAY
-  34. file://localhost/root/L2703-8348TMP.html#lbAZ
-  35. file://localhost/root/L2703-8348TMP.html#lbBA
-  36. file://localhost/root/L2703-8348TMP.html#lbBB
-  37. file://localhost/root/L2703-8348TMP.html#lbBC
-  38. file://localhost/root/L2703-8348TMP.html#lbBD
-  39. file://localhost/root/L2703-8348TMP.html
+   4. http://devstructure.com/blueprint/
+   5. mailto:pysa@madeiracloud.com
+   6. http://docs.puppetlabs.com/man/
+   7. http://www.madeiracloud.com/
+   8. mailto:thibault@mc2.io
+   9. mailto:ken@mc2.io
+  10. mailto:michael@mc2.io
+  11. file://localhost/root/L6287-521TMP.html#lbAB
+  12. file://localhost/root/L6287-521TMP.html#lbAC
+  13. file://localhost/root/L6287-521TMP.html#lbAD
+  14. file://localhost/root/L6287-521TMP.html#lbAE
+  15. file://localhost/root/L6287-521TMP.html#lbAF
+  16. file://localhost/root/L6287-521TMP.html#lbAG
+  17. file://localhost/root/L6287-521TMP.html#lbAH
+  18. file://localhost/root/L6287-521TMP.html#lbAI
+  19. file://localhost/root/L6287-521TMP.html#lbAJ
+  20. file://localhost/root/L6287-521TMP.html#lbAK
+  21. file://localhost/root/L6287-521TMP.html#lbAL
+  22. file://localhost/root/L6287-521TMP.html#lbAM
+  23. file://localhost/root/L6287-521TMP.html#lbAN
+  24. file://localhost/root/L6287-521TMP.html#lbAO
+  25. file://localhost/root/L6287-521TMP.html#lbAP
+  26. file://localhost/root/L6287-521TMP.html#lbAQ
+  27. file://localhost/root/L6287-521TMP.html#lbAR
+  28. file://localhost/root/L6287-521TMP.html#lbAS
+  29. file://localhost/root/L6287-521TMP.html#lbAT
+  30. file://localhost/root/L6287-521TMP.html#lbAU
+  31. file://localhost/root/L6287-521TMP.html#lbAV
+  32. file://localhost/root/L6287-521TMP.html#lbAW
+  33. file://localhost/root/L6287-521TMP.html#lbAX
+  34. file://localhost/root/L6287-521TMP.html#lbAY
+  35. file://localhost/root/L6287-521TMP.html#lbAZ
+  36. file://localhost/root/L6287-521TMP.html#lbBA
+  37. file://localhost/root/L6287-521TMP.html#lbBB
+  38. file://localhost/root/L6287-521TMP.html#lbBC
+  39. file://localhost/root/L6287-521TMP.html#lbBD
+  40. file://localhost/root/L6287-521TMP.html
