@@ -44,8 +44,8 @@ from numpy.distutils.misc_util import Configuration
 DISTNAME            = 'Pysa'
 DESCRIPTION         = 'reverse a complete computer setup'
 LONG_DESCRIPTION    = open('README.txt').read()
-MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.',
-MAINTAINER_EMAIL    = 'pysa@mc2.io',
+MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
+MAINTAINER_EMAIL    = 'pysa@mc2.io'
 URL                 = 'http://github.com/MadeiraCloud/pysa'
 LICENSE             = 'LICENSE.txt'
 DOWNLOAD_URL        = URL
@@ -69,11 +69,10 @@ def configuration(parent_package='', top_path=None, package_name=DISTNAME):
     return config
 
 if __name__ == "__main__":
-    pkg = setuptools.find_packages(),
+    pkg = setuptools.find_packages()
     setup(configuration = configuration,
-          install_requires = ['numpy'],
-#          namespace_packages = ['madeira'],
-          packages = None, #pkg,
+          install_requires = 'numpy',
+          packages = pkg,
           include_package_data = True,
           zip_safe = True,
           classifiers = [
@@ -82,6 +81,6 @@ if __name__ == "__main__":
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
-            'Topic :: System',
-            ],
+            'Topic :: System'
+            ]
           )
