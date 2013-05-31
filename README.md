@@ -1,4 +1,3 @@
-Content-type: text/html
 
 <HTML><HEAD><TITLE>Manpage of pysa</TITLE>
 </HEAD><BODY>
@@ -556,6 +555,6 @@ Michael CHO (<A HREF="mailto:michael@mc2.io">michael@mc2.io</A>)
 This document was created by
 <A HREF="#">man2html</A>,
 using the manual pages.<BR>
-Time: 08:25:32 GMT, May 31, 2013
+Time: 08:43:22 GMT, May 31, 2013
 </BODY>
 </HTML>
