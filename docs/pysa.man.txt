@@ -394,12 +394,12 @@ Index
      __________________________________________________________________
 
    This document was created by [39]man2html, using the manual pages.
-   Time: 06:14:33 GMT, May 31, 2013
+   Time: 06:15:05 GMT, May 31, 2013
 
 References
 
-   1. file://localhost/root/L30867-1817TMP.html#index
-   2. file://localhost/root/L30867-1817TMP.html
+   1. file://localhost/root/L31358-2635TMP.html#index
+   2. file://localhost/root/L31358-2635TMP.html
    3. http://docs.puppetlabs.com/man/
    4. mailto:pysa@madeiracloud.com
    5. http://docs.puppetlabs.com/man/
@@ -407,33 +407,33 @@ References
    7. mailto:thibault@mc2.io
    8. mailto:ken@mc2.io
    9. mailto:michael@mc2.io
-  10. file://localhost/root/L30867-1817TMP.html#lbAB
-  11. file://localhost/root/L30867-1817TMP.html#lbAC
-  12. file://localhost/root/L30867-1817TMP.html#lbAD
-  13. file://localhost/root/L30867-1817TMP.html#lbAE
-  14. file://localhost/root/L30867-1817TMP.html#lbAF
-  15. file://localhost/root/L30867-1817TMP.html#lbAG
-  16. file://localhost/root/L30867-1817TMP.html#lbAH
-  17. file://localhost/root/L30867-1817TMP.html#lbAI
-  18. file://localhost/root/L30867-1817TMP.html#lbAJ
-  19. file://localhost/root/L30867-1817TMP.html#lbAK
-  20. file://localhost/root/L30867-1817TMP.html#lbAL
-  21. file://localhost/root/L30867-1817TMP.html#lbAM
-  22. file://localhost/root/L30867-1817TMP.html#lbAN
-  23. file://localhost/root/L30867-1817TMP.html#lbAO
-  24. file://localhost/root/L30867-1817TMP.html#lbAP
-  25. file://localhost/root/L30867-1817TMP.html#lbAQ
-  26. file://localhost/root/L30867-1817TMP.html#lbAR
-  27. file://localhost/root/L30867-1817TMP.html#lbAS
-  28. file://localhost/root/L30867-1817TMP.html#lbAT
-  29. file://localhost/root/L30867-1817TMP.html#lbAU
-  30. file://localhost/root/L30867-1817TMP.html#lbAV
-  31. file://localhost/root/L30867-1817TMP.html#lbAW
-  32. file://localhost/root/L30867-1817TMP.html#lbAX
-  33. file://localhost/root/L30867-1817TMP.html#lbAY
-  34. file://localhost/root/L30867-1817TMP.html#lbAZ
-  35. file://localhost/root/L30867-1817TMP.html#lbBA
-  36. file://localhost/root/L30867-1817TMP.html#lbBB
-  37. file://localhost/root/L30867-1817TMP.html#lbBC
-  38. file://localhost/root/L30867-1817TMP.html#lbBD
-  39. file://localhost/root/L30867-1817TMP.html
+  10. file://localhost/root/L31358-2635TMP.html#lbAB
+  11. file://localhost/root/L31358-2635TMP.html#lbAC
+  12. file://localhost/root/L31358-2635TMP.html#lbAD
+  13. file://localhost/root/L31358-2635TMP.html#lbAE
+  14. file://localhost/root/L31358-2635TMP.html#lbAF
+  15. file://localhost/root/L31358-2635TMP.html#lbAG
+  16. file://localhost/root/L31358-2635TMP.html#lbAH
+  17. file://localhost/root/L31358-2635TMP.html#lbAI
+  18. file://localhost/root/L31358-2635TMP.html#lbAJ
+  19. file://localhost/root/L31358-2635TMP.html#lbAK
+  20. file://localhost/root/L31358-2635TMP.html#lbAL
+  21. file://localhost/root/L31358-2635TMP.html#lbAM
+  22. file://localhost/root/L31358-2635TMP.html#lbAN
+  23. file://localhost/root/L31358-2635TMP.html#lbAO
+  24. file://localhost/root/L31358-2635TMP.html#lbAP
+  25. file://localhost/root/L31358-2635TMP.html#lbAQ
+  26. file://localhost/root/L31358-2635TMP.html#lbAR
+  27. file://localhost/root/L31358-2635TMP.html#lbAS
+  28. file://localhost/root/L31358-2635TMP.html#lbAT
+  29. file://localhost/root/L31358-2635TMP.html#lbAU
+  30. file://localhost/root/L31358-2635TMP.html#lbAV
+  31. file://localhost/root/L31358-2635TMP.html#lbAW
+  32. file://localhost/root/L31358-2635TMP.html#lbAX
+  33. file://localhost/root/L31358-2635TMP.html#lbAY
+  34. file://localhost/root/L31358-2635TMP.html#lbAZ
+  35. file://localhost/root/L31358-2635TMP.html#lbBA
+  36. file://localhost/root/L31358-2635TMP.html#lbBB
+  37. file://localhost/root/L31358-2635TMP.html#lbBC
+  38. file://localhost/root/L31358-2635TMP.html#lbBD
+  39. file://localhost/root/L31358-2635TMP.html
