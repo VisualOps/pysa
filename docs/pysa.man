@@ -1,6 +1,6 @@
 .\" Manpage for pysa.
 .\" Contact thibault@mc2.io to correct errors or typos.
-.TH pysa 8 "31 May 2013" "0.1a" "pysa man page"
+.TH pysa 8 "31 May 2013" "0.1.2a" "pysa man page"
 .SH NAME
 pysa \- Reverse Engineer Server Configurations
 .SH SYNOPSIS
