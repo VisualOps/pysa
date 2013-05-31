@@ -42,14 +42,14 @@ from numpy.distutils.misc_util import Configuration
 #      )
 
 DISTNAME            = 'Pysa'
-DESCRIPTION         = 'reverse a complete computer setup'
+DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
 MAINTAINER_EMAIL    = 'pysa@mc2.io'
 URL                 = 'http://github.com/MadeiraCloud/pysa'
 LICENSE             = 'LICENSE.txt'
 DOWNLOAD_URL        = URL
-VERSION             = '0.1.2a'
+VERSION             = '0.1.2a2'
 
 
 def configuration(parent_package='', top_path=None, package_name=DISTNAME):
