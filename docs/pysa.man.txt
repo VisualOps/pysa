@@ -309,7 +309,7 @@ NOTES
    on Ubuntu.
 
    Please don't hesitate to contact us for any kind of feedback, advice or
-   requirement: [5]pysa@madeiracloud.com.
+   requirement: [5]pysa@mc2.io
 
    If you have a question about a specific source file, you can also
    contact the author directly (see the AUTHOR section)
@@ -397,47 +397,47 @@ Index
      __________________________________________________________________
 
    This document was created by [40]man2html, using the manual pages.
-   Time: 11:57:28 GMT, May 31, 2013
+   Time: 13:10:53 GMT, June 01, 2013
 
 References
 
-   1. file://localhost/root/L13397-7565TMP.html#index
-   2. file://localhost/root/L13397-7565TMP.html
+   1. file://localhost/root/L15205-6087TMP.html#index
+   2. file://localhost/root/L15205-6087TMP.html
    3. http://docs.puppetlabs.com/man/
    4. http://devstructure.com/blueprint/
-   5. mailto:pysa@madeiracloud.com
+   5. mailto:pysa@mc2.io
    6. http://docs.puppetlabs.com/man/
    7. http://www.madeiracloud.com/
    8. mailto:thibault@mc2.io
    9. mailto:ken@mc2.io
   10. mailto:michael@mc2.io
-  11. file://localhost/root/L13397-7565TMP.html#lbAB
-  12. file://localhost/root/L13397-7565TMP.html#lbAC
-  13. file://localhost/root/L13397-7565TMP.html#lbAD
-  14. file://localhost/root/L13397-7565TMP.html#lbAE
-  15. file://localhost/root/L13397-7565TMP.html#lbAF
-  16. file://localhost/root/L13397-7565TMP.html#lbAG
-  17. file://localhost/root/L13397-7565TMP.html#lbAH
-  18. file://localhost/root/L13397-7565TMP.html#lbAI
-  19. file://localhost/root/L13397-7565TMP.html#lbAJ
-  20. file://localhost/root/L13397-7565TMP.html#lbAK
-  21. file://localhost/root/L13397-7565TMP.html#lbAL
-  22. file://localhost/root/L13397-7565TMP.html#lbAM
-  23. file://localhost/root/L13397-7565TMP.html#lbAN
-  24. file://localhost/root/L13397-7565TMP.html#lbAO
-  25. file://localhost/root/L13397-7565TMP.html#lbAP
-  26. file://localhost/root/L13397-7565TMP.html#lbAQ
-  27. file://localhost/root/L13397-7565TMP.html#lbAR
-  28. file://localhost/root/L13397-7565TMP.html#lbAS
-  29. file://localhost/root/L13397-7565TMP.html#lbAT
-  30. file://localhost/root/L13397-7565TMP.html#lbAU
-  31. file://localhost/root/L13397-7565TMP.html#lbAV
-  32. file://localhost/root/L13397-7565TMP.html#lbAW
-  33. file://localhost/root/L13397-7565TMP.html#lbAX
-  34. file://localhost/root/L13397-7565TMP.html#lbAY
-  35. file://localhost/root/L13397-7565TMP.html#lbAZ
-  36. file://localhost/root/L13397-7565TMP.html#lbBA
-  37. file://localhost/root/L13397-7565TMP.html#lbBB
-  38. file://localhost/root/L13397-7565TMP.html#lbBC
-  39. file://localhost/root/L13397-7565TMP.html#lbBD
-  40. file://localhost/root/L13397-7565TMP.html
+  11. file://localhost/root/L15205-6087TMP.html#lbAB
+  12. file://localhost/root/L15205-6087TMP.html#lbAC
+  13. file://localhost/root/L15205-6087TMP.html#lbAD
+  14. file://localhost/root/L15205-6087TMP.html#lbAE
+  15. file://localhost/root/L15205-6087TMP.html#lbAF
+  16. file://localhost/root/L15205-6087TMP.html#lbAG
+  17. file://localhost/root/L15205-6087TMP.html#lbAH
+  18. file://localhost/root/L15205-6087TMP.html#lbAI
+  19. file://localhost/root/L15205-6087TMP.html#lbAJ
+  20. file://localhost/root/L15205-6087TMP.html#lbAK
+  21. file://localhost/root/L15205-6087TMP.html#lbAL
+  22. file://localhost/root/L15205-6087TMP.html#lbAM
+  23. file://localhost/root/L15205-6087TMP.html#lbAN
+  24. file://localhost/root/L15205-6087TMP.html#lbAO
+  25. file://localhost/root/L15205-6087TMP.html#lbAP
+  26. file://localhost/root/L15205-6087TMP.html#lbAQ
+  27. file://localhost/root/L15205-6087TMP.html#lbAR
+  28. file://localhost/root/L15205-6087TMP.html#lbAS
+  29. file://localhost/root/L15205-6087TMP.html#lbAT
+  30. file://localhost/root/L15205-6087TMP.html#lbAU
+  31. file://localhost/root/L15205-6087TMP.html#lbAV
+  32. file://localhost/root/L15205-6087TMP.html#lbAW
+  33. file://localhost/root/L15205-6087TMP.html#lbAX
+  34. file://localhost/root/L15205-6087TMP.html#lbAY
+  35. file://localhost/root/L15205-6087TMP.html#lbAZ
+  36. file://localhost/root/L15205-6087TMP.html#lbBA
+  37. file://localhost/root/L15205-6087TMP.html#lbBB
+  38. file://localhost/root/L15205-6087TMP.html#lbBC
+  39. file://localhost/root/L15205-6087TMP.html#lbBD
+  40. file://localhost/root/L15205-6087TMP.html

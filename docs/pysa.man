@@ -1,6 +1,6 @@
 .\" Manpage for pysa.
 .\" Contact thibault@mc2.io to correct errors or typos.
-.TH pysa 8 "31 May 2013" "0.1.2a2" "pysa man page"
+.TH pysa 8 "31 May 2013" "0.1.2a3" "pysa man page"
 .SH NAME
 pysa \- Reverse Engineer Server Configurations
 .SH SYNOPSIS
@@ -345,7 +345,7 @@ depends on "autoconf" tools. This means that if a feature is not supported by on
 can't provide it.
 For example, it is currently impossible to use upstart services on a redhat-based platform, as it is impossible to use npm package manager on Ubuntu.
 
-Please don't hesitate to contact us for any kind of feedback, advice or requirement: pysa@madeiracloud.com.
+Please don't hesitate to contact us for any kind of feedback, advice or requirement: pysa@mc2.io
 
 If you have a question about a specific source file, you can also contact the author directly (see the
 .B AUTHOR

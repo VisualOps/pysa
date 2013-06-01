@@ -372,7 +372,7 @@ redhat-based platform, as it is impossible to use npm package manager on
 Ubuntu.
 
 Please don't hesitate to contact us for any kind of feedback, advice or
-requirement: `pysa@madeiracloud.com <mailto:pysa@madeiracloud.com>`_.
+requirement: `pysa@mc2.io <mailto:pysa@mc2.io>`_
 
 If you have a question about a specific source file, you can also
 contact the author directly (see the **AUTHOR** section)  
@@ -467,4 +467,4 @@ Index
 --------------
 
 This document was created by `man2html <#>`_, using the manual pages.
- Time: 11:57:28 GMT, May 31, 2013
+ Time: 13:10:53 GMT, June 01, 2013

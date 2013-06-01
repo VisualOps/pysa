@@ -49,7 +49,7 @@ MAINTAINER_EMAIL    = 'pysa@mc2.io'
 URL                 = 'http://github.com/MadeiraCloud/pysa'
 LICENSE             = 'LICENSE.txt'
 DOWNLOAD_URL        = URL
-VERSION             = '0.1.2a2'
+VERSION             = '0.1.2a3'
 
 
 def configuration(parent_package='', top_path=None, package_name=DISTNAME):
