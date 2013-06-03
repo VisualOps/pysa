@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Thibault BRONCHAIN &lt;thibault@mc2.io&gt;">
-  <meta name="author" content="Ken CHEN &lt;ken@mc2.io&gt;">
-  <meta name="author" content="Michael CHO &lt;michael@mc2.io&gt;">
-  <title>Pysa</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="README.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thibault BRONCHAIN &lt;thibault@mc2.io&gt;" />
+  <meta name="author" content="Ken CHEN &lt;ken@mc2.io&gt;" />
+  <meta name="author" content="Michael CHO &lt;michael@mc2.io&gt;" />
+  <link rel="stylesheet" href="README.css" type="text/css" />
 </head>
 <body>
-<header>
+<div id="header">
 <h1 class="title">Pysa</h1>
 <h2 class="author">Thibault BRONCHAIN &lt;<script type="text/javascript">
                    <!--
@@ -35,8 +30,8 @@
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
 <h3 class="date">Date: 2013-06-03 (Mon, 03 Jun 2013)</h3>
-</header>
-<nav id="TOC">
+</div>
+<div id="TOC">
 <ul>
 <li><a>NAME</a></li>
 <li><a>SYNOPSIS</a></li>
@@ -97,13 +92,13 @@
 <li><a>SEE ALSO</a></li>
 <li><a>BUGS</a></li>
 </ul>
-</nav>
+</div>
 <dl>
 <dt>Info</dt>
 <dd><p>Reverse Engineer Server Configurations</p>
 </dd>
 <dt>Organisation</dt>
-<dd><ol start="3" type="a">
+<dd><ol start="3" style="list-style-type: lower-alpha">
 <li>2013 - MADEIRACLOUD LTD.</li>
 </ol>
 </dd>
