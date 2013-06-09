@@ -28,7 +28,7 @@ import setuptools
 from distutils.core import setup
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.0a'
+VERSION             = '0.2.0a1'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -61,6 +61,6 @@ if __name__ == "__main__":
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
-            'Topic :: System'
+            'Topic :: System',
             ]
           )
