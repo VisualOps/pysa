@@ -54,12 +54,11 @@ if __name__ == "__main__":
           long_description=LONG_DESCRIPTION,
           download_url=DOWNLOAD_URL,
           license=LICENSE,
-          scripts=SCRIPTS,
-          package_data=PACKAGE_DATA,
 #          packages = pkg,
           packages=PACKAGES,
           package_dir=PACKAGE_DIR,
           package_data=PACKAGE_DATA,
+          scripts=SCRIPTS,
           classifiers = [
             'Development Status :: 3 - Alpha',
             'Environment :: Console',
