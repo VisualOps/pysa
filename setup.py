@@ -28,7 +28,7 @@ import setuptools
 from distutils.core import setup
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.0a7'
+VERSION             = '0.2.1a'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -42,7 +42,6 @@ SCRIPTS             = ['bin/pysa2puppet', 'bin/pysa']
 
 if __name__ == "__main__":
     pkg = setuptools.find_packages()
-    print pkg
     setup(name=DISTNAME,
           version=VERSION,
           author=MAINTAINER,

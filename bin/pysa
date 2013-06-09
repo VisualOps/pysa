@@ -39,7 +39,7 @@ from pysa.puppet.puppet_objects import *
 
 # global defines
 USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
-VERSION = '%prog 0.1'
+VERSION = '%prog 0.2.1a'
 
 # logger settings
 LOG_FILENAME = '/tmp/scanner.log'
@@ -78,7 +78,9 @@ class scanner():
 
 # print header
 def print_header():
+    print VERSION
     print '''
+
     pysa - reverse a complete computer setup
     Copyright (C) 2013  MadeiraCloud Ltd.
 
