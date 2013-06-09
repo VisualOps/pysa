@@ -25,56 +25,36 @@ import os
 import sys
 import setuptools
 
-from numpy.distutils.core import setup
-from numpy.distutils.misc_util import Configuration
-
-# simple setup
-#
-#from distutils.core import setup
-#
-#setup(name='pysa',
-#      version='0.1a',
-#      description='reverse a complete computer setup',
-#      author='MadeiraCloud Ltd.',
-#      author_email='pysa@mc2.io',
-#      url='http://pysa.madeiracloud.com/',
-#      packages=['pip'],
-#      )
+from distutils.core import setup
 
 DISTNAME            = 'Pysa'
+VERSION             = '0.2.0a'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
 MAINTAINER_EMAIL    = 'pysa@mc2.io'
 LICENSE             = 'LICENSE.txt'
-VERSION             = '0.2.0a'
-URL                 = 'https://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
-DOWNLOAD_URL        = URL
-
-
-def configuration(parent_package='', top_path=None, package_name=DISTNAME):
-    if os.path.exists('MANIFEST'):
-        os.remove('MANIFEST')
-
-    config = Configuration(package_name, parent_package, top_path,
-                           version = VERSION,
-                           maintainer  = MAINTAINER,
-                           maintainer_email = MAINTAINER_EMAIL,
-                           description = DESCRIPTION,
-                           license = LICENSE,
-                           url = URL,
-                           download_url = DOWNLOAD_URL,
-                           long_description = LONG_DESCRIPTION)
-
-    return config
+URL                 = 'http://pypi.python.org/pypi/Pysa/'
+DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
+SCRIPTS             = ['pysa2puppet.sh']
+PACKAGE_DATA        = {'pysa': ['HEADER.txt']}
 
 if __name__ == "__main__":
     pkg = setuptools.find_packages()
-    setup(configuration = configuration,
-          install_requires = 'numpy',
+    setup(name=DISTNAME,
+          version=VERSION,
+          author=MAINTAINER,
+          author_email=MAINTAINER_EMAIL,
+          maintainer=MAINTAINER,
+          maintainer_email=MAINTAINER_EMAIL,
+          url=URL,
+          description=DESCRIPTION,
+          long_description=LONG_DESCRIPTION,
+          download_url=DOWNLOAD_URL,
+          license=LICENSE,
+          scripts=SCRIPTS,
+          package_data=PACKAGE_DATA,
           packages = pkg,
-          include_package_data = True,
-          zip_safe = True,
           classifiers = [
             'Development Status :: 3 - Alpha',
             'Environment :: Console',
