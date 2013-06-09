@@ -28,7 +28,7 @@ import setuptools
 from distutils.core import setup
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.0a4'
+VERSION             = '0.2.0a5'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -38,7 +38,7 @@ URL                 = 'http://pypi.python.org/pypi/Pysa/'
 DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
 PACKAGES            = ['pysa']
 PACKAGE_DIR         = {'pysa': 'pysa'}
-SCRIPTS             = ['pysa2puppet.sh', 'pysa']
+SCRIPTS             = ['pysa/pysa2puppet.sh', 'pysa/pysa']
 PACKAGE_DATA        = {'pysa': ['HEADER.txt']}
 
 if __name__ == "__main__":
