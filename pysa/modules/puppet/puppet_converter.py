@@ -134,18 +134,19 @@ CONTENTADD_EQ = {
 }
 
 # content modifier (on lists)
-CONTENTLVAL_EQ = {
-    'files'             : ['before','File'],
-    'config_files'      : ['before','File']
-}
+#CONTENTLVAL_EQ = {
+#    'files'             : ['before','File'],
+#    'config_files'      : ['before','File']
+#}
 
 # avoided sections
 AVOIDSEC_EQ = {
     'mounts'    : ['size'],
-    'packages'  : ['manager'],
-    'sources'   : ['mode', 'password', 'branch', 'name'],
+    'packages'  : ['manager', 'config_files'],
+    'sources'   : ['mode', 'password', 'branch', 'name', 'key'], #check key
     'groups'    : ['gid'],
     'users'     : ['uid', 'gid'],
+    'repos'     : ['provider'],
 }
 
 # Append sections
@@ -176,8 +177,8 @@ class puppet_converter():
         # add exceptions
         if GLOBAL_EXEC_EQ:
             self.__add_global_exec()
-        if ORDER_EQ:
-            self.__add_order()
+#        if ORDER_EQ:
+#            self.__add_order()
 
         tools.l(INFO, "complete", 'run', self)
         return self.__output
@@ -215,28 +216,28 @@ class puppet_converter():
             
         return c
 
-    # generate order
-    @general_exception
-    def __append_order(self, src, dst, sec_name='order'):
-        order = []
-        for sec in src:
-            if sec in dst:
-                order.append(sec)
-        if order:
-            dst[GLOBAL_SEC_EQ[sec_name]] = order
-        else:
-            tools.l(INFO, "no pertinent order", 'append_order', self)
-
-    # order generation
-    @general_exception
-    def __add_order(self):
-        for key in ORDER_EQ:
-            if key == VOID_EQ:
-                tools.l(INFO, "adding order for main section", 'add_order', self)
-                self.__append_order(ORDER_EQ[key], self.__output)
-            else:
-                tools.l(INFO, "adding order for %s" % (key), 'add_order', self)
-                self.__append_order(ORDER_EQ[key], self.__output[key])
+#    # generate order
+#    @general_exception
+#    def __append_order(self, src, dst, sec_name='order'):
+#        order = []
+#        for sec in src:
+#            if sec in dst:
+#                order.append(sec)
+#        if order:
+#            dst[GLOBAL_SEC_EQ[sec_name]] = order
+#        else:
+#            tools.l(INFO, "no pertinent order", 'append_order', self)
+#
+#    # order generation
+#    @general_exception
+#    def __add_order(self):
+#        for key in ORDER_EQ:
+#            if key == VOID_EQ:
+#                tools.l(INFO, "adding order for main section", 'add_order', self)
+#                self.__append_order(ORDER_EQ[key], self.__output)
+#            else:
+#                tools.l(INFO, "adding order for %s" % (key), 'add_order', self)
+#                self.__append_order(ORDER_EQ[key], self.__output[key])
 
     # processing on values
     @general_exception
@@ -280,13 +281,13 @@ class puppet_converter():
                         ]
                     })
 
-        # ordering condition
-        if (gclass in ORDERED_LIST_EQ) and self.__prev_obj != None:
-            input['require'] = tools.dict_merging(input.get('require'), {
-                    SECTION_EQ[gclass][len(VOID_EQ):].capitalize() : [
-                        self.__prev_obj
-                        ]
-                    })
+#        # ordering condition
+#        if (gclass in ORDERED_LIST_EQ) and self.__prev_obj != None:
+#            input['require'] = tools.dict_merging(input.get('require'), {
+#                    SECTION_EQ[gclass][len(VOID_EQ):].capitalize() : [
+#                        self.__prev_obj
+#                        ]
+#                    })
 
         # main loop
         for key in input:
@@ -294,13 +295,13 @@ class puppet_converter():
                 store = []
                 for d in input[key]:
                     store.append(self.__process_values(gclass, name, key, d))
-                if key in CONTENTLVAL_EQ:
-                    input.pop(key)
-                    input[CONTENTLVAL_EQ[key][0]] = {
-                        CONTENTLVAL_EQ[key][1] : store
-                        }
-                else:
-                    input[key] = store
+#                if key in CONTENTLVAL_EQ:
+#                    input.pop(key)
+#                    input[CONTENTLVAL_EQ[key][0]] = {
+#                        CONTENTLVAL_EQ[key][1] : store
+#                        }
+#                else:
+                input[key] = store
             else:
                 input[key] = self.__process_values(gclass, name, key, input[key])
         return input
@@ -327,13 +328,10 @@ class puppet_converter():
                 if gclass in SUBCLASS_EQ:
                     subkey = data[gclass][name][SUBCLASS_EQ[gclass][VOID_EQ]]
                     tools.l(INFO, "creating sub class %s" % (subkey), 'generate_classes', self)
-                    if self.__output[gclass].get(subkey) == None:
-                        self.__output[gclass][subkey] = self.__add_top_class(subkey)
-                    if self.__output[gclass][subkey].get(SECTION_EQ[gclass]) == None:
-                        self.__output[gclass][subkey][SECTION_EQ[gclass]] = {}
+                    self.__output[gclass].setdefault(subkey, self.__add_top_class(subkey))
+                    self.__output[gclass][subkey].setdefault(SECTION_EQ[gclass], {})
                     self.__output[gclass][subkey][SECTION_EQ[gclass]][name] = self.__process_sec(data, gclass, name, subkey)
                 else:
-                    if self.__output[gclass].get(SECTION_EQ[gclass]) == None:
-                        self.__output[gclass][SECTION_EQ[gclass]] = {}
+                    self.__output[gclass].setdefault(SECTION_EQ[gclass], {})
                     self.__output[gclass][SECTION_EQ[gclass]][name] = self.__process_sec(data, gclass, name, gclass)
                 self.__prev_obj = name

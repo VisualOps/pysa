@@ -24,8 +24,10 @@ from common.tools import *
 from common.exception import *
 from common.config import FILE_CLASS
 
+from common.dependencies import dependencies
+
 FILE_IDENT = FILE_CLASS + [
-#    'sources',
+    'sources',
     ]
 
 # preprocesser
@@ -33,6 +35,7 @@ class preprocessing():
     def __init__(self, obj_maker, data=None):
         self.__obj_maker = obj_maker
         self.__data = data
+        self.__deps = dependencies()
 
     # action
     @general_exception
@@ -41,6 +44,7 @@ class preprocessing():
             self.__data = data
         if self.__data:
             self.__prepross_files()
+        self.__deps.run(self.__data)
         return self.__data
 
     # preprocessing on files section

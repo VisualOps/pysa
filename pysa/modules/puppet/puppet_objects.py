@@ -22,20 +22,21 @@ Puppet Objects
 
 from common.exception import *
 
+from modules.scanner.actions.utils import get_stat
 
 class puppet_objects():
     @staticmethod
     def puppet_file_dir_obj(dr):
-        # get owner, group and mode
-        s = utils.get_stat(dr)
+        # get group, mode and owner
+        s = get_stat(dr)
+        #s = ('root', oct(0777), 'root')
         return {
             'path'      : dr,
-            'recurse'   : 'true',
             'ensure'    : 'directory',
             'name'      : dr,
-            'owner'     : s[0],
-            'group'     : s[1],
-            'mode'      : s[2]
+            'group'     : s[0],
+            'mode'      : s[1],
+            'owner'     : s[2],
             }
 
 PUPPET_OBJ_MAKER = {

@@ -38,8 +38,6 @@ class scanner_repo(scanner_base):
             self.scan_yum()
         elif os.path.exists('/etc/apt'):
             self.scan_apt()
-        else:
-            return
 
     def scan_yum(self):
         """
@@ -51,7 +49,7 @@ class scanner_repo(scanner_base):
                 root, ext = os.path.splitext(file)
                 if ext!='.repo': continue
 
-                self.addfile(os.path.join(dirpath, file))
+                self.addfile(os.path.join(dirpath, file), 'yum')
 
     def scan_apt(self):
         """
@@ -59,7 +57,7 @@ class scanner_repo(scanner_base):
         """
 
         try:
-            with open('/etc/apt/sources.list'): self.addfile('/etc/apt/sources.list')
+            with open('/etc/apt/sources.list'): self.addfile('/etc/apt/sources.list', 'apt')
         except IOError:
             return
 
@@ -69,11 +67,11 @@ class scanner_repo(scanner_base):
                     root, ext = os.path.splitext(file)
                     if ext!='.list': continue
 
-                    self.addfile(os.path.join(dirpath, file))
+                    self.addfile(os.path.join(dirpath, file), 'apt')
 
 
     # add per config file
-    def addfile(self, pathname):
+    def addfile(self, pathname, prov):
         # only plane text file
         if utils.valid_txtfile(pathname) == False:
             return
@@ -87,5 +85,4 @@ class scanner_repo(scanner_base):
         # add the config file:
         # checksum, content, group, mode, owner, path, force=False, provider=None,
         # recurse=None, recurselimit=None, source=None
-        self.add_repo('md5', c, s[0], s[1], s[2], pathname)
-
+        self.add_repo('md5', c, s[0], s[1], s[2], pathname, provider=prov)

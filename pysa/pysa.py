@@ -40,6 +40,7 @@ from modules.puppet.puppet_objects import *
 # global defines
 USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
 VERSION = '%prog 0.1'
+HEADER_PATH = './HEADER.txt'
 
 # logger settings
 LOG_FILENAME = '/tmp/scanner.log'
@@ -76,6 +77,12 @@ class scanner():
         puppet = puppet_build(p, path, module)
         puppet.run()
 
+# print header
+def print_header(header_path):
+    content = tools.get_file(header_path)
+    if not content:
+        print "WARNING: No header file found, please be sure of what you are doing.\n"
+    else: print content
 
 # option parser - user handler
 def check_user(option, opt_str, value, parser):
@@ -114,6 +121,9 @@ def main_parse():
     return parser.parse_args()
 
 def main():
+    # print header
+    print_header(HEADER_PATH)
+
     # options parsing
     options, args = main_parse()
     __log(('ERROR' if options.quiet else 'INFO'))

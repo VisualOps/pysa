@@ -31,7 +31,5 @@ class mount(object_base):
         self.atboot = atboot
         self.dump = dump
         self.remounts = remounts
-        self.options = options    
+        self.options = options
         self.size = size
-    
-    

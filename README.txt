@@ -6,8 +6,8 @@ Pysa
 :Author: Ken CHEN <ken@mc2.io>
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
-:Date: Date: 2013-06-03 (Mon, 03 Jun 2013)
-:Revision: v0.1.2a4
+:Date: Date: 2013-06-07 (Fri, 07 Jun 2013)
+:Revision: v0.2.0a
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME
@@ -26,8 +26,6 @@ DESCRIPTION
 ===========
 
 **pysa** scans your system and reverse engineers its configurations for easy replication.
-
-**pysa** was born from the simple idea that today, while the "cloud revolution" is in progress, it is still hard to keep track of the actual configuration of our machines and easily replicate it on another machine.
 
 **pysa** is able to scan your system, looking for different resources to deploy and generates some "autoconf" tools script to deploy it later on another computer.
 
@@ -68,6 +66,16 @@ Default value: *output*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Specify a filter configuration file.
 See **`FILTERS`_** section for more details.
+
+
+REPLICATION
+===========
+
+**pysa** generates a puppet module containing several configuration scripts.
+
+There are two ways to use **pysa**'s output:
+- You can manually configure the configuration manager and add **pysa**'s module to it
+- You can use the "pysa2puppet.sh" script to deploy a complete and standalone setup based on *puppet*. The script is interactive and will ask you all necessaries info (see usage first).
 
 
 RESOURCES
@@ -303,9 +311,9 @@ For example, **pysa** does not (yet) support the addition of user's packages, si
 Furthermore, **pysa** depends on "autoconf" tools. This means that if a feature is not supported by one of these tools, **pysa** can't provide it.
 For example, it is currently impossible to use upstart services on a *Redhat* based platform, as it is impossible to use npm package manager on *Ubuntu*.
 
-Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa@mc2.io>
+Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa-user@googlegroups.com> for public discussions and <pysa@mc2.io> for private messages.
 
-If you have a question about a specific source file, you can also contact the author directly (see the **`AUTHOR`_** section)
+If you have a question about a specific source file, you can also contact the author directly (<*first-name*@mc2.io>)
 
 
 SEE ALSO

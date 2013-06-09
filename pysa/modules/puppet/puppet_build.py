@@ -37,11 +37,12 @@ QUOTED_CONTENT = ['\W', '\d']
 # puppet generation class
 class puppet_build():
     def __init__(self, class_dict, output_path, module):
-        self.__quoted_regex = "%s" % ('|'.join(QUOTED_CONTENT))
         self.__prepross = [
-            [GLOBAL_SEC_EQ['order'], self.__order],
-            [GLOBAL_SEC_EQ['Exec'], self.__content]
+#            [GLOBAL_SEC_EQ['order'], self.__order],
+            [GLOBAL_SEC_EQ['Exec'], self.__content],
             ]
+
+        self.__quoted_regex = "%s" % ('|'.join(QUOTED_CONTENT))
         self.__module_name = module
         self.__c = output()
         self.__class_dict = class_dict
@@ -91,18 +92,18 @@ class puppet_build():
             s += (re.sub(r'^', r'\n\t', i) if i else '')
         self.__c.mod("class %s {\n%s\n}\n" % (self.__module_name, s))
 
-    # particular case for the variable order (define the execution order)
-    @general_exception
-    def __order(self, parent, data, index, output, tab):
-        if len(data[index]) <= 1:
-            tools.l(INFO, "no order written, only one class", 'order', self)
-            return tab
-        f = 0
-        for content in data[index]:
-            self.__c.add(output, (' -> ' if f else tab)+"Class['%s']" % (content))
-            f += 1
-        self.__c.add(output, ('\n' if f else ''))
-        return tab
+#    # particular case for the variable order (define the execution order)
+#    @general_exception
+#    def __order(self, parent, data, index, output, tab):
+#        if len(data[index]) <= 1:
+#            tools.l(INFO, "no order written, only one class", 'order', self)
+#            return tab
+#        f = 0
+#        for content in data[index]:
+#            self.__c.add(output, (' -> ' if f else tab)+"Class['%s']" % (content))
+#            f += 1
+#        self.__c.add(output, ('\n' if f else ''))
+#        return tab
 
     # particular case for the single instructions
     @general_exception

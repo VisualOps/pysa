@@ -32,7 +32,7 @@
                    document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
-<h3 class="date">Date: 2013-06-03 (Mon, 03 Jun 2013)</h3>
+<h3 class="date">Date: 2013-06-07 (Fri, 07 Jun 2013)</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -49,6 +49,7 @@
 <li><a>-f filter-config-path, –filter filter-config-path</a></li>
 </ul></li>
 </ul></li>
+<li><a>REPLICATION</a></li>
 <li><a>RESOURCES</a><ul>
 <li><a>configuration files - file</a></li>
 <li><a>packages - package</a></li>
@@ -106,7 +107,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.1.2a4</p>
+<dd><p>v0.2.0a</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -118,7 +119,6 @@
 <p><strong>pysa</strong> [ <strong>-hpq</strong> ] [ <strong>-m</strong> <em>module-name</em> ] [ <strong>-o</strong> <em>output-path</em> ] [ <strong>-f</strong> <em>filter-config-path</em> ]</p>
 <h1>DESCRIPTION</h1>
 <p><strong>pysa</strong> scans your system and reverse engineers its configurations for easy replication.</p>
-<p><strong>pysa</strong> was born from the simple idea that today, while the “cloud revolution” is in progress, it is still hard to keep track of the actual configuration of our machines and easily replicate it on another machine.</p>
 <p><strong>pysa</strong> is able to scan your system, looking for different resources to deploy and generates some “autoconf” tools script to deploy it later on another computer.</p>
 <p>See <strong>RESOURCES_</strong> section for complete list of managed resources.</p>
 <p><strong>pysa</strong> is able to generates the configuration in puppet format (see <em><a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet</a></em> documentation).</p>
@@ -136,6 +136,9 @@
 <p>Choose the output filter for generated scripts. Default value: <em>output</em></p>
 <h3>-f filter-config-path, –filter filter-config-path</h3>
 <p>Specify a filter configuration file. See <strong>FILTERS_</strong> section for more details.</p>
+<h1>REPLICATION</h1>
+<p><strong>pysa</strong> generates a puppet module containing several configuration scripts.</p>
+<p>There are two ways to use <strong>pysa</strong>’s output: - You can manually configure the configuration manager and add <strong>pysa</strong>’s module to it - You can use the “pysa2puppet.sh” script to deploy a complete and standalone setup based on <em>puppet</em>. The script is interactive and will ask you all necessaries info (see usage first).</p>
 <h1>RESOURCES</h1>
 <p>This section describes all the resources scanned by <strong>pysa</strong></p>
 <p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the <strong>FILTERS_</strong> section.</p>
@@ -252,11 +255,21 @@
 <p>Furthermore, <strong>pysa</strong> depends on “autoconf” tools. This means that if a feature is not supported by one of these tools, <strong>pysa</strong> can’t provide it. For example, it is currently impossible to use upstart services on a <em>Redhat</em> based platform, as it is impossible to use npm package manager on <em>Ubuntu</em>.</p>
 <p>Please don’t hesitate to contact us for any kind of feedback, advice or requirement: &lt;<script type="text/javascript">
 <!--
+h='&#x67;&#x6f;&#x6f;&#x67;&#108;&#x65;&#x67;&#114;&#x6f;&#x75;&#112;&#x73;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;&#x2d;&#x75;&#x73;&#x65;&#114;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#112;&#x79;&#x73;&#x61;&#x2d;&#x75;&#x73;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x67;&#x6f;&#x6f;&#x67;&#108;&#x65;&#x67;&#114;&#x6f;&#x75;&#112;&#x73;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript>&gt; for public discussions and &lt;<script type="text/javascript">
+<!--
 h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</p>
-<p>If you have a question about a specific source file, you can also contact the author directly (see the <strong>AUTHOR_</strong> section)</p>
+</script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; for private messages.</p>
+<p>If you have a question about a specific source file, you can also contact the author directly (&lt;<script type="text/javascript">
+<!--
+h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;)</p>
 <h1>SEE ALSO</h1>
 <p><a href="http://docs.puppetlabs.com/man/">puppet</a></p>
 <h1>BUGS</h1>

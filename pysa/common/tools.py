@@ -82,6 +82,33 @@ class tools():
         rpath[0] = '/'
         return rpath
 
+    # get previous path
+    @staticmethod
+    def path_basename(path):
+        if path == '/': return None
+        if path[-1] == '/': path = path[:-1]
+        rpath = re.split('/', path)
+        i = 1
+        while i < len(rpath):
+            rpath[i] = os.path.normpath("%s/%s" % (rpath[i-1] if i else "", rpath[i]))
+            i += 1
+        rpath[0] = '/'
+        if len(rpath) < 2: return None
+        return rpath[-2]
+
+    # returns file content
+    @staticmethod
+    def get_file(filename):
+        if not filename: return None
+        file = None
+        try:
+            f = open(filename, 'r')
+            file = f.read()
+        except IOError:
+            tools.l(ERR, "%s: no such file or directory" % (filename), 'dump_file')
+            return None
+        return file
+
     # check if file exists
     @staticmethod
     def file_exists(filename):
