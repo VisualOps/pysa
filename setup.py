@@ -28,7 +28,7 @@ import setuptools
 from distutils.core import setup
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.0a5'
+VERSION             = '0.2.0a6'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -54,8 +54,8 @@ if __name__ == "__main__":
           long_description=LONG_DESCRIPTION,
           download_url=DOWNLOAD_URL,
           license=LICENSE,
-#          packages = pkg,
-          packages=PACKAGES,
+          packages = pkg,
+#          packages=PACKAGES,
           package_dir=PACKAGE_DIR,
           package_data=PACKAGE_DATA,
           scripts=SCRIPTS,
