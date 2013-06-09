@@ -46,10 +46,10 @@ DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
 MAINTAINER_EMAIL    = 'pysa@mc2.io'
-URL                 = 'http://github.com/MadeiraCloud/pysa'
 LICENSE             = 'LICENSE.txt'
 DOWNLOAD_URL        = URL
-VERSION             = '0.1.2a4'
+VERSION             = '0.2.0a'
+URL                 = 'https://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
 
 
 def configuration(parent_package='', top_path=None, package_name=DISTNAME):
@@ -76,7 +76,7 @@ if __name__ == "__main__":
           include_package_data = True,
           zip_safe = True,
           classifiers = [
-            'Development Status :: 2 - Pre-Alpha',
+            'Development Status :: 3 - Alpha',
             'Environment :: Console',
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
