@@ -36,8 +36,8 @@ MAINTAINER_EMAIL    = 'pysa@mc2.io'
 LICENSE             = 'LICENSE.txt'
 URL                 = 'http://pypi.python.org/pypi/Pysa/'
 DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
-PACKAGES            = ['pysa'],
-PACKAGE_DIR         = {'pysa': 'pysa'},
+PACKAGES            = ['pysa']
+PACKAGE_DIR         = {'pysa': 'pysa'}
 SCRIPTS             = ['pysa2puppet.sh', 'pysa']
 PACKAGE_DATA        = {'pysa': ['HEADER.txt']}
 
