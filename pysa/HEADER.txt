@@ -1,8 +1,0 @@
-
-    pysa - reverse a complete computer setup
-    Copyright (C) 2013  MadeiraCloud Ltd.
-
-Thank you for using pysa!
-Be aware that you are using an early-build (alpha release).
-To provide the best result, ensure that you are not using an outdated version (check out http://github.com/MadeiraCloud/pysa or http://pypi.python.org/pypi/Pysa to get the latest version).
-Please don’t hesitate to report any bugs, requirements, advice, criticisms, hate or love messages to either pysa-user@googlegroups.com for public discussions and pysa@mc2.io for private messages.
