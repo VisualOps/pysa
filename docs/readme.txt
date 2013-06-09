@@ -68,7 +68,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.0a
+    v0.2.0a2
 
 Description
     Pysa scans your system and reverse engineers its configurations for
