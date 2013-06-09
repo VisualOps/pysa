@@ -47,9 +47,9 @@ LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
 MAINTAINER_EMAIL    = 'pysa@mc2.io'
 LICENSE             = 'LICENSE.txt'
-DOWNLOAD_URL        = URL
 VERSION             = '0.2.0a'
 URL                 = 'https://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
+DOWNLOAD_URL        = URL
 
 
 def configuration(parent_package='', top_path=None, package_name=DISTNAME):
