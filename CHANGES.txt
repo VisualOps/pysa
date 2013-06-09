@@ -1,4 +1,4 @@
-v0.2.0a1, 2013.6.09 -- Fix setup script.
+v0.2.0ax, 2013.6.09 -- Fixes and tests setup script.
 v0.2.0a, 2013.6.07 -- Alpha release. Includes dependencies improvment, pre-alpha fixes and replication helper.
 v0.1.xax, 2013.6.xx -- Pre-alpha fix, doc formating.
 v0.1a, 2013.5.24 -- Initial release.
