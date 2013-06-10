@@ -1,7 +1,7 @@
 Pysa
 Thibault BRONCHAIN <thibault@mc2.io>; Ken CHEN <ken@mc2.io>; Michael CHO
 <michael@mc2.io>
-Date: 2013-06-07 (Fri, 07 Jun 2013)
+Date: 2013-06-10 (Mon, 10 Jun 2013)
 
 -   NAME
 -   SYNOPSIS
@@ -68,7 +68,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.1a1
+    v0.2.1a2
 
 Description
     Pysa scans your system and reverse engineers its configurations for
@@ -137,11 +137,11 @@ REPLICATION
 
 pysa generates a puppet module containing several configuration scripts.
 
-There are two ways to use pysa’s output: - You can manually configure
-the configuration manager and add pysa’s module to it - You can use the
-“pysa2puppet.sh” script to deploy a complete and standalone setup based
-on puppet. The script is interactive and will ask you all necessaries
-info (see usage first).
+There are two ways to use pysa ’s output: - You can manually configure
+the configuration manager and add pysa ’s module to it - You can use the
+pysa2puppet script to deploy a complete and standalone setup based on
+puppet. The script is interactive and will ask you all necessaries info
+(see usage first).
 
 RESOURCES
 =========
@@ -303,14 +303,14 @@ This section is used to add or modify some values.
 
 It can sounds similar to the replace section, but works in a completely
 different way: - The key is based on section key instead of content to
-replace - It is replaced at the scanning step, while the “replacement”
+replace - It is replaced at the scanning step, while the replacement
 section is done at the output generation step
 
-Remember that “addition” is used to add/set a concrete parameter, while
-“replace” is used to replace some content.
+Remember that addition is used to add/set a concrete parameter, while
+replace is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot
-‘.’, always starting by “addition” keyword: - “addition.resource_type”
+‘.’, always starting by addition keyword: - “addition.resource_type”
 will replace values for all objects of resource_type -
 “addition.resource_type.key.value” will replace only the values for the
 objects where the key/value match the requirement
@@ -360,7 +360,7 @@ section description
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot
-‘.’, always starting by “replace” keyword: - “replace” will replace all
+‘.’, always starting by replace keyword: - “replace” will replace all
 values for all objects. - “replace.object” will replace all values for
 the selected object. - “replace.object.field” will replace only the
 values associated with the field in the selected object.
@@ -384,11 +384,11 @@ update section
 
 section description
 
-This section is used to specify which “package” should be updated. This
+This section is used to specify which package should be updated. This
 section has been created due to the lack of old packages in many
 repositories.
 
-A list of package names is specified as values of the “except” key,
+A list of package names is specified as values of the except key,
 separated by a coma ‘,’.
 
 The joker ‘*’ can be used to specify to match all characters.
@@ -431,7 +431,7 @@ requirement: <pysa-user@googlegroups.com> for public discussions and
 <pysa@mc2.io> for private messages.
 
 If you have a question about a specific source file, you can also
-contact the author directly (<*first-name*@mc2.io>)
+contact the author directly ( *first-name*@mc2.io )
 
 SEE ALSO
 ========

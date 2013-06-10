@@ -32,7 +32,7 @@
                    document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
-<h3 class="date">Date: 2013-06-07 (Fri, 07 Jun 2013)</h3>
+<h3 class="date">Date: 2013-06-10 (Mon, 10 Jun 2013)</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -107,7 +107,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.1a1</p>
+<dd><p>v0.2.1a2</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -120,8 +120,8 @@
 <h1>DESCRIPTION</h1>
 <p><strong>pysa</strong> scans your system and reverse engineers its configurations for easy replication.</p>
 <p><strong>pysa</strong> is able to scan your system, looking for different resources to deploy and generates some “autoconf” tools script to deploy it later on another computer.</p>
-<p>See <strong>RESOURCES_</strong> section for complete list of managed resources.</p>
-<p><strong>pysa</strong> is able to generates the configuration in puppet format (see <em><a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet</a></em> documentation).</p>
+<p>See RESOURCES_ section for complete list of managed resources.</p>
+<p><strong>pysa</strong> is able to generates the configuration in puppet format (see <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet</a> documentation).</p>
 <h1>OPTIONS</h1>
 <h2>Options list</h2>
 <h3>-h, –help</h3>
@@ -135,15 +135,15 @@
 <h3>-o output-path, –output output-path</h3>
 <p>Choose the output filter for generated scripts. Default value: <em>output</em></p>
 <h3>-f filter-config-path, –filter filter-config-path</h3>
-<p>Specify a filter configuration file. See <strong>FILTERS_</strong> section for more details.</p>
+<p>Specify a filter configuration file. See FILTERS_ section for more details.</p>
 <h1>REPLICATION</h1>
 <p><strong>pysa</strong> generates a puppet module containing several configuration scripts.</p>
-<p>There are two ways to use <strong>pysa</strong>’s output: - You can manually configure the configuration manager and add <strong>pysa</strong>’s module to it - You can use the “pysa2puppet.sh” script to deploy a complete and standalone setup based on <em>puppet</em>. The script is interactive and will ask you all necessaries info (see usage first).</p>
+<p>There are two ways to use <strong>pysa</strong> ’s output: - You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it - You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on <em>puppet</em>. The script is interactive and will ask you all necessaries info (see usage first).</p>
 <h1>RESOURCES</h1>
 <p>This section describes all the resources scanned by <strong>pysa</strong></p>
-<p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the <strong>FILTERS_</strong> section.</p>
+<p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the FILTERS_ section.</p>
 <p>At the current state, the resources objects and keys are similar to <em>Puppet</em> types.</p>
-<p>Please see <strong>AUTOCONF TOOLS MODULES_</strong> section to be sure to be able to handle all scanned resources.</p>
+<p>Please see AUTOCONF TOOLS MODULES_ section to be sure to be able to handle all scanned resources.</p>
 <h2>configuration files - file</h2>
 <p><strong>pysa</strong> scans (and stores in output module) all files located in a specific location. Default <strong>/etc</strong></p>
 <p>Primary key: <em>path</em></p>
@@ -153,7 +153,7 @@
 <p>Primary key: <em>name</em></p>
 <h2>services - service</h2>
 <p><strong>pysa</strong> detects all startup services managed by <em>upstart</em> and <em>SysV init</em> scripts.</p>
-<p>Please see <strong>NOTES_</strong> section.</p>
+<p>Please see NOTES_ section.</p>
 <p>Primary key: <em>name</em></p>
 <h2>hosts - host</h2>
 <p><strong>pysa</strong> scans and reproduces existing hostname associations (default <em>/etc/hosts</em>).</p>
@@ -199,9 +199,9 @@
 <h2>addition section</h2>
 <h3>section description</h3>
 <p>This section is used to add or modify some values.</p>
-<p>It can sounds similar to the replace section, but works in a completely different way: - The key is based on section key instead of content to replace - It is replaced at the scanning step, while the <em>“replacement”</em> section is done at the output generation step</p>
-<p>Remember that <em>“addition”</em> is used to add/set a concrete parameter, while <em>“replace”</em> is used to replace some content.</p>
-<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>“addition”</em> keyword: - “addition.resource_type” will replace values for all objects of resource_type - “addition.resource_type.key.value” will replace only the values for the objects where the key/value match the requirement</p>
+<p>It can sounds similar to the replace section, but works in a completely different way: - The key is based on section key instead of content to replace - It is replaced at the scanning step, while the <em>replacement</em> section is done at the output generation step</p>
+<p>Remember that <em>addition</em> is used to add/set a concrete parameter, while <em>replace</em> is used to replace some content.</p>
+<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>addition</em> keyword: - “addition.resource_type” will replace values for all objects of resource_type - “addition.resource_type.key.value” will replace only the values for the objects where the key/value match the requirement</p>
 <p>The key represents the resource key. The value represents the resource value.</p>
 <h3>section format</h3>
 <p>section_key = section_value</p>
@@ -224,7 +224,7 @@
 <h2>replace section</h2>
 <h3>section description</h3>
 <p>This section is used to replace any kind of content.</p>
-<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>“replace”</em> keyword: - “replace” will replace all values for all objects. - “replace.object” will replace all values for the selected object. - “replace.object.field” will replace only the values associated with the field in the selected object.</p>
+<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>replace</em> keyword: - “replace” will replace all values for all objects. - “replace.object” will replace all values for the selected object. - “replace.object.field” will replace only the values associated with the field in the selected object.</p>
 <p>The key represents the new value. The value(s) represents the target to replace.</p>
 <h3>section format</h3>
 <p>new_value = old_value1, old_value2, …</p>
@@ -236,8 +236,8 @@
 </dl>
 <h2>update section</h2>
 <h3>section description</h3>
-<p>This section is used to specify which <em>“package”</em> should be updated. This section has been created due to the lack of old packages in many repositories.</p>
-<p>A list of package names is specified as values of the <em>“except”</em> key, separated by a coma ‘,’.</p>
+<p>This section is used to specify which <em>package</em> should be updated. This section has been created due to the lack of old packages in many repositories.</p>
+<p>A list of package names is specified as values of the <em>except</em> key, separated by a coma ‘,’.</p>
 <p>The joker ‘*’ can be used to specify to match all characters.</p>
 <h3>section format</h3>
 <p>except = package1, package2*, *package3, *package4*, …</p>
@@ -264,12 +264,12 @@ h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;';e=
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; for private messages.</p>
-<p>If you have a question about a specific source file, you can also contact the author directly (&lt;<script type="text/javascript">
+<p>If you have a question about a specific source file, you can also contact the author directly ( <script type="text/javascript">
 <!--
 h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;)</p>
+</script><noscript>&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript> )</p>
 <h1>SEE ALSO</h1>
 <p><a href="http://docs.puppetlabs.com/man/">puppet</a></p>
 <h1>BUGS</h1>

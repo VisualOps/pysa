@@ -6,8 +6,8 @@ Pysa
 :Author: Ken CHEN <ken@mc2.io>
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
-:Date: Date: 2013-06-07 (Fri, 07 Jun 2013)
-:Revision: v0.2.1a1
+:Date: Date: 2013-06-10 (Mon, 10 Jun 2013)
+:Revision: v0.2.1a2
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME
@@ -29,9 +29,9 @@ DESCRIPTION
 
 **pysa** is able to scan your system, looking for different resources to deploy and generates some "autoconf" tools script to deploy it later on another computer.
 
-See **`RESOURCES`_** section for complete list of managed resources.
+See `RESOURCES`_ section for complete list of managed resources.
 
-**pysa** is able to generates the configuration in puppet format (see *`Puppet <http://docs.puppetlabs.com/references/latest/type.html>`_* documentation).
+**pysa** is able to generates the configuration in puppet format (see `Puppet <http://docs.puppetlabs.com/references/latest/type.html>`_ documentation).
 
 
 OPTIONS
@@ -65,7 +65,7 @@ Default value: *output*
 -f filter-config-path, --filter filter-config-path
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Specify a filter configuration file.
-See **`FILTERS`_** section for more details.
+See `FILTERS`_ section for more details.
 
 
 REPLICATION
@@ -73,9 +73,9 @@ REPLICATION
 
 **pysa** generates a puppet module containing several configuration scripts.
 
-There are two ways to use **pysa**'s output:
-- You can manually configure the configuration manager and add **pysa**'s module to it
-- You can use the "pysa2puppet.sh" script to deploy a complete and standalone setup based on *puppet*. The script is interactive and will ask you all necessaries info (see usage first).
+There are two ways to use **pysa** 's output:
+- You can manually configure the configuration manager and add **pysa** 's module to it
+- You can use the *pysa2puppet* script to deploy a complete and standalone setup based on *puppet*. The script is interactive and will ask you all necessaries info (see usage first).
 
 
 RESOURCES
@@ -83,11 +83,11 @@ RESOURCES
 
 This section describes all the resources scanned by **pysa**
 
-By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the **`FILTERS`_** section.
+By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the `FILTERS`_ section.
 
 At the current state, the resources objects and keys are similar to *Puppet* types.
 
-Please see **`AUTOCONF TOOLS MODULES`_** section to be sure to be able to handle all scanned resources.
+Please see `AUTOCONF TOOLS MODULES`_ section to be sure to be able to handle all scanned resources.
 
 configuration files - file
 --------------------------
@@ -107,7 +107,7 @@ services - service
 ------------------
 **pysa** detects all startup services managed by *upstart* and *SysV init* scripts.
 
-Please see **`NOTES`_** section.
+Please see `NOTES`_ section.
 
 Primary key: *name*
 
@@ -204,11 +204,11 @@ This section is used to add or modify some values.
 
 It can sounds similar to the replace section, but works in a completely different way:
 - The key is based on section key instead of content to replace
-- It is replaced at the scanning step, while the *"replacement"* section is done at the output generation step
+- It is replaced at the scanning step, while the *replacement* section is done at the output generation step
 
-Remember that *"addition"* is used to add/set a concrete parameter, while *"replace"* is used to replace some content.
+Remember that *addition* is used to add/set a concrete parameter, while *replace* is used to replace some content.
 
-The section name can be separate in multiple subsections using a dot '.', always starting by *"addition"* keyword:
+The section name can be separate in multiple subsections using a dot '.', always starting by *addition* keyword:
 - "addition.resource\_type" will replace values for all objects of resource\_type
 - "addition.resource\_type.key.value" will replace only the values for the objects where the key/value match the requirement
 
@@ -251,7 +251,7 @@ section description
 ~~~~~~~~~~~~~~~~~~~
 This section is used to replace any kind of content.
 
-The section name can be separated into multiple subsections using a dot '.', always starting by *"replace"* keyword:
+The section name can be separated into multiple subsections using a dot '.', always starting by *replace* keyword:
 - "replace" will replace all values for all objects.
 - "replace.object" will replace all values for the selected object.
 - "replace.object.field" will replace only the values associated with the field in the selected object.
@@ -275,9 +275,9 @@ update section
 --------------
 section description
 ~~~~~~~~~~~~~~~~~~~
-This section is used to specify which *"package"* should be updated. This section has been created due to the lack of old packages in many repositories.
+This section is used to specify which *package* should be updated. This section has been created due to the lack of old packages in many repositories.
 
-A list of package names is specified as values of the *"except"* key, separated by a coma ','.
+A list of package names is specified as values of the *except* key, separated by a coma ','.
 
 The joker '\*' can be used to specify to match all characters.
 
@@ -313,7 +313,7 @@ For example, it is currently impossible to use upstart services on a *Redhat* ba
 
 Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa-user@googlegroups.com> for public discussions and <pysa@mc2.io> for private messages.
 
-If you have a question about a specific source file, you can also contact the author directly (<*first-name*@mc2.io>)
+If you have a question about a specific source file, you can also contact the author directly ( *first-name*@mc2.io )
 
 
 SEE ALSO
