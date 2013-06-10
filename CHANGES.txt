@@ -1,3 +1,4 @@
+v0.2.1a1, 2013.6.10 -- Alpha release - Doc fix
 v0.2.1a, 2013.6.09 -- Alpha release - Install issues fix - First installable version (please don't use any previous version).
 v0.2.0ax, 2013.6.09 -- Fixes and tests setup script.
 v0.2.0a, 2013.6.07 -- Alpha release. Includes dependencies improvment, pre-alpha fixes and replication helper.
