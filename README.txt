@@ -198,8 +198,8 @@ This key should be set alone, as all keys will be replaced.
 
 addition section
 ----------------
-section description
-~~~~~~~~~~~~~~~~~~~
+addition section description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section is used to add or modify some values.
 
 It can sounds similar to the replace section, but works in a completely different way:
@@ -209,24 +209,24 @@ It can sounds similar to the replace section, but works in a completely differen
 Remember that *addition* is used to add/set a concrete parameter, while *replace* is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot '.', always starting by *addition* keyword:
-- "addition.resource\_type" will replace values for all objects of resource\_type
-- "addition.resource\_type.key.value" will replace only the values for the objects where the key/value match the requirement
+- *addition.resource\_type* will replace values for all objects of resource\_type
+- *addition.resource\_type.key.value* will replace only the values for the objects where the key/value match the requirement
 
 The key represents the resource key.
 The value represents the resource value.
 
-section format
-~~~~~~~~~~~~~~
+addition section format
+~~~~~~~~~~~~~~~~~~~~~~~
 section\_key = section\_value
 
-section action keys
-~~~~~~~~~~~~~~~~~~~
+addition section action keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 No action key for this section.
 
 discard section
 ---------------
-section description
-~~~~~~~~~~~~~~~~~~~
+discard section description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section is used to specify which object should or shouldn't be discard.
 
 The key is separated in to two sub-keys by a dot '.', which represents the object type for the first one and the attribute name for the second one.
@@ -235,36 +235,36 @@ The values can be seen as a list of attributes separated by a coma ','.
 
 The joker '\*' can be used to specify to match all characters.
 
-section format
-~~~~~~~~~~~~~~
+discard section format
+~~~~~~~~~~~~~~~~~~~~~~
 object.attribute\_name = attribute1, attribute2\*, ...
 
-section action keys
-~~~~~~~~~~~~~~~~~~~
+discard section action keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_resources:
   resource names
   Select which resources to be scanned, use it carefully, some resources might depend on others.
 
 replace section
 ---------------
-section description
-~~~~~~~~~~~~~~~~~~~
+replace section description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot '.', always starting by *replace* keyword:
-- "replace" will replace all values for all objects.
-- "replace.object" will replace all values for the selected object.
-- "replace.object.field" will replace only the values associated with the field in the selected object.
+- *replace* will replace all values for all objects.
+- *replace.object* will replace all values for the selected object.
+- *replace.object.field* will replace only the values associated with the field in the selected object.
 
 The key represents the new value.
 The value(s) represents the target to replace.
 
-section format
-~~~~~~~~~~~~~~
+replace section format
+~~~~~~~~~~~~~~~~~~~~~~
 new\_value = old\_value1, old\_value2, ...
 
-section action keys
-~~~~~~~~~~~~~~~~~~~
+replace section action keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_replaceall:
   true/false
   REQUIRED
@@ -273,20 +273,20 @@ section action keys
 
 update section
 --------------
-section description
-~~~~~~~~~~~~~~~~~~~
+update section description
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section is used to specify which *package* should be updated. This section has been created due to the lack of old packages in many repositories.
 
 A list of package names is specified as values of the *except* key, separated by a coma ','.
 
 The joker '\*' can be used to specify to match all characters.
 
-section format
-~~~~~~~~~~~~~~
+update section format
+~~~~~~~~~~~~~~~~~~~~~
 except = package1, package2\*, \*package3, \*package4\*, ...
 
-section action keys
-~~~~~~~~~~~~~~~~~~~
+update section action keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_update:
   true/false
   REQUIRED
@@ -319,7 +319,7 @@ If you have a question about a specific source file, you can also contact the au
 SEE ALSO
 ========
 
-`puppet <http://docs.puppetlabs.com/man/>`_
+`Puppet <http://docs.puppetlabs.com/man/>`_
 
 
 BUGS

@@ -37,24 +37,24 @@ Date: 2013-06-10 (Mon, 10 Jun 2013)
         -   \_contentrefer
 
     -   addition section
-        -   section description
-        -   section format
-        -   section action keys
+        -   addition section description
+        -   addition section format
+        -   addition section action keys
 
     -   discard section
-        -   section description
-        -   section format
-        -   section action keys
+        -   discard section description
+        -   discard section format
+        -   discard section action keys
 
     -   replace section
-        -   section description
-        -   section format
-        -   section action keys
+        -   replace section description
+        -   replace section format
+        -   replace section action keys
 
     -   update section
-        -   section description
-        -   section format
-        -   section action keys
+        -   update section description
+        -   update section format
+        -   update section action keys
 
 -   USAGE EXAMPLES
 -   NOTES
@@ -297,7 +297,7 @@ This key should be set alone, as all keys will be replaced.
 addition section
 ----------------
 
-section description
+addition section description
 
 This section is used to add or modify some values.
 
@@ -310,26 +310,26 @@ Remember that addition is used to add/set a concrete parameter, while
 replace is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot
-‘.’, always starting by addition keyword: - “addition.resource_type”
-will replace values for all objects of resource_type -
-“addition.resource_type.key.value” will replace only the values for the
+‘.’, always starting by addition keyword: - addition.resource_type will
+replace values for all objects of resource_type -
+addition.resource_type.key.value will replace only the values for the
 objects where the key/value match the requirement
 
 The key represents the resource key. The value represents the resource
 value.
 
-section format
+addition section format
 
 section_key = section_value
 
-section action keys
+addition section action keys
 
 No action key for this section.
 
 discard section
 ---------------
 
-section description
+discard section description
 
 This section is used to specify which object should or shouldn’t be
 discard.
@@ -342,11 +342,11 @@ The values can be seen as a list of attributes separated by a coma ‘,’.
 
 The joker ‘*’ can be used to specify to match all characters.
 
-section format
+discard section format
 
 object.attribute_name = attribute1, attribute2*, …
 
-section action keys
+discard section action keys
 
 _resources:
     resource names Select which resources to be scanned, use it
@@ -355,24 +355,24 @@ _resources:
 replace section
 ---------------
 
-section description
+replace section description
 
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot
-‘.’, always starting by replace keyword: - “replace” will replace all
-values for all objects. - “replace.object” will replace all values for
-the selected object. - “replace.object.field” will replace only the
-values associated with the field in the selected object.
+‘.’, always starting by replace keyword: - replace will replace all
+values for all objects. - replace.object will replace all values for the
+selected object. - replace.object.field will replace only the values
+associated with the field in the selected object.
 
 The key represents the new value. The value(s) represents the target to
 replace.
 
-section format
+replace section format
 
 new_value = old_value1, old_value2, …
 
-section action keys
+replace section action keys
 
 _replaceall:
     true/false REQUIRED Select the filtering mode (replace all except
@@ -382,7 +382,7 @@ _replaceall:
 update section
 --------------
 
-section description
+update section description
 
 This section is used to specify which package should be updated. This
 section has been created due to the lack of old packages in many
@@ -393,11 +393,11 @@ separated by a coma ‘,’.
 
 The joker ‘*’ can be used to specify to match all characters.
 
-section format
+update section format
 
 except = package1, package2*, *package3, *package4*, …
 
-section action keys
+update section action keys
 
 _update:
     true/false REQUIRED Select the filtering mode (update all except
@@ -436,7 +436,7 @@ contact the author directly ( <first-name@mc2.io> )
 SEE ALSO
 ========
 
-puppet
+Puppet
 
 BUGS
 ====
