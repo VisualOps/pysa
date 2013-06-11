@@ -90,7 +90,6 @@
 </ul></li>
 <li><a>USAGE EXAMPLES</a></li>
 <li><a>NOTES</a></li>
-<li><a>SEE ALSO</a></li>
 <li><a>BUGS</a></li>
 </ul>
 </div>
@@ -198,7 +197,7 @@
 <p>This section is used to add or modify some values.</p>
 <p>It can sounds similar to the replace section, but works in a completely different way: - The key is based on section key instead of content to replace - It is replaced at the scanning step, while the <em>replacement</em> section is done at the output generation step</p>
 <p>Remember that <em>addition</em> is used to add/set a concrete parameter, while <em>replace</em> is used to replace some content.</p>
-<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>addition</em> keyword: - <em>addition.resource_type</em> will replace values for all objects of resource_type - <em>addition.resource_type.key.value</em> will replace only the values for the objects where the key/value match the requirement</p>
+<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>addition</em> keyword: - addition.resource_type will replace values for all objects of resource_type - addition.resource_type.key.value will replace only the values for the objects where the key/value match the requirement</p>
 <p>The key represents the resource key. The value represents the resource value.</p>
 <h3>addition section format</h3>
 <p>section_key = section_value</p>
@@ -221,7 +220,7 @@
 <h2>replace section</h2>
 <h3>replace section description</h3>
 <p>This section is used to replace any kind of content.</p>
-<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>replace</em> keyword: - <em>replace</em> will replace all values for all objects. - <em>replace.object</em> will replace all values for the selected object. - <em>replace.object.field</em> will replace only the values associated with the field in the selected object.</p>
+<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>replace</em> keyword: - replace will replace all values for all objects. - replace.object will replace all values for the selected object. - replace.object.field will replace only the values associated with the field in the selected object.</p>
 <p>The key represents the new value. The value(s) represents the target to replace.</p>
 <h3>replace section format</h3>
 <p>new_value = old_value1, old_value2, …</p>
@@ -267,8 +266,6 @@ h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#102;&#x69;&#114;&#x73;&#11
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; )</p>
-<h1>SEE ALSO</h1>
-<p><a href="http://docs.puppetlabs.com/man/">Puppet</a></p>
 <h1>BUGS</h1>
 <p>No known bugs.</p>
 </body>

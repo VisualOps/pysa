@@ -209,8 +209,8 @@ It can sounds similar to the replace section, but works in a completely differen
 Remember that *addition* is used to add/set a concrete parameter, while *replace* is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot '.', always starting by *addition* keyword:
-- *addition.resource\_type* will replace values for all objects of resource\_type
-- *addition.resource\_type.key.value* will replace only the values for the objects where the key/value match the requirement
+- addition.resource\_type will replace values for all objects of resource\_type
+- addition.resource\_type.key.value will replace only the values for the objects where the key/value match the requirement
 
 The key represents the resource key.
 The value represents the resource value.
@@ -252,9 +252,9 @@ replace section description
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot '.', always starting by *replace* keyword:
-- *replace* will replace all values for all objects.
-- *replace.object* will replace all values for the selected object.
-- *replace.object.field* will replace only the values associated with the field in the selected object.
+- replace will replace all values for all objects.
+- replace.object will replace all values for the selected object.
+- replace.object.field will replace only the values associated with the field in the selected object.
 
 The key represents the new value.
 The value(s) represents the target to replace.
@@ -314,12 +314,6 @@ For example, it is currently impossible to use upstart services on a *Redhat* ba
 Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa-user@googlegroups.com> for public discussions and <pysa@mc2.io> for private messages.
 
 If you have a question about a specific source file, you can also contact the author directly ( <first-name@mc2.io> )
-
-
-SEE ALSO
-========
-
-`Puppet <http://docs.puppetlabs.com/man/>`_
 
 
 BUGS

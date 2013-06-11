@@ -58,7 +58,6 @@ Date: 2013-06-10 (Mon, 10 Jun 2013)
 
 -   USAGE EXAMPLES
 -   NOTES
--   SEE ALSO
 -   BUGS
 
 Info
@@ -432,11 +431,6 @@ requirement: <pysa-user@googlegroups.com> for public discussions and
 
 If you have a question about a specific source file, you can also
 contact the author directly ( <first-name@mc2.io> )
-
-SEE ALSO
-========
-
-Puppet
 
 BUGS
 ====
