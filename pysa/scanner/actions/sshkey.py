@@ -26,6 +26,7 @@ import re
 
 from pysa.config import config
 from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.utils import *
 
 
 class scanner_key(scanner_base):

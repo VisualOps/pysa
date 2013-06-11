@@ -7,7 +7,7 @@ Pysa
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
 :Date: Date: 2013-06-10 (Mon, 10 Jun 2013)
-:Revision: v0.2.1a2
+:Revision: v0.2.1a3
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME
@@ -313,7 +313,7 @@ For example, it is currently impossible to use upstart services on a *Redhat* ba
 
 Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa-user@googlegroups.com> for public discussions and <pysa@mc2.io> for private messages.
 
-If you have a question about a specific source file, you can also contact the author directly ( *first-name*@mc2.io )
+If you have a question about a specific source file, you can also contact the author directly ( <first-name@mc2.io> )
 
 
 SEE ALSO

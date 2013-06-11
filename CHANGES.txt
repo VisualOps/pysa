@@ -1,3 +1,4 @@
+v0.2.1a3, 2013.6.11 -- Alpha release - ssh key fix
 v0.2.1a2, 2013.6.10 -- Alpha release - Doc fix
 v0.2.1a1, 2013.6.10 -- Alpha release - Doc fix
 v0.2.1a, 2013.6.09 -- Alpha release - Install issues fix - First installable version (please don't use any previous version).

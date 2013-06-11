@@ -68,7 +68,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.1a2
+    v0.2.1a3
 
 Description
     Pysa scans your system and reverse engineers its configurations for
@@ -431,7 +431,7 @@ requirement: <pysa-user@googlegroups.com> for public discussions and
 <pysa@mc2.io> for private messages.
 
 If you have a question about a specific source file, you can also
-contact the author directly ( *first-name*@mc2.io )
+contact the author directly ( <first-name@mc2.io> )
 
 SEE ALSO
 ========

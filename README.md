@@ -104,7 +104,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.1a2</p>
+<dd><p>v0.2.1a3</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -261,12 +261,12 @@ h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;';e=
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; for private messages.</p>
-<p>If you have a question about a specific source file, you can also contact the author directly ( <script type="text/javascript">
+<p>If you have a question about a specific source file, you can also contact the author directly ( &lt;<script type="text/javascript">
 <!--
-h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;';e=n+a+h;
+h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#42;&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#42;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript> )</p>
+</script><noscript>&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; )</p>
 <h1>SEE ALSO</h1>
 <p><a href="http://docs.puppetlabs.com/man/">puppet</a></p>
 <h1>BUGS</h1>
