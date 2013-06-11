@@ -161,8 +161,10 @@ package managers repositories - repository
 
 Primary key: *name*
 
+
 AUTOCONF TOOLS MODULES
 ======================
+
 This section lists the autoconf tools' modules which may be used.
 
 Modules are used for particular features and are only needed in some particular cases. Of course, modules (as with the autoconf tools) have to be installed on the new machine, not the original one.
@@ -174,6 +176,7 @@ nodes/php: add *php* package manager support
 puppetlabs/vcsrepo: add *scm* (sources) support
 
 to install a Puppet module: puppet module install *module-name*
+
 
 FILTERS
 =======
