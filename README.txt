@@ -45,7 +45,7 @@ Display the short help.
 
 -p, --puppet
 ~~~~~~~~~~~~
-Generates *Puppet* output.
+Generates Puppet output.
 
 -q, --quiet
 ~~~~~~~~~~~
@@ -75,7 +75,7 @@ REPLICATION
 
 There are two ways to use **pysa** 's output:
 - You can manually configure the configuration manager and add **pysa** 's module to it
-- You can use the *pysa2puppet* script to deploy a complete and standalone setup based on *puppet*. The script is interactive and will ask you all necessaries info (see usage first).
+- You can use the *pysa2puppet* script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).
 
 
 RESOURCES
@@ -85,7 +85,7 @@ This section describes all the resources scanned by **pysa**
 
 By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the `FILTERS`_ section.
 
-At the current state, the resources objects and keys are similar to *Puppet* types.
+At the current state, the resources objects and keys are similar to Puppet types.
 
 Please see `AUTOCONF TOOLS MODULES`_ section to be sure to be able to handle all scanned resources.
 
@@ -173,7 +173,7 @@ willdurand/nodejs: add *npm* package manager support
 nodes/php: add *php* package manager support
 puppetlabs/vcsrepo: add *scm* (sources) support
 
-to install a *Puppet* module: puppet module install *module-name*
+to install a Puppet module: puppet module install *module-name*
 
 FILTERS
 =======

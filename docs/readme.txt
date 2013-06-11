@@ -140,7 +140,7 @@ pysa generates a puppet module containing several configuration scripts.
 There are two ways to use pysa ’s output: - You can manually configure
 the configuration manager and add pysa ’s module to it - You can use the
 pysa2puppet script to deploy a complete and standalone setup based on
-puppet. The script is interactive and will ask you all necessaries info
+Puppet. The script is interactive and will ask you all necessaries info
 (see usage first).
 
 RESOURCES

@@ -127,7 +127,7 @@
 <h3>-h, –help</h3>
 <p>Display the short help.</p>
 <h3>-p, –puppet</h3>
-<p>Generates <em>Puppet</em> output.</p>
+<p>Generates Puppet output.</p>
 <h3>-q, –quiet</h3>
 <p>Activate quiet mode and displays only error messages. By default, <strong>pysa</strong> displays all log messages.</p>
 <h3>-m module-name, –module module-name</h3>
@@ -138,11 +138,11 @@
 <p>Specify a filter configuration file. See FILTERS_ section for more details.</p>
 <h1>REPLICATION</h1>
 <p><strong>pysa</strong> generates a puppet module containing several configuration scripts.</p>
-<p>There are two ways to use <strong>pysa</strong> ’s output: - You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it - You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on <em>puppet</em>. The script is interactive and will ask you all necessaries info (see usage first).</p>
+<p>There are two ways to use <strong>pysa</strong> ’s output: - You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it - You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).</p>
 <h1>RESOURCES</h1>
 <p>This section describes all the resources scanned by <strong>pysa</strong></p>
 <p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the FILTERS_ section.</p>
-<p>At the current state, the resources objects and keys are similar to <em>Puppet</em> types.</p>
+<p>At the current state, the resources objects and keys are similar to Puppet types.</p>
 <p>Please see AUTOCONF TOOLS MODULES_ section to be sure to be able to handle all scanned resources.</p>
 <h2>configuration files - file</h2>
 <p><strong>pysa</strong> scans (and stores in output module) all files located in a specific location. Default <strong>/etc</strong></p>
@@ -185,7 +185,7 @@
 <p>Modules are used for particular features and are only needed in some particular cases. Of course, modules (as with the autoconf tools) have to be installed on the new machine, not the original one.</p>
 <h2>Puppet modules</h2>
 <p>willdurand/nodejs: add <em>npm</em> package manager support nodes/php: add <em>php</em> package manager support puppetlabs/vcsrepo: add <em>scm</em> (sources) support</p>
-<p>to install a <em>Puppet</em> module: puppet module install <em>module-name</em></p>
+<p>to install a Puppet module: puppet module install <em>module-name</em></p>
 <h1>FILTERS</h1>
 <p><strong>pysa</strong> integrates a powerful filters engine, which allows you to adapt its behavior to your needs.</p>
 <p>A filter file is composed of sections, keys and values. In some specific cases sections and/or keys can be split using a ‘.’ (see below for more details).</p>
