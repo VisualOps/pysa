@@ -63,7 +63,7 @@ class pysa_install(install):
         output = subprocess.Popen(
             [os.path.join(man_dir, "pysa_man.sh")],
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stderr=subprocess.PIPE,
             cwd=man_dir,
             env=dict({"PREFIX": self.prefix}, **dict(os.environ))
             ).communicate()[0]
