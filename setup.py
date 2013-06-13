@@ -26,6 +26,7 @@ import sys
 import setuptools
 
 from distutils.core import setup
+from distutils.command.install import install
 
 DISTNAME            = 'Pysa'
 VERSION             = '0.2.2a1'
