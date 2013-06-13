@@ -32,7 +32,7 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.2a4-1'
+VERSION             = '0.2.2a4-2'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -49,22 +49,25 @@ def abspath(path):
 
 class pysa_install(install):
     def run(self):
-        print "begin"
+        test = subprocess.Popen(
+            ['touch','/tmp/toto.test'],
+            close_fds=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+            )
+        print test
+
         install.run(self)
 
         man_dir = abspath("./docs/man/")
-        test = subprocess.Popen(['touch','/tmp/toto.test'],
-                                stdout=subprocess.PIPE,
-                                cwd=man_dir,
-                                env=dict({"PREFIX": self.prefix}, **dict(os.environ))).communicate()[0]
-        print test
-
-        output = subprocess.Popen([os.path.join(man_dir, "pysa_man.sh")],
-                                  stdout=subprocess.PIPE,
-                                  cwd=man_dir,
-                                  env=dict({"PREFIX": self.prefix}, **dict(os.environ))).communicate()[0]
+        output = subprocess.Popen(
+            [os.path.join(man_dir, "pysa_man.sh")],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+            cwd=man_dir,
+            env=dict({"PREFIX": self.prefix}, **dict(os.environ))
+            ).communicate()[0]
         print output
-        print "end"
 
 class pysa_sdist(sdist):
     def run(self):
