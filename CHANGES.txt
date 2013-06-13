@@ -1,3 +1,4 @@
+v0.2.2a1, 2013.6.13 -- Add manpage
 v0.2.2a, 2013.6.13 -- Config file addition + Blueprint comparison (doc)
 v0.2.1a4, 2013.6.11 -- Alpha release - Doc fix
 v0.2.1a3, 2013.6.11 -- Alpha release - ssh key fix

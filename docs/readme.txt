@@ -68,7 +68,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.2a
+    v0.2.2a1
 
 Description
     Pysa scans your system and reverse engineers its configurations for
@@ -142,11 +142,13 @@ REPLICATION
 
 pysa generates a puppet module containing several configuration scripts.
 
-There are two ways to use pysa ’s output: - You can manually configure
-the configuration manager and add pysa ’s module to it - You can use the
-pysa2puppet script to deploy a complete and standalone setup based on
-Puppet. The script is interactive and will ask you all necessaries info
-(see usage first).
+There are two ways to use pysa ’s output:
+
+-   You can manually configure the configuration manager and add pysa ’s
+    module to it
+-   You can use the pysa2puppet script to deploy a complete and
+    standalone setup based on Puppet. The script is interactive and will
+    ask you all necessaries info (see usage first).
 
 RESOURCES
 =========
@@ -307,18 +309,22 @@ addition section description
 This section is used to add or modify some values.
 
 It can sounds similar to the replace section, but works in a completely
-different way: - The key is based on section key instead of content to
-replace - It is replaced at the scanning step, while the replacement
-section is done at the output generation step
+different way:
+
+-   The key is based on section key instead of content to replace
+-   It is replaced at the scanning step, while the replacement section
+    is done at the output generation step
 
 Remember that addition is used to add/set a concrete parameter, while
 replace is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot
-‘.’, always starting by addition keyword: - addition.resource_type will
-replace values for all objects of resource_type -
-addition.resource_type.key.value will replace only the values for the
-objects where the key/value match the requirement
+‘.’, always starting by addition keyword:
+
+-   addition.resource_type will replace values for all objects of
+    resource_type
+-   addition.resource_type.key.value will replace only the values for
+    the objects where the key/value match the requirement
 
 The key represents the resource key. The value represents the resource
 value.
@@ -365,10 +371,12 @@ replace section description
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot
-‘.’, always starting by replace keyword: - replace will replace all
-values for all objects. - replace.object will replace all values for the
-selected object. - replace.object.field will replace only the values
-associated with the field in the selected object.
+‘.’, always starting by replace keyword:
+
+-   replace will replace all values for all objects.
+-   replace.object will replace all values for the selected object.
+-   replace.object.field will replace only the values associated with
+    the field in the selected object.
 
 The key represents the new value. The value(s) represents the target to
 replace.
@@ -380,9 +388,12 @@ new_value = old_value1, old_value2, …
 replace section action keys
 
 _replaceall:
-    true/false REQUIRED Select the filtering mode (replace all except
-    -true- or replace none except -false-) default: true _except:
-    primary_keys_values
+
+-   true/false
+-   REQUIRED
+-   Select the filtering mode (replace all except -true- or replace none
+    except -false-)
+-   default: true _except: primary_keys_values
 
 update section
 --------------
@@ -405,8 +416,12 @@ except = package1, package2*, *package3, *package4*, …
 update section action keys
 
 _update:
-    true/false REQUIRED Select the filtering mode (update all except
-    -true- or update none except -false-) default: false
+
+-   true/false
+-   REQUIRED
+-   Select the filtering mode (update all except -true- or update none
+    except -false-)
+-   default: false
 
 USAGE EXAMPLES
 ==============
@@ -419,16 +434,19 @@ NOTES
 pysa has been inspired by a software called Blueprint (more information
 at http://devstructure.com/blueprint/).
 
-The force of pysa lies on the following points: - pysa’s “filters” and
-Blueprint’s “rules” are totally different. Please refer to the
-documentations for more details. - pysa’s Puppet output is cleaner (the
-files are separated, the module is automatically created…). - The
-dependency cycle is more resilient. pysa generates an attribute-based
-dependency cycle (each object relies and depends on its own
-dependencies) so if something fails the whole process isn’t stopped. -
-pysa is under active development and there is additional functionality
-under development (e.g., integration to Madeira’s services, Salt/Chef
-modules).
+The force of pysa lies on the following points:
+
+-   pysa’s “filters” and Blueprint’s “rules” are totally different.
+    Please refer to the documentations for more details.
+-   pysa’s Puppet output is cleaner (the files are separated, the module
+    is automatically created…).
+-   The dependency cycle is more resilient. pysa generates an
+    attribute-based dependency cycle (each object relies and depends on
+    its own dependencies) so if something fails the whole process isn’t
+    stopped.
+-   pysa is under active development and there is additional
+    functionality under development (e.g., integration to Madeira’s
+    services, Salt/Chef modules).
 
 As an early-release, pysa does not (always) provide 100% functional
 results. This comes, in some cases, from the architectural choices that
@@ -444,11 +462,11 @@ Redhat based platform, as it is impossible to use npm package manager on
 Ubuntu.
 
 Please don’t hesitate to contact us for any kind of feedback, advice or
-requirement: <pysa-user@googlegroups.com> for public discussions and
-<pysa@mc2.io> for private messages.
+requirement: pysa-user@googlegroups.com for public discussions and
+pysa@mc2.io for private messages.
 
 If you have a question about a specific source file, you can also
-contact the author directly ( <first-name@mc2.io> )
+contact the author directly (first-name@mc2.io)
 
 BUGS
 ====

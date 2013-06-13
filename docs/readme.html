@@ -107,7 +107,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.2a</p>
+<dd><p>v0.2.2a1</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -140,7 +140,11 @@
 <p>Specify a filter configuration file. See FILTERS_ section for more details.</p>
 <h1>REPLICATION</h1>
 <p><strong>pysa</strong> generates a puppet module containing several configuration scripts.</p>
-<p>There are two ways to use <strong>pysa</strong> ’s output: - You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it - You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).</p>
+<p>There are two ways to use <strong>pysa</strong> ’s output:</p>
+<ul>
+<li>You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it</li>
+<li>You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).</li>
+</ul>
 <h1>RESOURCES</h1>
 <p>This section describes all the resources scanned by <strong>pysa</strong></p>
 <p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the FILTERS_ section.</p>
@@ -201,9 +205,17 @@
 <h2>addition section</h2>
 <h3>addition section description</h3>
 <p>This section is used to add or modify some values.</p>
-<p>It can sounds similar to the replace section, but works in a completely different way: - The key is based on section key instead of content to replace - It is replaced at the scanning step, while the <em>replacement</em> section is done at the output generation step</p>
+<p>It can sounds similar to the replace section, but works in a completely different way:</p>
+<ul>
+<li>The key is based on section key instead of content to replace</li>
+<li>It is replaced at the scanning step, while the <em>replacement</em> section is done at the output generation step</li>
+</ul>
 <p>Remember that <em>addition</em> is used to add/set a concrete parameter, while <em>replace</em> is used to replace some content.</p>
-<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>addition</em> keyword: - addition.resource_type will replace values for all objects of resource_type - addition.resource_type.key.value will replace only the values for the objects where the key/value match the requirement</p>
+<p>The section name can be separate in multiple subsections using a dot ‘.’, always starting by <em>addition</em> keyword:</p>
+<ul>
+<li>addition.resource_type will replace values for all objects of resource_type</li>
+<li>addition.resource_type.key.value will replace only the values for the objects where the key/value match the requirement</li>
+</ul>
 <p>The key represents the resource key. The value represents the resource value.</p>
 <h3>addition section format</h3>
 <p>section_key = section_value</p>
@@ -226,16 +238,23 @@
 <h2>replace section</h2>
 <h3>replace section description</h3>
 <p>This section is used to replace any kind of content.</p>
-<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>replace</em> keyword: - replace will replace all values for all objects. - replace.object will replace all values for the selected object. - replace.object.field will replace only the values associated with the field in the selected object.</p>
+<p>The section name can be separated into multiple subsections using a dot ‘.’, always starting by <em>replace</em> keyword:</p>
+<ul>
+<li>replace will replace all values for all objects.</li>
+<li>replace.object will replace all values for the selected object.</li>
+<li>replace.object.field will replace only the values associated with the field in the selected object.</li>
+</ul>
 <p>The key represents the new value. The value(s) represents the target to replace.</p>
 <h3>replace section format</h3>
 <p>new_value = old_value1, old_value2, …</p>
 <h3>replace section action keys</h3>
-<dl>
-<dt>_replaceall:</dt>
-<dd><p>true/false REQUIRED Select the filtering mode (replace all except -true- or replace none except -false-) default: true _except: primary_keys_values</p>
-</dd>
-</dl>
+<p>_replaceall:</p>
+<ul>
+<li>true/false</li>
+<li>REQUIRED</li>
+<li>Select the filtering mode (replace all except -true- or replace none except -false-)</li>
+<li>default: true _except: primary_keys_values</li>
+</ul>
 <h2>update section</h2>
 <h3>update section description</h3>
 <p>This section is used to specify which <em>package</em> should be updated. This section has been created due to the lack of old packages in many repositories.</p>
@@ -244,35 +263,43 @@
 <h3>update section format</h3>
 <p>except = package1, package2*, *package3, *package4*, …</p>
 <h3>update section action keys</h3>
-<dl>
-<dt>_update:</dt>
-<dd><p>true/false REQUIRED Select the filtering mode (update all except -true- or update none except -false-) default: false</p>
-</dd>
-</dl>
+<p>_update:</p>
+<ul>
+<li>true/false</li>
+<li>REQUIRED</li>
+<li>Select the filtering mode (update all except -true- or update none except -false-)</li>
+<li>default: false</li>
+</ul>
 <h1>USAGE EXAMPLES</h1>
 <p>See <em>docs/examples</em> for configuration file examples.</p>
 <h1>NOTES</h1>
 <p><strong>pysa</strong> has been inspired by a software called <em>Blueprint</em> (more information at <a href="http://devstructure.com/blueprint/"><a href="http://devstructure.com/blueprint/">http://devstructure.com/blueprint/</a></a>).</p>
-<p>The force of <strong>pysa</strong> lies on the following points: - <strong>pysa</strong>’s “filters” and <em>Blueprint</em>’s “rules” are totally different. Please refer to the documentations for more details. - <strong>pysa</strong>’s <em>Puppet</em> output is cleaner (the files are separated, the module is automatically created…). - The dependency cycle is more resilient. <strong>pysa</strong> generates an attribute-based dependency cycle (each object relies and depends on its own dependencies) so if something fails the whole process isn’t stopped. - <strong>pysa</strong> is under active development and there is additional functionality under development (e.g., integration to <em>Madeira</em>’s services, <em>Salt</em>/<em>Chef</em> modules).</p>
+<p>The force of <strong>pysa</strong> lies on the following points:</p>
+<ul>
+<li><strong>pysa</strong>’s “filters” and <em>Blueprint</em>’s “rules” are totally different. Please refer to the documentations for more details.</li>
+<li><strong>pysa</strong>’s <em>Puppet</em> output is cleaner (the files are separated, the module is automatically created…).</li>
+<li>The dependency cycle is more resilient. <strong>pysa</strong> generates an attribute-based dependency cycle (each object relies and depends on its own dependencies) so if something fails the whole process isn’t stopped.</li>
+<li><strong>pysa</strong> is under active development and there is additional functionality under development (e.g., integration to <em>Madeira</em>’s services, <em>Salt</em>/<em>Chef</em> modules).</li>
+</ul>
 <p>As an early-release, <strong>pysa</strong> does not (always) provide 100% functional results. This comes, in some cases, from the architectural choices that we’ve made. For example, <strong>pysa</strong> does not (yet) support the addition of user’s packages, simply because we can’t ensure the availability of these packages on the new system. It would lead to the generation of wrong output files.</p>
 <p>Furthermore, <strong>pysa</strong> depends on “autoconf” tools. This means that if a feature is not supported by one of these tools, <strong>pysa</strong> can’t provide it. For example, it is currently impossible to use upstart services on a <em>Redhat</em> based platform, as it is impossible to use npm package manager on <em>Ubuntu</em>.</p>
-<p>Please don’t hesitate to contact us for any kind of feedback, advice or requirement: &lt;<script type="text/javascript">
+<p>Please don’t hesitate to contact us for any kind of feedback, advice or requirement: <script type="text/javascript">
 <!--
 h='&#x67;&#x6f;&#x6f;&#x67;&#108;&#x65;&#x67;&#114;&#x6f;&#x75;&#112;&#x73;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;&#x2d;&#x75;&#x73;&#x65;&#114;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#112;&#x79;&#x73;&#x61;&#x2d;&#x75;&#x73;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x67;&#x6f;&#x6f;&#x67;&#108;&#x65;&#x67;&#114;&#x6f;&#x75;&#112;&#x73;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript>&gt; for public discussions and &lt;<script type="text/javascript">
+</script><noscript>&#112;&#x79;&#x73;&#x61;&#x2d;&#x75;&#x73;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x67;&#x6f;&#x6f;&#x67;&#108;&#x65;&#x67;&#114;&#x6f;&#x75;&#112;&#x73;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript> for public discussions and <script type="text/javascript">
 <!--
 h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#112;&#x79;&#x73;&#x61;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; for private messages.</p>
-<p>If you have a question about a specific source file, you can also contact the author directly ( &lt;<script type="text/javascript">
+</script><noscript>&#112;&#x79;&#x73;&#x61;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript> for private messages.</p>
+<p>If you have a question about a specific source file, you can also contact the author directly (<script type="text/javascript">
 <!--
 h='&#x6d;&#x63;&#50;&#46;&#x69;&#x6f;';a='&#64;';n='&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt; )</p>
+</script><noscript>&#102;&#x69;&#114;&#x73;&#116;&#x2d;&#110;&#x61;&#x6d;&#x65;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>)</p>
 <h1>BUGS</h1>
 <p>No known bugs.</p>
 </body>

@@ -28,7 +28,7 @@ import setuptools
 from distutils.core import setup
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.2a'
+VERSION             = '0.2.2a1'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -39,6 +39,17 @@ DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERS
 #PACKAGES            = ['pysa']
 #PACKAGE_DIR         = {'pysa': 'pysa'}
 SCRIPTS             = ['bin/pysa2puppet', 'bin/pysa']
+
+class pysa_man(install):
+    def run(self):
+        install.run(self)
+
+        man_dir = abspath("./docs/man/")
+        output = subprocess.Popen([os.path.join(man_dir, "pysa_man.sh")],
+                stdout=subprocess.PIPE,
+                cwd=man_dir,
+                env=dict({"PREFIX": self.prefix}, **dict(os.environ))).communicate()[0]
+        print output
 
 if __name__ == "__main__":
     pkg = setuptools.find_packages()
@@ -64,5 +75,7 @@ if __name__ == "__main__":
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
             'Topic :: System',
-            ]
+            ],
+          cmdclass={"install": pysa_man},
           )
+

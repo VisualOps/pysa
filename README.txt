@@ -7,7 +7,7 @@ Pysa
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
 :Date: Date: 2013-06-13 (Thu, 13 Jun 2013)
-:Revision: v0.2.2a
+:Revision: v0.2.2a1
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME
@@ -79,6 +79,7 @@ REPLICATION
 **pysa** generates a puppet module containing several configuration scripts.
 
 There are two ways to use **pysa** 's output:
+
 - You can manually configure the configuration manager and add **pysa** 's module to it
 - You can use the *pysa2puppet* script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).
 
@@ -211,12 +212,14 @@ addition section description
 This section is used to add or modify some values.
 
 It can sounds similar to the replace section, but works in a completely different way:
+
 - The key is based on section key instead of content to replace
 - It is replaced at the scanning step, while the *replacement* section is done at the output generation step
 
 Remember that *addition* is used to add/set a concrete parameter, while *replace* is used to replace some content.
 
 The section name can be separate in multiple subsections using a dot '.', always starting by *addition* keyword:
+
 - addition.resource\_type will replace values for all objects of resource\_type
 - addition.resource\_type.key.value will replace only the values for the objects where the key/value match the requirement
 
@@ -260,6 +263,7 @@ replace section description
 This section is used to replace any kind of content.
 
 The section name can be separated into multiple subsections using a dot '.', always starting by *replace* keyword:
+
 - replace will replace all values for all objects.
 - replace.object will replace all values for the selected object.
 - replace.object.field will replace only the values associated with the field in the selected object.
@@ -274,10 +278,11 @@ new\_value = old\_value1, old\_value2, ...
 replace section action keys
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_replaceall:
-  true/false
-  REQUIRED
-  Select the filtering mode (replace all except -true- or replace none except -false-)
-  default: true \_except: primary\_keys\_values
+
+- true/false
+- REQUIRED
+- Select the filtering mode (replace all except -true- or replace none except -false-)
+- default: true \_except: primary\_keys\_values
 
 update section
 --------------
@@ -296,10 +301,11 @@ except = package1, package2\*, \*package3, \*package4\*, ...
 update section action keys
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_update:
-  true/false
-  REQUIRED
-  Select the filtering mode (update all except -true- or update none except -false-)
-  default: false
+
+- true/false
+- REQUIRED
+- Select the filtering mode (update all except -true- or update none except -false-)
+- default: false
 
 
 USAGE EXAMPLES
@@ -314,6 +320,7 @@ NOTES
 **pysa** has been inspired by a software called *Blueprint* (more information at `http://devstructure.com/blueprint/ <http://devstructure.com/blueprint/>`_).
 
 The force of **pysa** lies on the following points:
+
 - **pysa**'s "filters" and *Blueprint*'s "rules" are totally different. Please refer to the documentations for more details.
 - **pysa**'s *Puppet* output is cleaner (the files are separated, the module is automatically created...).
 - The dependency cycle is more resilient. **pysa** generates an attribute-based dependency cycle (each object relies and depends on its own dependencies) so if something fails the whole process isn't stopped.
@@ -325,9 +332,9 @@ For example, **pysa** does not (yet) support the addition of user's packages, si
 Furthermore, **pysa** depends on "autoconf" tools. This means that if a feature is not supported by one of these tools, **pysa** can't provide it.
 For example, it is currently impossible to use upstart services on a *Redhat* based platform, as it is impossible to use npm package manager on *Ubuntu*.
 
-Please don't hesitate to contact us for any kind of feedback, advice or requirement: <pysa-user@googlegroups.com> for public discussions and <pysa@mc2.io> for private messages.
+Please don't hesitate to contact us for any kind of feedback, advice or requirement: pysa-user@googlegroups.com for public discussions and pysa@mc2.io for private messages.
 
-If you have a question about a specific source file, you can also contact the author directly ( <first-name@mc2.io> )
+If you have a question about a specific source file, you can also contact the author directly (first-name@mc2.io)
 
 
 BUGS
