@@ -23,13 +23,16 @@ Installation script for setup from pip
 
 import os
 import sys
+import shutil
+import subprocess
 import setuptools
 
 from distutils.core import setup
 from distutils.command.install import install
+from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.2a1'
+VERSION             = '0.2.2a2'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -41,7 +44,10 @@ DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERS
 #PACKAGE_DIR         = {'pysa': 'pysa'}
 SCRIPTS             = ['bin/pysa2puppet', 'bin/pysa']
 
-class pysa_man(install):
+def abspath(path):
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
+
+class pysa_install(install):
     def run(self):
         install.run(self)
 
@@ -51,6 +57,10 @@ class pysa_man(install):
                 cwd=man_dir,
                 env=dict({"PREFIX": self.prefix}, **dict(os.environ))).communicate()[0]
         print output
+
+class pysa_sdist(sdist):
+    def run(self):
+        sdist.run(self)
 
 if __name__ == "__main__":
     pkg = setuptools.find_packages()
@@ -75,8 +85,8 @@ if __name__ == "__main__":
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
-            'Topic :: System',
+            'Topic :: System'
             ],
-          cmdclass={"install": pysa_man},
+          cmdclass={"install": pysa_install, "sdist": pysa_sdist}
           )
 
