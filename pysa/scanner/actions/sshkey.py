@@ -45,40 +45,40 @@ class scanner_key(scanner_base):
                       ]
     
     re_pattern = "-----.+-----"
-    
+
     path_dir = config.key_path
-    
+
     def scan(self):
-        for dirpath, dirnames, filenames in os.walk(self.path_dir):
-            for filename in filenames:
-                try:
-                    # key with specific name
-                    if '.' in filename:
-                        for file_type in self.scan_file_type:
-                            if filename.endswith(file_type):
-                                full_path = os.path.join(dirpath, filename)
-                                mode = get_stat(full_path)[1]
-                                content = get_content(full_path)
-                                if content:
-                                    _type = self.__get_type(content)
-                                    self.add_key(key=content, name=filename, _type=_type, path=full_path, mode=mode)
-                                    logging.debug('ScannerKey.scan(): Add key file %s' % filename)
-                        
-                    # key without specific name
-                    else:
-                        full_path = os.path.join(dirpath, filename)
-                        mode = get_stat(full_path)[1]
-                        content = get_content(full_path)
-                        if content and re.match(self.re_pattern, content):
-                            _type = self.__get_type(content)
-                            self.add_key(key=content, name=filename, _type=_type, path=full_path, mode=mode)
-                            logging.debug('ScannerKey.scan(): Add key file %s' % filename)
-                            
-                except Exception, e:
-                    #log
-                    logging.error("ScannerKey.scan(): Add file %s failed, %s" % (filename, str(e)))
-                    
-                
+        pathdirs = re.split(":", self.path_dir)
+        for p in pathdirs:
+            if not p: continue
+            for dirpath, dirnames, filenames in os.walk(p):
+                for filename in filenames:
+                    try:
+                        # key with specific name
+                        if '.' in filename:
+                            for file_type in self.scan_file_type:
+                                if filename.endswith(file_type):
+                                    full_path = os.path.join(dirpath, filename)
+                                    mode = get_stat(full_path)[1]
+                                    content = get_content(full_path)
+                                    if content:
+                                        _type = self.__get_type(content)
+                                        self.add_key(key=content, name=filename, _type=_type, path=full_path, mode=mode)
+                                        logging.debug('ScannerKey.scan(): Add key file %s' % filename)
+                        # key without specific name
+                        else:
+                            full_path = os.path.join(dirpath, filename)
+                            mode = get_stat(full_path)[1]
+                            content = get_content(full_path)
+                            if content and re.match(self.re_pattern, content):
+                                _type = self.__get_type(content)
+                                self.add_key(key=content, name=filename, _type=_type, path=full_path, mode=mode)
+                                logging.debug('ScannerKey.scan(): Add key file %s' % filename)
+                    except Exception, e:
+                        #log
+                        logging.error("ScannerKey.scan(): Add file %s failed, %s" % (filename, str(e)))
+
     def __get_type(self, content):
         for _type in self.support_key_type:
             if _type in content:

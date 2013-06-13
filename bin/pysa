@@ -27,6 +27,7 @@ import re
 
 from pysa.tools import tools
 from pysa.preprocessing import preprocessing
+from pysa.config import *
 from pysa.exception import *
 from pysa.madeira import *
 
@@ -38,8 +39,8 @@ from pysa.puppet.puppet_objects import *
 
 
 # global defines
-USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
-VERSION_NBR = '0.2.1a4'
+USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
+VERSION_NBR = '0.2.2a'
 VERSION = '%prog '+VERSION_NBR
 
 # logger settings
@@ -101,6 +102,9 @@ def check_user(option, opt_str, value, parser):
 # option parser
 def main_parse():
     parser = OptionParser(usage=USAGE, version=VERSION)
+    parser.add_option("-c", "--config", action="store", dest="config",
+                      help="specify config file"
+                      )
     parser.add_option("-p", "--puppet", action="store_true", dest="puppet", default=False,
                       help="scan packages and generate the puppet files"
                       )
@@ -138,6 +142,9 @@ def main():
     module = (options.module if options.module else "pysa")
     user = (options.user if options.user else None)
     uid = (options.id if options.id else None)
+
+    # config parser
+    config(options.config if options.config else None)
 
     # filters parsing
     filter_parser = fparser(options.filter if options.filter else None)

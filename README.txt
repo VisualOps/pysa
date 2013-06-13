@@ -6,8 +6,8 @@ Pysa
 :Author: Ken CHEN <ken@mc2.io>
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
-:Date: Date: 2013-06-10 (Mon, 10 Jun 2013)
-:Revision: v0.2.1a4
+:Date: Date: 2013-06-13 (Thu, 13 Jun 2013)
+:Revision: v0.2.2a
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME
@@ -19,7 +19,7 @@ pysa - Reverse Engineer Server Configurations
 SYNOPSIS
 ========
 
-**pysa** [ **-hpq** ] [ **-m** *module-name* ] [ **-o** *output-path* ] [ **-f** *filter-config-path* ]
+**pysa** [ **-hpq** ] [ **-m** *module-name* ] [ **-o** *output-path* ] [**-c** *config-file-path*] [ **-f** *filter-config-path* ]
 
 
 DESCRIPTION
@@ -56,6 +56,11 @@ By default, **pysa** displays all log messages.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Choose output module name.
 Default value: *pysa*
+
+-c config-file-path, --config config-file-path
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Specify a configuration file.
+See examples file for more details *pysa.cfg*
 
 -o output-path, --output output-path
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -308,8 +313,14 @@ NOTES
 
 **pysa** has been inspired by a software called *Blueprint* (more information at `http://devstructure.com/blueprint/ <http://devstructure.com/blueprint/>`_).
 
-**pysa** is currently in and so does not (always) provide 100% functional results. This comes from the architectural choices that we've made.
-For example, **pysa** does not (yet) support the addition of user's packages, simply because we can't ensure the availability of these packages on the new system.
+The force of **pysa** lies on the following points:
+- **pysa**'s "filters" and *Blueprint*'s "rules" are totally different. Please refer to the documentations for more details.
+- **pysa**'s *Puppet* output is cleaner (the files are separated, the module is automatically created...).
+- The dependency cycle is more resilient. **pysa** generates an attribute-based dependency cycle (each object relies and depends on its own dependencies) so if something fails the whole process isn't stopped.
+- **pysa** is under active development and there is additional functionality under development (e.g., integration to *Madeira*'s services, *Salt*/*Chef* modules).
+
+As an early-release, **pysa** does not (always) provide 100% functional results. This comes, in some cases, from the architectural choices that we've made.
+For example, **pysa** does not (yet) support the addition of user's packages, simply because we can't ensure the availability of these packages on the new system. It would lead to the generation of wrong output files.
 
 Furthermore, **pysa** depends on "autoconf" tools. This means that if a feature is not supported by one of these tools, **pysa** can't provide it.
 For example, it is currently impossible to use upstart services on a *Redhat* based platform, as it is impossible to use npm package manager on *Ubuntu*.

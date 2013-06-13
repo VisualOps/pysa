@@ -177,8 +177,6 @@ class puppet_converter():
         # add exceptions
         if GLOBAL_EXEC_EQ:
             self.__add_global_exec()
-#        if ORDER_EQ:
-#            self.__add_order()
 
         tools.l(INFO, "complete", 'run', self)
         return self.__output
@@ -215,29 +213,6 @@ class puppet_converter():
                     })
             
         return c
-
-#    # generate order
-#    @general_exception
-#    def __append_order(self, src, dst, sec_name='order'):
-#        order = []
-#        for sec in src:
-#            if sec in dst:
-#                order.append(sec)
-#        if order:
-#            dst[GLOBAL_SEC_EQ[sec_name]] = order
-#        else:
-#            tools.l(INFO, "no pertinent order", 'append_order', self)
-#
-#    # order generation
-#    @general_exception
-#    def __add_order(self):
-#        for key in ORDER_EQ:
-#            if key == VOID_EQ:
-#                tools.l(INFO, "adding order for main section", 'add_order', self)
-#                self.__append_order(ORDER_EQ[key], self.__output)
-#            else:
-#                tools.l(INFO, "adding order for %s" % (key), 'add_order', self)
-#                self.__append_order(ORDER_EQ[key], self.__output[key])
 
     # processing on values
     @general_exception
@@ -281,26 +256,12 @@ class puppet_converter():
                         ]
                     })
 
-#        # ordering condition
-#        if (gclass in ORDERED_LIST_EQ) and self.__prev_obj != None:
-#            input['require'] = tools.dict_merging(input.get('require'), {
-#                    SECTION_EQ[gclass][len(VOID_EQ):].capitalize() : [
-#                        self.__prev_obj
-#                        ]
-#                    })
-
         # main loop
         for key in input:
             if type(input[key]) is list:
                 store = []
                 for d in input[key]:
                     store.append(self.__process_values(gclass, name, key, d))
-#                if key in CONTENTLVAL_EQ:
-#                    input.pop(key)
-#                    input[CONTENTLVAL_EQ[key][0]] = {
-#                        CONTENTLVAL_EQ[key][1] : store
-#                        }
-#                else:
                 input[key] = store
             else:
                 input[key] = self.__process_values(gclass, name, key, input[key])

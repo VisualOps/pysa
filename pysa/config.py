@@ -1,5 +1,5 @@
 '''
-Created on 2013-4-17
+Global configuration
 
     pysa - reverse a complete computer setup
     Copyright (C) 2013  MadeiraCloud Ltd.
@@ -17,21 +17,55 @@ Created on 2013-4-17
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@author: Ken
+@author: Thibault BRONCHAIN
 '''
 
+from ConfigParser import SafeConfigParser
+
+from pysa.tools import *
+from pysa.exception import *
+
+
 # define who is a file
-NULL            = ['', {}, [], None]
 FILE_CLASS      = ['keys', 'repos', 'files']
+# null objects (avoid 0)
+NULL            = ['', {}, [], None]
+# build-ins
 VOID_EQ         = '_'
 SINGLE_EQ       = VOID_EQ+VOID_EQ
 
-# configuration class (not used for now)
+# configuration class
 class config():
-    
-    files_path = '/etc:/root/.ssh'
-    scan_host = '/etc/hosts'
-    key_path = '/root/.ssh'
-    
-    def __init__(self):
-        pass
+
+    # default values
+    c = {
+        'files' : {
+            'path' : '/etc:/root/.ssh'
+            },
+        'keys' : {
+            'path' : 'root/.ssh'
+            },
+        'hosts' : {
+            'path' : '/etc/hosts'
+            }
+        }
+    files_path = c['files']['path']
+    scan_host = c['hosts']['path']
+    key_path = c['keys']['path']
+
+    # edit default values if config file
+    def __init__(self, path=None):
+        if not path: return
+        self.__filename = path
+        self.__parse_config()
+
+    # parse config file
+    @general_exception
+    def __parse_config(self):
+        parser = SafeConfigParser()
+        parser.read(self.__filename)
+        for name in parser.sections():
+            config.c.setdefault(name, {})
+            for key, value in parser.items(name):
+                config.c[name][key] = value
+        return tools.dict_merging(global_filters, sec)

@@ -48,6 +48,7 @@ class scanner_file(scanner_base):
         # Visit every file in pathdir except those on the exclusion list above.
         pathdirs = re.split(":", pathdir)
         for p in pathdirs:
+            if not p: continue
             for dirpath, dirnames, filenames in os.walk(p, followlinks=True):
                 for filename in filenames:
                     self.addfile(os.path.join(dirpath, filename))

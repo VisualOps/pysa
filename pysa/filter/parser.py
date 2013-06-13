@@ -128,7 +128,6 @@ class fparser():
                 cursec[skey[0]] = self.__parse_value(cursec[skey[0]], skey[1], value)
             else:
                 cursec = self.__parse_value(cursec, key, value)
-
         # check required fields
         if (self.__parse_req(cursec, basename) == False):
             raise ParserException, ("filter file error on section %s" % refname)

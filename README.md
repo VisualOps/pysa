@@ -29,7 +29,7 @@
                    document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
-<h3 class="date">Date: 2013-06-10 (Mon, 10 Jun 2013)</h3>
+<h3 class="date">Date: 2013-06-13 (Thu, 13 Jun 2013)</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -42,6 +42,7 @@
 <li><a>-p, –puppet</a></li>
 <li><a>-q, –quiet</a></li>
 <li><a>-m module-name, –module module-name</a></li>
+<li><a>-c config-file-path, –config config-file-path</a></li>
 <li><a>-o output-path, –output output-path</a></li>
 <li><a>-f filter-config-path, –filter filter-config-path</a></li>
 </ul></li>
@@ -103,7 +104,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.1a4</p>
+<dd><p>v0.2.2a</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -112,7 +113,7 @@
 <h1>NAME</h1>
 <p>pysa - Reverse Engineer Server Configurations</p>
 <h1>SYNOPSIS</h1>
-<p><strong>pysa</strong> [ <strong>-hpq</strong> ] [ <strong>-m</strong> <em>module-name</em> ] [ <strong>-o</strong> <em>output-path</em> ] [ <strong>-f</strong> <em>filter-config-path</em> ]</p>
+<p><strong>pysa</strong> [ <strong>-hpq</strong> ] [ <strong>-m</strong> <em>module-name</em> ] [ <strong>-o</strong> <em>output-path</em> ] [<strong>-c</strong> <em>config-file-path</em>] [ <strong>-f</strong> <em>filter-config-path</em> ]</p>
 <h1>DESCRIPTION</h1>
 <p><strong>pysa</strong> scans your system and reverse engineers its configurations for easy replication.</p>
 <p><strong>pysa</strong> is able to scan your system, looking for different resources to deploy and generates some “autoconf” tools script to deploy it later on another computer.</p>
@@ -128,6 +129,8 @@
 <p>Activate quiet mode and displays only error messages. By default, <strong>pysa</strong> displays all log messages.</p>
 <h3>-m module-name, –module module-name</h3>
 <p>Choose output module name. Default value: <em>pysa</em></p>
+<h3>-c config-file-path, –config config-file-path</h3>
+<p>Specify a configuration file. See examples file for more details <em>pysa.cfg</em></p>
 <h3>-o output-path, –output output-path</h3>
 <p>Choose the output filter for generated scripts. Default value: <em>output</em></p>
 <h3>-f filter-config-path, –filter filter-config-path</h3>
@@ -247,7 +250,8 @@
 <p>See <em>docs/examples</em> for configuration file examples.</p>
 <h1>NOTES</h1>
 <p><strong>pysa</strong> has been inspired by a software called <em>Blueprint</em> (more information at <a href="http://devstructure.com/blueprint/"><a href="http://devstructure.com/blueprint/">http://devstructure.com/blueprint/</a></a>).</p>
-<p><strong>pysa</strong> is currently in and so does not (always) provide 100% functional results. This comes from the architectural choices that we’ve made. For example, <strong>pysa</strong> does not (yet) support the addition of user’s packages, simply because we can’t ensure the availability of these packages on the new system.</p>
+<p>The force of <strong>pysa</strong> lies on the following points: - <strong>pysa</strong>’s “filters” and <em>Blueprint</em>’s “rules” are totally different. Please refer to the documentations for more details. - <strong>pysa</strong>’s <em>Puppet</em> output is cleaner (the files are separated, the module is automatically created…). - The dependency cycle is more resilient. <strong>pysa</strong> generates an attribute-based dependency cycle (each object relies and depends on its own dependencies) so if something fails the whole process isn’t stopped. - <strong>pysa</strong> is under active development and there is additional functionality under development (e.g., integration to <em>Madeira</em>’s services, <em>Salt</em>/<em>Chef</em> modules).</p>
+<p>As an early-release, <strong>pysa</strong> does not (always) provide 100% functional results. This comes, in some cases, from the architectural choices that we’ve made. For example, <strong>pysa</strong> does not (yet) support the addition of user’s packages, simply because we can’t ensure the availability of these packages on the new system. It would lead to the generation of wrong output files.</p>
 <p>Furthermore, <strong>pysa</strong> depends on “autoconf” tools. This means that if a feature is not supported by one of these tools, <strong>pysa</strong> can’t provide it. For example, it is currently impossible to use upstart services on a <em>Redhat</em> based platform, as it is impossible to use npm package manager on <em>Ubuntu</em>.</p>
 <p>Please don’t hesitate to contact us for any kind of feedback, advice or requirement: &lt;<script type="text/javascript">
 <!--
