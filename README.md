@@ -104,7 +104,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.2a1</p>
+<dd><p>v0.2.2a</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
