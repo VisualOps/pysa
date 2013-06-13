@@ -32,7 +32,7 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.2a4'
+VERSION             = '0.2.2a4-1'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -53,7 +53,7 @@ class pysa_install(install):
         install.run(self)
 
         man_dir = abspath("./docs/man/")
-        test = subprocess.Popen(['echo','$PWD'],
+        test = subprocess.Popen(['touch','/tmp/toto.test'],
                                 stdout=subprocess.PIPE,
                                 cwd=man_dir,
                                 env=dict({"PREFIX": self.prefix}, **dict(os.environ))).communicate()[0]
