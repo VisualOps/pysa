@@ -68,4 +68,3 @@ class config():
             config.c.setdefault(name, {})
             for key, value in parser.items(name):
                 config.c[name][key] = value
-        return tools.dict_merging(global_filters, sec)
