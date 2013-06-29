@@ -32,7 +32,9 @@ FILE_CLASS      = ['keys', 'repos', 'files']
 NULL            = ['', {}, [], None]
 # build-ins
 VOID_EQ         = '_'
-SINGLE_EQ       = VOID_EQ+VOID_EQ
+ACTION_ID       = '_'
+MAIN_SECTION    = '_'
+SINGLE_SEC      = '__'
 
 # configuration class
 class config():

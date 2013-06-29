@@ -31,190 +31,183 @@ from pysa.puppet.puppet_converter import GLOBAL_SEC_EQ
 
 # define quoted variables
 QUOTED_AVOIDED_KEYS = ['content', 'before']
-QUOTED_KEYS = ['checksum', 'name', 'group', 'owner']
-QUOTED_CONTENT = ['\W', '\d']
+QUOTED_FORCED_KEYS = ['checksum', 'name', 'group', 'owner']
+QUOTED_FORCED_CONTENT = ['\W', '\d']
 
 # puppet generation class
 class puppet_build():
-    def __init__(self, class_dict, output_path, module):
-        self.__prepross = [
-            [GLOBAL_SEC_EQ['Exec'], self.__content],
-            ]
-
-        self.__quoted_regex = "%s" % ('|'.join(QUOTED_CONTENT))
-        self.__module_name = module
-        self.__c = output()
-        self.__class_dict = class_dict
+    def __init__(self, input_dict, output_path, module_name):
+        self.__quoted_regex = "%s" % ('|'.join(QUOTED_FORCED_CONTENT))
+        self.__module_name = module_name
+        self.__input_dict = input_dict
+        self.__output_container = output()
         self.__output_path = output_path+'/'+self.__module_name
-        self.__prepross_list = []
-        for i in self.__prepross:
-            self.__prepross_list.append(i[0])
+        self.__curent_manifest = ''
 
     # main function
     @general_exception
     def run(self):
         tools.l(INFO, "running generation engine", 'run', self)
-        self.__generate(self.__class_dict)
-        self.__init_gen()
+        self.__generate(self.__input_dict)
+        self.__create_init_file()
         self.dump_in_files()
-        tools.l(INFO, "complete.", 'run', self)
+        tools.l(INFO, "generation complete", 'run', self)
         return True
 
     # print the puppet files
     @general_exception
     def dump(self):
-        for c in self.__c.list():
-            print "%s:\n%s\n\n" % ((c if c else 'init'),self.__c.dump(c))
+        for manifest_name in self.__output_container.list():
+            manifest_fname = (manifest_name if manifest_name else 'init')
+            print "%s:\n%s\n\n" % (manifest_fname,
+                                   self.__output_container.dump(manifest_name))
 
     # dump puppet file in variable
     @general_exception
     def dump_in_var(self, data=''):
-        for c in self.__c.list():
-            data += ("%s:\n%s\n\n" % ((c if c else 'init'),self.__c.dump(c)))
+        for manifest_name in self.__output_container.list():
+            manifest_fname = (manifest_name if manifest_name else 'init')
+            data += ("%s:\n%s\n\n" % (manifest_fname,
+                                      self.__output_container.dump(manifest_name)))
         return data
 
     # dump the puppet files into the right files
     @general_exception
     def dump_in_files(self):
-        for c in self.__c.list():
-            tools.write_in_file(self.__output_path+'/manifests/'+(c if c else 'init')+'.pp', self.__c.dump(c))
+        for manifest_name in self.__output_container.list():
+            manifest_fname = (manifest_name if manifest_name else 'init')
+            tools.write_in_file(self.__output_path+'/manifests/'+manifest_fname+'.pp',
+                                self.__output_container.dump(manifest_name))
 
     # init file generation
     @general_exception
-    def __init_gen(self):
-        inc=''
-        for c in self.__c.list():
-            inc += ("include %s\n" % (c) if c else '')
-        tab = re.split('\n', self.__c.dump()+'\n'+inc)
-        s=''
-        for i in tab:
-            s += (re.sub(r'^', r'\n\t', i) if i else '')
-        self.__c.mod("class %s {\n%s\n}\n" % (self.__module_name, s))
+    def __create_init_file(self):
+        includes = ''
+        for manifest_name in self.__output_container.list():
+            if not manifest_name: continue
+            includes += "include %s\n" % (manifest_name)
+        content = ''
+        for line in re.split('\n',
+                             self.__output_container.dump()+'\n'+includes):
+            if not line: continue
+            content += re.sub(r'^', r'\n\t', line)
+        self.__output_container.mod("class %s {\n%s\n}\n" % (self.__module_name, content))
 
     # particular case for the single instructions
     @general_exception
-    def __single_instruction(self, parent, data, index, output, tab):
+    def __single_instruction(self, parent, sections, section_name, tab):
         if not parent:
             return tab
-        for content in data[index]:
-            if index == GLOBAL_SEC_EQ['require']:
-                if content not in parent:
-                    continue
-            self.__c.add(output, tab+"%s %s\n" % (index[len(SINGLE_EQ):],content))
+        for content in sections[section_name]:
+            if section_name == GLOBAL_SEC_EQ['require']:
+                if content not in parent: continue
+            self.__output_container.add(self.__curent_manifest,
+                                        "%s%s %s\n" % (tab,section_name[len(SINGLE_SEC):],content))
         return tab
 
     # quote required values
     @general_exception
-    def __quote_values(self, key, val):
+    def __add_quotes(self, key, val):
         return (("'%s'" % (re.sub('\'', '\\\'', val))
                  if (key not in QUOTED_AVOIDED_KEYS)
-                 and ((key in QUOTED_KEYS)
+                 and ((key in QUOTED_FORCED_KEYS)
                       or (re.search(self.__quoted_regex, val)))
                  else val)
                 if type(val) is str else val)
 
     # content writing
     @general_exception
-    def __content_writing(self, output, sectype, label, optlabel, content):
-        i = 0
-        s = ''
+    def __write_content(self, section_name, label, optlabel, content):
+        out = ''
+        out_size = 0
         if (type(content) is list):
-            tmp_s = ''
-            for sec in content:
-                tmp_s += (", " if i else '')+"'%s'" % (sec)
-                i += 1
-            if i > 0:
-                s += ("[" if i > 1 else '')+tmp_s+("]" if i > 1 else '')
-            else: s = None
+            for value in content:
+                out += (", " if out_size else '')+"'%s'" % (value)
+                out_size += 1
+            if out_size:
+                return "%s%s%s" % (("[" if out_size > 1 else ''),out,("]" if out_size > 1 else ''))
         elif (type(content) is dict):
-            tmp_s = ''
-            for sec in content:
-                for d in content[sec]:
-                    tmp_s += (", " if i else '') + "%s['%s']" % (sec,d)
-                    i += 1
-            if i > 0:
-                s += ("[" if i > 1 else '')+tmp_s+("]" if i > 1 else '')
-            else: s = None
+            for value_type in content:
+                for value in content[value_type]:
+                    out += (", " if out_size else '') + "%s['%s']" % (value_type,value)
+                    out_size += 1
+            if out_size:
+                return "%s%s%s" % (("[" if out_size > 1 else ''),out,("]" if out_size > 1 else ''))
         else:
-            if (sectype == "_file") and (label[0] != '-') and optlabel == 'content':
-                tools.write_in_file(self.__output_path+'/templates'+('/' if label[0] != '/' else '')+label,
-                                    content)
-                content = ("template('%s')" % (self.__module_name+('/' if label[0] != '/' else '')+label))
-            s += "%s" % self.__quote_values(optlabel, content)
-        return s
+            if (section_name == "_file") and (label[0] != '-') and optlabel == 'content':
+                filename = ('/' if label[0] != '/' else '')+label
+                tools.write_in_file(self.__output_path+'/templates'+filename, content)
+                content = "template('%s')" % (self.__module_name+filename)
+            return self.__add_quotes(optlabel, content)
+        return None
 
     # global content generation for pupept config file
     @general_exception
-    def __content(self, parent, data, index, output, tab):
-        tools.l(INFO, "creating section %s" % (index.lstrip(VOID_EQ)), 'content', self)
-        if index[:len(SINGLE_EQ)] == SINGLE_EQ:
-            return self.__single_instruction(parent, data, index, output, tab)
-        self.__c.add(output, "%s%s {\n" % (tab,index.lstrip(VOID_EQ)))
-        for label in sorted(data[index]):
+    def __create_content(self, parent, data, section_name, tab):
+        tools.l(INFO, "creating section %s" % (section_name.lstrip(VOID_EQ)), 'create_content', self)
+        if section_name[:len(SINGLE_SEC)] == SINGLE_SEC:
+             return self.__single_instruction(parent, data, section_name, tab)
+        self.__output_container.add(self.__curent_manifest, "%s%s {\n" % (tab,section_name.lstrip(ACTION_ID)))
+        for label in sorted(data[section_name]):
             if label in NULL:
                 continue
-            elif label[0] != VOID_EQ:
+            if label[0] != ACTION_ID:
                 tab = tools.tab_inc(tab)
-                self.__c.add(output, "%s'%s':\n" % (tab,label))
-            f = 0
+                self.__output_container.add(self.__curent_manifest, "%s'%s':\n" % (tab,label))
             tab = tools.tab_inc(tab)
-            for optlabel in sorted(data[index][label]):
-                if (data[index][label][optlabel] not in NULL) and (optlabel[0] != VOID_EQ):
-                    s = self.__content_writing(output,
-                                               index,
+            wrote = False
+            for optlabel in sorted(data[section_name][label]):
+                if (data[section_name][label][optlabel] not in NULL) and (optlabel[0] != ACTION_ID):
+                    out = self.__write_content(section_name,
                                                label,
                                                optlabel,
-                                               data[index][label][optlabel])
-                    if s:
-                        self.__c.add(output, (",\n" if f else '')+
-                                     "%s%s => %s" % (tab, optlabel,s))
-                        f = 1
-            if f and label != VOID_EQ:
-                self.__c.add(output, ";\n")
-            elif f and label == VOID_EQ:
-                self.__c.add(output, "\n")
+                                               data[section_name][label][optlabel])
+                    if out:
+                        self.__output_container.add(self.__curent_manifest,
+                                                    "%s%s%s => %s"%((",\n" if wrote else ''),tab,optlabel,out))
+                        wrote = True
+            if wrote and label != MAIN_SECTION:
+                self.__output_container.add(self.__curent_manifest, ";\n")
+            elif wrote and label == MAIN_SECTION:
+                self.__output_container.add(self.__curent_manifest, "\n")
             tab = tools.tab_dec(tab)
-            if label[0] != VOID_EQ:
+            if label[0] != ACTION_ID:
                 tab = tools.tab_dec(tab)
-        self.__c.add(output, "%s}\n" % (tab))
+        self.__output_container.add(self.__curent_manifest, "%s}\n" % (tab))
         return tab
 
     # class generation method, applies the recursion
     @general_exception
-    def __object(self, parent, data, index, output, tab, level):
-        tools.l(INFO, "generation class %s" % (index), 'object', self)
-        self.__c.add(output, "%sclass %s {\n" % (tab,index))
+    def __create_class(self, parent, data, section_name, tab):
+        tools.l(INFO, "generation class %s" % (section_name), 'create_class', self)
+        self.__output_container.add(self.__curent_manifest, "%sclass %s {\n" % (tab,section_name))
+        tab = tools.tab_inc(tab)
         # recursion here
-        tab = tools.tab_dec(self.__generate(data[index],
-                                            data,
-                                            output,
-                                            tools.tab_inc(tab),
-                                            level+1))
-        self.__c.add(output, "%s}\n%sinclude %s\n" % (tab,tab,index))
+        tab = self.__generate(data[section_name], data, tab)
+        tab = tools.tab_dec(tab)
+        self.__output_container.add(self.__curent_manifest, "%s}\n%sinclude %s\n" % (tab,tab,section_name))
         return tab
 
     # puppet file generation function
     # recursive function
     @general_exception
-    def __generate(self, data, parent = None, output='', tab='', level=0):
-        # preprocessing exceptions
-        for t in self.__prepross:
-            if t[0] in data and t[1]:
-                tools.l(INFO, "adding %s condition" % (t[0]), 'generate', self)
-                tab = t[1](parent, data, t[0], output, tab)
+    def __generate(self, data, parent = None, tab=''):
+        # adding Exec section
+        if GLOBAL_SEC_EQ['Exec'] in data:
+            tab = self.__create_content(parent, data, GLOBAL_SEC_EQ['Exec'], tab)
         # global generation
-        for index in sorted(data):
-            # particular cases needed to be at the beginning of a section
-            if index in self.__prepross_list:
+        for section_name in sorted(data):
+            # avoid exception
+            if section_name == GLOBAL_SEC_EQ['Exec']:
                 continue
             # content found
-            elif index[0] == VOID_EQ and output:
-                tab = self.__content(parent, data, index, output, tab)
+            elif section_name[0] == ACTION_ID and self.__curent_manifest:
+                tab = self.__create_content(parent, data, section_name, tab)
+                continue
             # new class
-            else:
-                if (level == 0):
-                    output = index
-                    self.__c.add_dict(output)
-                # recursion here
-                tab = self.__object(parent, data, index, output, tab, level)
+            if not parent:
+                self.__curent_manifest = section_name
+                self.__output_container.add_dict(self.__curent_manifest)
+            # recursion here
+            tab = self.__create_class(parent, data, section_name, tab)
         return tab

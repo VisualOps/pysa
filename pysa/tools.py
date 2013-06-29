@@ -44,9 +44,7 @@ class tools():
     # logging
     @staticmethod
     def l(action, content, f, c = None):
-        out = ""
-        if c:
-            out += "%s." % (c.__class__.__name__)
+        out = ("%s." % (c.__class__.__name__) if c else "")
         out += "%s()" % (f)
         LOGGING_EQ[action]("%s: %s" % (out, content))
 

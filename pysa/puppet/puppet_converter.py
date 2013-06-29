@@ -31,20 +31,20 @@ from pysa.filter.filter import filter
 
 # define _order section
 ORDER_EQ = {
-    VOID_EQ     : [
-                   'mounts',
-                   'dirs',
-                   'groups',
-                   'users',
-                   'hosts',
-                   'keys',
-                   'repos',
-                   'packages',
-                   'files',
-                   'crons',
-                   'sources',
-                   'services',
-                   ]
+    MAIN_SECTION     : [
+        'mounts',
+        'dirs',
+        'groups',
+        'users',
+        'hosts',
+        'keys',
+        'repos',
+        'packages',
+        'files',
+        'crons',
+        'sources',
+        'services',
+        ]
     }
 
 # list of ordered sections
@@ -52,10 +52,10 @@ ORDERED_LIST_EQ = ['sources']
 
 # general modifiers
 GLOBAL_SEC_EQ = {
-    'Exec'      : VOID_EQ+'Exec',
-    'exec'      : VOID_EQ+'exec',
-    'order'     : VOID_EQ+'order',
-    'require'   : SINGLE_EQ+'require'
+    'Exec'      : ACTION_ID+'Exec',
+    'exec'      : ACTION_ID+'exec',
+    'order'     : ACTION_ID+'order',
+    'require'   : SINGLE_SEC+'require'
 }
 
 # define _Exec section
@@ -72,24 +72,24 @@ EXEC_EQ = {
 
 # define general sections
 SECTION_EQ = {
-    'dirs'      : VOID_EQ+'file',
-    'files'     : VOID_EQ+'file',
-    'packages'  : VOID_EQ+'package',
-    'services'  : VOID_EQ+'service',
-    'crons'     : VOID_EQ+'cron',
-    'groups'    : VOID_EQ+'group',
-    'mounts'    : VOID_EQ+'mount',
-    'hosts'     : VOID_EQ+'host',
-    'repos'     : VOID_EQ+'file',
-    'keys'      : VOID_EQ+'file',
-    'users'     : VOID_EQ+'user',
-    'sources'   : VOID_EQ+'vcsrepo'
+    'dirs'      : ACTION_ID+'file',
+    'files'     : ACTION_ID+'file',
+    'packages'  : ACTION_ID+'package',
+    'services'  : ACTION_ID+'service',
+    'crons'     : ACTION_ID+'cron',
+    'groups'    : ACTION_ID+'group',
+    'mounts'    : ACTION_ID+'mount',
+    'hosts'     : ACTION_ID+'host',
+    'repos'     : ACTION_ID+'file',
+    'keys'      : ACTION_ID+'file',
+    'users'     : ACTION_ID+'user',
+    'sources'   : ACTION_ID+'vcsrepo'
 }
 
 # define subsclasses equivalency
 SUBCLASS_EQ = {
     'packages'  : {
-        VOID_EQ   : 'provider',
+        MAIN_SECTION : 'provider',
         'order'   : [
             ['apt', 'yum', 'rpm'],
             ['npm', 'pecl', 'pear', 'pip', 'gem']
@@ -104,7 +104,7 @@ REQUIRE_EQ = [
 
 # key modifier
 CONTENTKEY_EQ = {
-    VOID_EQ     : {
+    MAIN_SECTION     : {
         'version'   : 'ensure',
         'key'       : 'content'
         },
@@ -132,12 +132,6 @@ CONTENTADD_EQ = {
         'ensure'    : 'present'
         }
 }
-
-# content modifier (on lists)
-#CONTENTLVAL_EQ = {
-#    'files'             : ['before','File'],
-#    'config_files'      : ['before','File']
-#}
 
 # avoided sections
 AVOIDSEC_EQ = {
@@ -183,12 +177,12 @@ class puppet_converter():
 
     # generate global exec
     @general_exception
-    def __add_global_exec(self, sec_name='Exec'):
+    def __add_global_exec(self):
         tools.l(INFO, "adding Exec section", 'add_global_exec', self)
-        self.__output[GLOBAL_SEC_EQ[sec_name]] = {VOID_EQ : {}}
+        self.__output[GLOBAL_SEC_EQ['Exec']] = {MAIN_SECTION : {}}
         for key in GLOBAL_EXEC_EQ:
             tools.l(INFO, "adding key %s" % (key), 'add_global_exec', self)
-            self.__output[GLOBAL_SEC_EQ[sec_name]][VOID_EQ][key] = self.__process_values('', sec_name, key, GLOBAL_EXEC_EQ[key])
+            self.__output[GLOBAL_SEC_EQ['Exec']][MAIN_SECTION][key] = self.__process_values('', 'Exec', key, GLOBAL_EXEC_EQ[key])
 
     # generate sub execs
     @general_exception
@@ -231,18 +225,18 @@ class puppet_converter():
     def __process_data(self, input, gclass, name, cur_class):
         tools.l(INFO, "processing data", 'process_data', self)
         # modifications
-        kcontent = tools.list_merging(AVOIDSEC_EQ.get(VOID_EQ), AVOIDSEC_EQ.get(gclass))
+        kcontent = tools.list_merging(AVOIDSEC_EQ.get(MAIN_SECTION), AVOIDSEC_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 input[key] = None
-        kcontent = tools.s_dict_merging(CONTENTADD_EQ.get(VOID_EQ), CONTENTADD_EQ.get(gclass))
+        kcontent = tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(gclass))
         for key in kcontent:
             input[key] = kcontent[key]
-        kcontent = tools.s_dict_merging(CONTENTKEY_EQ.get(VOID_EQ), CONTENTKEY_EQ.get(gclass))
+        kcontent = tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 input[kcontent[key]] = input.pop(key)
-        kcontent = tools.s_dict_merging(CONTENTVAL_EQ.get(VOID_EQ), CONTENTVAL_EQ.get(gclass))
+        kcontent = tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 if input[key] == kcontent[key][0]:
@@ -251,7 +245,7 @@ class puppet_converter():
         # exec dependency
         if cur_class in EXEC_EQ:
             input['require'] = tools.dict_merging(input.get('require'), {
-                    GLOBAL_SEC_EQ['exec'][len(VOID_EQ):].capitalize() : [
+                    GLOBAL_SEC_EQ['exec'][len(ACTION_ID):].capitalize() : [
                         EXEC_EQ[cur_class]
                         ]
                     })
@@ -271,7 +265,7 @@ class puppet_converter():
     @general_exception
     def __process_sec(self, data, gclass, name, cur_class):
         tools.l(INFO, "creating section %s" % (SECTION_EQ[gclass]), 'process_sec', self)
-        if (SECTION_EQ[gclass] == VOID_EQ+'package'):
+        if (SECTION_EQ[gclass] == ACTION_ID+'package'):
             data[gclass][name] = self.__filter.update_package(data[gclass][name], name, 'latest')
         return self.__process_data(data[gclass][name], gclass, name, cur_class)
 
@@ -287,7 +281,7 @@ class puppet_converter():
             self.__output[gclass] = self.__add_top_class(gclass)
             for name in sorted(data[gclass]):
                 if gclass in SUBCLASS_EQ:
-                    subkey = data[gclass][name][SUBCLASS_EQ[gclass][VOID_EQ]]
+                    subkey = data[gclass][name][SUBCLASS_EQ[gclass][MAIN_SECTION]]
                     tools.l(INFO, "creating sub class %s" % (subkey), 'generate_classes', self)
                     self.__output[gclass].setdefault(subkey, self.__add_top_class(subkey))
                     self.__output[gclass][subkey].setdefault(SECTION_EQ[gclass], {})

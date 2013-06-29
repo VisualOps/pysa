@@ -40,8 +40,8 @@ class output():
             self.main += content
 
     @general_exception
-    def dump(self, output = ''):
-        return (self.c[output] if output else self.main)
+    def dump(self, manifest_name = ''):
+        return (self.c[manifest_name] if manifest_name else self.main)
 
     @general_exception
     def list(self):

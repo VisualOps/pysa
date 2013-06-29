@@ -72,7 +72,7 @@ class filter():
                                      "%s" % (val))
                 if c != val:
                     tools.l(INFO,
-                            "values uptades for item %s in section %s"
+                            "values updated for item %s in section %s"
                             % (name, key),
                             'item_replace',
                             self)

@@ -40,7 +40,7 @@ from pysa.puppet.puppet_objects import *
 
 # global defines
 USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
-VERSION_NBR = '0.2.2a'
+VERSION_NBR = '0.2.3a'
 VERSION = '%prog '+VERSION_NBR
 
 # logger settings
