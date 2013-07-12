@@ -45,7 +45,7 @@ class puppet_build():
         self.__curent_manifest = ''
 
     # main function
-    @general_exception
+    @GeneralException
     def run(self):
         tools.l(INFO, "running generation engine", 'run', self)
         self.__generate(self.__input_dict)
@@ -55,7 +55,7 @@ class puppet_build():
         return True
 
     # print the puppet files
-    @general_exception
+    @GeneralException
     def dump(self):
         for manifest_name in self.__output_container.list():
             manifest_fname = (manifest_name if manifest_name else 'init')
@@ -63,7 +63,7 @@ class puppet_build():
                                    self.__output_container.dump(manifest_name))
 
     # dump puppet file in variable
-    @general_exception
+    @GeneralException
     def dump_in_var(self, data=''):
         for manifest_name in self.__output_container.list():
             manifest_fname = (manifest_name if manifest_name else 'init')
@@ -72,7 +72,7 @@ class puppet_build():
         return data
 
     # dump the puppet files into the right files
-    @general_exception
+    @GeneralException
     def dump_in_files(self):
         for manifest_name in self.__output_container.list():
             manifest_fname = (manifest_name if manifest_name else 'init')
@@ -80,7 +80,7 @@ class puppet_build():
                                 self.__output_container.dump(manifest_name))
 
     # init file generation
-    @general_exception
+    @GeneralException
     def __create_init_file(self):
         includes = ''
         for manifest_name in self.__output_container.list():
@@ -94,7 +94,7 @@ class puppet_build():
         self.__output_container.mod("class %s {\n%s\n}\n" % (self.__module_name, content))
 
     # particular case for the single instructions
-    @general_exception
+    @GeneralException
     def __single_instruction(self, parent, sections, section_name, tab):
         if not parent:
             return tab
@@ -106,7 +106,7 @@ class puppet_build():
         return tab
 
     # quote required values
-    @general_exception
+    @GeneralException
     def __add_quotes(self, key, val):
         return (("'%s'" % (re.sub('\'', '\\\'', val))
                  if (key not in QUOTED_AVOIDED_KEYS)
@@ -116,7 +116,7 @@ class puppet_build():
                 if type(val) is str else val)
 
     # content writing
-    @general_exception
+    @GeneralException
     def __write_content(self, section_name, label, optlabel, content):
         out = ''
         out_size = 0
@@ -142,7 +142,7 @@ class puppet_build():
         return None
 
     # global content generation for pupept config file
-    @general_exception
+    @GeneralException
     def __create_content(self, parent, data, section_name, tab):
         tools.l(INFO, "creating section %s" % (section_name.lstrip(VOID_EQ)), 'create_content', self)
         if section_name[:len(SINGLE_SEC)] == SINGLE_SEC:
@@ -177,7 +177,7 @@ class puppet_build():
         return tab
 
     # class generation method, applies the recursion
-    @general_exception
+    @GeneralException
     def __create_class(self, parent, data, section_name, tab):
         tools.l(INFO, "generation class %s" % (section_name), 'create_class', self)
         self.__output_container.add(self.__curent_manifest, "%sclass %s {\n" % (tab,section_name))
@@ -190,7 +190,7 @@ class puppet_build():
 
     # puppet file generation function
     # recursive function
-    @general_exception
+    @GeneralException
     def __generate(self, data, parent = None, tab=''):
         # adding Exec section
         if GLOBAL_SEC_EQ['Exec'] in data:

@@ -137,7 +137,7 @@ CONTENTADD_EQ = {
 AVOIDSEC_EQ = {
     'mounts'    : ['size'],
     'packages'  : ['manager', 'config_files'],
-    'sources'   : ['mode', 'password', 'branch', 'name', 'key'], #check key
+    'sources'   : ['mode', 'password', 'branch', 'name', 'key'],
     'groups'    : ['gid'],
     'users'     : ['uid', 'gid'],
     'repos'     : ['provider'],
@@ -156,7 +156,7 @@ class puppet_converter():
         self.__prev_obj = None
 
     # main method
-    @general_exception
+    @GeneralException
     def run(self):
         tools.l(INFO, "running", 'run', self)
 
@@ -176,7 +176,7 @@ class puppet_converter():
         return self.__output
 
     # generate global exec
-    @general_exception
+    @GeneralException
     def __add_global_exec(self):
         tools.l(INFO, "adding Exec section", 'add_global_exec', self)
         self.__output[GLOBAL_SEC_EQ['Exec']] = {MAIN_SECTION : {}}
@@ -185,7 +185,7 @@ class puppet_converter():
             self.__output[GLOBAL_SEC_EQ['Exec']][MAIN_SECTION][key] = self.__process_values('', 'Exec', key, GLOBAL_EXEC_EQ[key])
 
     # generate sub execs
-    @general_exception
+    @GeneralException
     def __add_top_class(self, key):
         c = {}
         for order in REQUIRE_EQ:
@@ -209,7 +209,7 @@ class puppet_converter():
         return c
 
     # processing on values
-    @general_exception
+    @GeneralException
     def __process_values(self, gclass, name, key, val):
         if type(val) is int:
             val = "%s" % (val)
@@ -221,7 +221,7 @@ class puppet_converter():
 
 
     # processing on data
-    @general_exception
+    @GeneralException
     def __process_data(self, input, gclass, name, cur_class):
         tools.l(INFO, "processing data", 'process_data', self)
         # modifications
@@ -262,7 +262,7 @@ class puppet_converter():
         return input
 
     # processing on section
-    @general_exception
+    @GeneralException
     def __process_sec(self, data, gclass, name, cur_class):
         tools.l(INFO, "creating section %s" % (SECTION_EQ[gclass]), 'process_sec', self)
         if (SECTION_EQ[gclass] == ACTION_ID+'package'):
@@ -270,7 +270,7 @@ class puppet_converter():
         return self.__process_data(data[gclass][name], gclass, name, cur_class)
 
     # class generation
-    @general_exception
+    @GeneralException
     def __generate_classes(self, data):
         for gclass in data:
             if gclass not in SECTION_EQ:

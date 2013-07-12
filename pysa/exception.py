@@ -22,10 +22,10 @@ Exception handler
 
 import logging
 
-class scanner_exception(Exception): pass
+class ScannerException(Exception): pass
 
 # Decorator
-def general_exception(func):
+def GeneralException(func):
     def __action_with_decorator(self, *args, **kwargs):
         try:
             class_name = self.__class__.__name__
@@ -33,5 +33,5 @@ def general_exception(func):
             return func(self, *args, **kwargs)
         except Exception, e:
             logging.error("%s.%s() error: %s" % (class_name, func_name, str(e)))
-            raise scanner_exception, e
+            raise ScannerException, e
     return __action_with_decorator

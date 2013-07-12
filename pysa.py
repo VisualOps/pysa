@@ -62,13 +62,13 @@ class scanner():
         self.resources = None
         self.filters = filters
     
-    @general_exception
+    @GeneralException
     # get resource from different modules
     def scan(self):
         logging.info('Scanner.scan(): start scanning')
         self.resources = module_scan(self.filters if self.filters else None)
     
-    @general_exception
+    @GeneralException
     # generate puppet files
     def show_puppet(self, path, module):
         logging.info('Scanner.show_puppet(): Puppet files will be stored in path: %s' % path)

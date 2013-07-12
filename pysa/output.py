@@ -28,29 +28,29 @@ class output():
         self.main = ''
         self.c = {}
 
-    @general_exception
+    @GeneralException
     def add_dict(self, output, default = ''):
         self.c[output] = default
 
-    @general_exception
+    @GeneralException
     def add(self, output, content):
         if output:
             self.c[output] += content
         else:
             self.main += content
 
-    @general_exception
+    @GeneralException
     def dump(self, manifest_name = ''):
         return (self.c[manifest_name] if manifest_name else self.main)
 
-    @general_exception
+    @GeneralException
     def list(self):
         l = ([''] if self.main else [])
         for i in self.c:
             l.append(i)
         return l
 
-    @general_exception
+    @GeneralException
     def mod(self, content, output = ''):
         if output:
             self.c[output] = content

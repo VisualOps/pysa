@@ -38,7 +38,7 @@ class preprocessing():
         self.__deps = dependencies()
 
     # action
-    @general_exception
+    @GeneralException
     def run(self, data=None):
         if data:
             self.__data = data
@@ -48,7 +48,7 @@ class preprocessing():
         return self.__data
 
     # preprocessing on files section
-    @general_exception
+    @GeneralException
     def __prepross_files(self):
         tools.l(INFO, "preprocessing files", 'prepross_files', self)
         dds = self.__files_iter(self.__file_directory, FILE_IDENT)
@@ -58,7 +58,7 @@ class preprocessing():
         tools.l(INFO, "preprocessing files done", 'prepross_files', self)
 
     # create config files directory
-    @general_exception
+    @GeneralException
     def __file_directory(self, container, file_item, files, file, files_l):
         if container.get(file_item) == None:
             container[file_item] = {}
@@ -71,7 +71,7 @@ class preprocessing():
         return container
 
     # remove items
-    @general_exception
+    @GeneralException
     def __file_item_removal(self, container, file_item, files, file, files_l):
         r_files_l = files_l[:]
         r_files_l.reverse()
@@ -90,7 +90,7 @@ class preprocessing():
         return container
 
     # iterate over files
-    @general_exception
+    @GeneralException
     def __files_iter(self, action, files_l):
         container = {}
         for file_item in files_l:

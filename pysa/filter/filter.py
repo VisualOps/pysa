@@ -30,7 +30,7 @@ class filter():
         self.f = filters
 
     # preprocessing on packages section
-    @general_exception
+    @GeneralException
     def update_package(self, package, pkg_name, update):
         tools.l(INFO, "selection update packages", 'update_package', self)
         if (not self.f) or (not self.f.get('update')):
@@ -42,7 +42,7 @@ class filter():
         return package
 
     # item replacement
-    @general_exception
+    @GeneralException
     def item_replace(self, gclass, key, val, name, eq = None):
         if not self.f:
             return val        
@@ -79,7 +79,7 @@ class filter():
         return val
 
     # apply filter, replace: ["old", "new"]
-    @general_exception
+    @GeneralException
     def exception_filter(self, mode, exceptions, value, exprep = None):
         if (exceptions == None and mode == True):
             return True

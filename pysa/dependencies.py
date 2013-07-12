@@ -255,7 +255,7 @@ class dependencies:
         self.__data = data
 
 
-    @general_exception
+    @GeneralException
     def run(self, data = None):
         tools.l(INFO, "running dependency cycle generation", 'run', self)
         if data:
@@ -272,7 +272,7 @@ class dependencies:
                     else: self.__parse_dep(c, obj_name, obj, dep_name)
         tools.l(INFO, "dependency cycle generated", 'run', self)
 
-    @general_exception
+    @GeneralException
     def __parse_dep(self, c, obj_name, obj, dep_name):
         dep = self.__deps[c][dep_name]
         if not dep:
@@ -286,7 +286,7 @@ class dependencies:
                         SECTION_EQ[dep_name][len(VOID_EQ):].capitalize() : res
                         })
 
-    @general_exception
+    @GeneralException
     def __self_order(self, object, gclass, args):
         ref = object.get(args['field'])
         data = self.__data[gclass]
@@ -304,7 +304,7 @@ class dependencies:
                     self.__data['dirs'].pop(dir)
         return res
 
-    @general_exception
+    @GeneralException
     def __get_mount_from_path(self, object, gclass, args):
         path = object.get(args['field'])
         mounts = self.__data['mounts']
@@ -316,17 +316,17 @@ class dependencies:
                 res = key
         return res
 
-    @general_exception
+    @GeneralException
     def __get_pkg_from_scm(self, object, gclass, args):
         scm = object.get(args['field'])
         return (SCM_EQ.get(scm) if scm else None)
 
-    @general_exception
+    @GeneralException
     def __get_base_path(self, object, gclass, args):
         path = object.get(args['field'])
         return (tools.path_basename(path) if path else None)
 
-    @general_exception
+    @GeneralException
     def __based_on_field(self, object, gclass, args):
         if not args.get('field') or not args.get('key'):
             return []

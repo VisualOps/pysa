@@ -62,7 +62,7 @@ class config():
         self.__parse_config()
 
     # parse config file
-    @general_exception
+    @GeneralException
     def __parse_config(self):
         parser = SafeConfigParser()
         parser.read(self.__filename)

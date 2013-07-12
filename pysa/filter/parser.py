@@ -62,14 +62,14 @@ class fparser():
         self.__filename = tools.file_exists(filename)
 
     # action
-    @general_exception
+    @GeneralException
     def run(self):
         if not self.__filename:
             return global_filters
         return self.__parse_filters()
 
     # check required fields
-    @general_exception
+    @GeneralException
     def __parse_req(self, sec, basename):
         if basename in filters_req:
             for req in filters_req[basename]:
@@ -82,7 +82,7 @@ class fparser():
         return True
 
     # values parsing
-    @general_exception
+    @GeneralException
     def __parse_value(self, sec, key, value):
         if value == "true" or value == "True":
             sec[key] = True
@@ -95,7 +95,7 @@ class fparser():
         return sec
 
     # parse sections
-    @general_exception
+    @GeneralException
     def __parse_loop(self, parser, sec, name, refname=None):
         # define referer name
         if not refname:
@@ -134,7 +134,7 @@ class fparser():
         return sec
 
     # parse filters file
-    @general_exception
+    @GeneralException
     def __parse_filters(self):
         parser = SafeConfigParser()
         parser.read(self.__filename)

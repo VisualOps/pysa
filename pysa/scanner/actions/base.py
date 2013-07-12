@@ -61,7 +61,7 @@ class scanner_base():
         '''
         pass
 
-    @general_exception
+    @GeneralException
     def subprocess(self, command):
         logging.info('ScannerBase.subprocess(): Command, %s' % str(command))
         try:
@@ -78,12 +78,12 @@ class scanner_base():
             logging.debug("ScannerBase.subprocess(): commnand failed, command: %s" % str(command))
             return
 
-    @general_exception
+    @GeneralException
     def __generator(self, stdout):
         for line in stdout:
             yield line
 
-    @general_exception
+    @GeneralException
     def add_package(self, *args, **kargs):
         _package = package(*args, **kargs)
 
@@ -95,11 +95,11 @@ class scanner_base():
 
         self.packages[_package.primaryvalue] = _package.prase()
 
-    @general_exception
+    @GeneralException
     def get_packages(self):
         return self.packages
 
-    @general_exception
+    @GeneralException
     def add_file(self, *args, **kargs):
         _file = file(*args, **kargs)
 
@@ -109,11 +109,11 @@ class scanner_base():
 
         self.files[_file.primaryvalue] = _file.prase()
 
-    @general_exception
+    @GeneralException
     def get_files(self):
         return self.files
 
-    @general_exception
+    @GeneralException
     def add_user(self, *args, **kargs):
         _user = user(*args, **kargs)
 
@@ -123,11 +123,11 @@ class scanner_base():
 
         self.users[_user.primaryvalue] = _user.prase()
 
-    @general_exception
+    @GeneralException
     def get_users(self):
         return self.users
 
-    @general_exception
+    @GeneralException
     def add_service(self, *args, **kargs):
         _service = service(*args, **kargs)
 
@@ -137,11 +137,11 @@ class scanner_base():
 
         self.services[_service.primaryvalue] = _service.prase()
 
-    @general_exception
+    @GeneralException
     def get_services(self):
         return self.services
 
-    @general_exception
+    @GeneralException
     def add_repo(self, *args, **kargs):
         _repo = repository(*args, **kargs)  
 
@@ -151,11 +151,11 @@ class scanner_base():
 
         self.repos[_repo.primaryvalue] = _repo.prase()
 
-    @general_exception
+    @GeneralException
     def get_repos(self):
         return self.repos
 
-    @general_exception
+    @GeneralException
     def add_group(self, *args, **kargs):
         _group = group(*args, **kargs)
 
@@ -165,11 +165,11 @@ class scanner_base():
 
         self.groups[_group.primaryvalue] = _group.prase()
 
-    @general_exception
+    @GeneralException
     def get_groups(self):
         return self.groups
 
-    @general_exception
+    @GeneralException
     def add_cron(self, *args, **kargs):
         _cron = cron(*args, **kargs)
 
@@ -179,11 +179,11 @@ class scanner_base():
 
         self.crons[_cron.primaryvalue] = _cron.prase()
 
-    @general_exception
+    @GeneralException
     def get_crons(self):
         return self.crons
 
-    @general_exception
+    @GeneralException
     def add_host(self, *args, **kargs):
         _host = host(*args, **kargs)
 
@@ -193,11 +193,11 @@ class scanner_base():
 
         self.hosts[_host.primaryvalue] = _host.prase()
 
-    @general_exception
+    @GeneralException
     def get_hosts(self):
         return self.hosts
 
-    @general_exception
+    @GeneralException
     def add_mount(self, *args, **kargs):
         _mount = mount(*args, **kargs)
 
@@ -207,11 +207,11 @@ class scanner_base():
 
         self.mounts[_mount.primaryvalue] = _mount.prase()
 
-    @general_exception
+    @GeneralException
     def get_mounts(self):
         return self.mounts
 
-    @general_exception
+    @GeneralException
     def add_key(self, *args, **kargs):
         _key = sshkey(*args, **kargs)
 
@@ -221,19 +221,19 @@ class scanner_base():
             
         self.keys[_key.primaryvalue] = _key.prase()
 
-    @general_exception
+    @GeneralException
     def get_keys(self):
         return self.keys
 
-    @general_exception
+    @GeneralException
     def add_ip(self, mip):
         self.ips.append(mip)
 
-    @general_exception
+    @GeneralException
     def get_ips(self):
         return self.ips
 
-    @general_exception
+    @GeneralException
     def add_source(self, *args, **kargs):
         _source = source(*args, **kargs)
 
@@ -243,11 +243,11 @@ class scanner_base():
 
         self.sources[_source.primaryvalue] = _source.prase()
 
-    @general_exception
+    @GeneralException
     def get_sources(self):
         return self.sources
 
-    @general_exception
+    @GeneralException
     def add_proc(self, *args, **kargs):
         _process = process(*args, **kargs)
 
@@ -257,11 +257,11 @@ class scanner_base():
 
         self.proces[_process.primaryvalue] = _process.prase()
 
-    @general_exception
+    @GeneralException
     def get_proces(self):
         return self.proces
 
-    @general_exception
+    @GeneralException
     def init_filter(self, rules=None):
         """
         init the filter rules
