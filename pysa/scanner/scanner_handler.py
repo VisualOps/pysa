@@ -23,45 +23,45 @@ Created on 2013-3-28
 import logging
 import time
 
-from pysa.scanner.actions.file import scanner_file
-from pysa.scanner.actions.gem import scanner_gem
-from pysa.scanner.actions.npm import scanner_npm
-from pysa.scanner.actions.php import scanner_php
-from pysa.scanner.actions.pypi import scanner_pypi
-from pysa.scanner.actions.service import scanner_service
-from pysa.scanner.actions.host import scanner_host
-from pysa.scanner.actions.mount import scanner_mount
-from pysa.scanner.actions.cron import scanner_cron
-from pysa.scanner.actions.sshkey import scanner_key
-from pysa.scanner.actions.user import scanner_user
-from pysa.scanner.actions.group import scanner_group
-from pysa.scanner.actions.package import scanner_package
-from pysa.scanner.actions.source import scanner_source
-from pysa.scanner.actions.repository import scanner_repo
-from pysa.scanner.actions.process import scanner_process
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.file import ScannerFile
+from pysa.scanner.actions.gem import ScannerGem
+from pysa.scanner.actions.npm import ScannerNpm
+from pysa.scanner.actions.php import ScannerPhp
+from pysa.scanner.actions.pypi import ScannerPypi
+from pysa.scanner.actions.service import ScannerService
+from pysa.scanner.actions.host import ScannerHost
+from pysa.scanner.actions.mount import ScannerMount
+from pysa.scanner.actions.cron import ScannerCron
+from pysa.scanner.actions.sshkey import ScannerKey
+from pysa.scanner.actions.user import ScannerUser
+from pysa.scanner.actions.group import ScannerGroup
+from pysa.scanner.actions.package import ScannerPackage
+from pysa.scanner.actions.source import ScannerSource
+from pysa.scanner.actions.repository import ScannerRepo
+from pysa.scanner.actions.process import ScannerProcess
+from pysa.scanner.actions.base import ScannerBase
 #------------------------------------------------------------
 
-class scanner_handler():
+class ScannerHandler():
 
     # stay aware of the order
     handler = {
-                "file"      : scanner_file,
-                "gem"       : scanner_gem,
-                "npm"       : scanner_npm,
-                "php"       : scanner_php,
-                "pypi"      : scanner_pypi,
-                "service"   : scanner_service,
-                "host"      : scanner_host,
-                'user'      : scanner_user,
-                'group'     : scanner_group,
-                'mount'     : scanner_mount,
-                'cron'      : scanner_cron,
-                'key'       : scanner_key,
-                'package'   : scanner_package,
-                'source'    : scanner_source,
-                'repository': scanner_repo,
-                'process'   : scanner_process
+                "file"      : ScannerFile,
+                "gem"       : ScannerGem,
+                "npm"       : ScannerNpm,
+                "php"       : ScannerPhp,
+                "pypi"      : ScannerPypi,
+                "service"   : ScannerService,
+                "host"      : ScannerHost,
+                'user'      : ScannerUser,
+                'group'     : ScannerGroup,
+                'mount'     : ScannerMount,
+                'cron'      : ScannerCron,
+                'key'       : ScannerKey,
+                'package'   : ScannerPackage,
+                'source'    : ScannerSource,
+                'repository': ScannerRepo,
+                'process'   : ScannerProcess
                }
 
 
@@ -89,7 +89,7 @@ class scanner_handler():
     def scan(self):
 
         # init the base scanner
-        s = scanner_base(
+        s = ScannerBase(
                 self.resources['packages'],
                 self.resources['files'],
                 self.resources['crons'],
@@ -133,5 +133,5 @@ class scanner_handler():
         return self.resources
 
 def module_scan(filters = None):
-    scanner = scanner_handler(filters)
+    scanner = ScannerHandler(filters)
     return scanner.scan()

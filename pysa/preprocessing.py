@@ -24,18 +24,18 @@ from pysa.tools import *
 from pysa.exception import *
 from pysa.config import FILE_CLASS
 
-from pysa.dependencies import dependencies
+from pysa.dependencies import Dependencies
 
 FILE_IDENT = FILE_CLASS + [
     'sources',
     ]
 
 # preprocesser
-class preprocessing():
+class Preprocessing():
     def __init__(self, obj_maker, data=None):
         self.__obj_maker = obj_maker
         self.__data = data
-        self.__deps = dependencies()
+        self.__deps = Dependencies()
 
     # action
     @GeneralException
@@ -50,12 +50,12 @@ class preprocessing():
     # preprocessing on files section
     @GeneralException
     def __prepross_files(self):
-        tools.l(INFO, "preprocessing files", 'prepross_files', self)
+        Tools.l(INFO, "preprocessing files", 'prepross_files', self)
         dds = self.__files_iter(self.__file_directory, FILE_IDENT)
         for file_item in dds:
-            self.__data['dirs'] = tools.s_dict_merging(self.__data.get('dirs'), dds[file_item])
+            self.__data['dirs'] = Tools.s_dict_merging(self.__data.get('dirs'), dds[file_item])
         self.__files_iter(self.__file_item_removal, ['dirs']+FILE_CLASS)
-        tools.l(INFO, "preprocessing files done", 'prepross_files', self)
+        Tools.l(INFO, "preprocessing files done", 'prepross_files', self)
 
     # create config files directory
     @GeneralException
@@ -63,7 +63,7 @@ class preprocessing():
         if container.get(file_item) == None:
             container[file_item] = {}
         fp = files[file]['path']
-        drs = tools.get_recurse_path(os.path.dirname(fp))
+        drs = Tools.get_recurse_path(os.path.dirname(fp))
         for dr in drs:
             if (dr == '/') or (("-%s"%dr) in container[file_item]):
                 continue

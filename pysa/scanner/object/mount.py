@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class mount(object_base):
+class Mount(ObjectBase):
     
     def __init__(self, device, fstype, name, atboot=None, dump=None, remounts=None, options=None, size=None):
         self.device = device

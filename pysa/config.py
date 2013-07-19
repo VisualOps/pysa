@@ -37,7 +37,7 @@ MAIN_SECTION    = '_'
 SINGLE_SEC      = '__'
 
 # configuration class
-class config():
+class Config():
 
     # default values
     c = {

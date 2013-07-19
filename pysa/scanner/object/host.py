@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class host(object_base):
+class Host(ObjectBase):
     
     def __init__(self, ip, name, target, host_aliases=None):
         self.ip = ip

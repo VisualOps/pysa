@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class sshkey(object_base):
+class SSHKey(ObjectBase):
     
     def __init__(self, key, name, path, mode, _type=None, target=None, host_aliases=None, user=None):
         self.key = key

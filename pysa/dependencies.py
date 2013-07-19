@@ -42,7 +42,7 @@ SELF_ORDER = {
 
 PRIOR = ['sources']
 
-class dependencies:
+class Dependencies:
     def __init__(self, data=None):
         # define dependencies
         self.__deps = {
@@ -257,7 +257,7 @@ class dependencies:
 
     @GeneralException
     def run(self, data = None):
-        tools.l(INFO, "running dependency cycle generation", 'run', self)
+        Tools.l(INFO, "running dependency cycle generation", 'run', self)
         if data:
             self.__data = data
         for c in self.__data:
@@ -270,19 +270,19 @@ class dependencies:
                 for dep_name in self.__deps[c]:
                     if dep_name in PRIOR: continue
                     else: self.__parse_dep(c, obj_name, obj, dep_name)
-        tools.l(INFO, "dependency cycle generated", 'run', self)
+        Tools.l(INFO, "dependency cycle generated", 'run', self)
 
     @GeneralException
     def __parse_dep(self, c, obj_name, obj, dep_name):
         dep = self.__deps[c][dep_name]
         if not dep:
-            obj['require'] = tools.dict_merging(obj.get('require'), {
+            obj['require'] = Tools.dict_merging(obj.get('require'), {
                     'Class' : [dep_name]
                     })
         elif type(dep) is list:
             res = dep[0](obj, dep_name, dep[1])
             if res:
-                obj['require'] = tools.dict_merging(obj.get('require'), {
+                obj['require'] = Tools.dict_merging(obj.get('require'), {
                         SECTION_EQ[dep_name][len(VOID_EQ):].capitalize() : res
                         })
 
@@ -299,7 +299,7 @@ class dependencies:
         if gclass == 'sources' and self.__data.get('dirs') and res:
             dirs = dict(self.__data['dirs'].items())
             for dir in dirs:
-                comp = tools.path_basename(ref)
+                comp = Tools.path_basename(ref)
                 if dirs[dir]['path'] == comp:
                     self.__data['dirs'].pop(dir)
         return res
@@ -324,7 +324,7 @@ class dependencies:
     @GeneralException
     def __get_base_path(self, object, gclass, args):
         path = object.get(args['field'])
-        return (tools.path_basename(path) if path else None)
+        return (Tools.path_basename(path) if path else None)
 
     @GeneralException
     def __based_on_field(self, object, gclass, args):

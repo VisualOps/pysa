@@ -26,10 +26,10 @@ import subprocess
 from collections import defaultdict
 
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_source(scanner_base):
+class ScannerSource(ScannerBase):
 
     def scan(self):
         """

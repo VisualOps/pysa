@@ -23,7 +23,7 @@ Created on 2013-3-27
 import re
 
 
-class object_base(object):
+class ObjectBase(object):
 
     def prase(self):
         format_object = {}
@@ -35,18 +35,18 @@ class object_base(object):
     @property
     def primarykey(self):
         pk = {
-            'package'   :   'name',
-            'file'      :   'path',
-            'user'      :   'name',
-            'service'   :   'name',
-            'repository':   'path',
-            'group'     :   'name',
-            'cron'      :   'name',
-            'host'      :   'name',
-            'mount'     :   'device',
-            'sshkey'    :   'name',
-            'source'    :   'path',
-            'process'   :   'pid'
+            'Package'   :   'name',
+            'File'      :   'path',
+            'User'      :   'name',
+            'Service'   :   'name',
+            'Repository':   'path',
+            'Group'     :   'name',
+            'Cron'      :   'name',
+            'Host'      :   'name',
+            'Mount'     :   'device',
+            'SSHKey'    :   'name',
+            'Source'    :   'path',
+            'Process'   :   'pid'
         }
 
         return pk.get(self.__class__.__name__)

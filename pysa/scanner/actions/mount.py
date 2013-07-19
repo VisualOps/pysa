@@ -23,10 +23,10 @@ Scans mount points
 import logging
 import os
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_mount(scanner_base):
+class ScannerMount(ScannerBase):
     
     def scan(self):
         self.__disk_usage()

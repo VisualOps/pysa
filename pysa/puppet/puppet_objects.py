@@ -24,7 +24,7 @@ from pysa.exception import *
 
 from pysa.scanner.actions.utils import get_stat
 
-class puppet_objects():
+class PuppetObjects():
     @staticmethod
     def puppet_file_dir_obj(dr):
         # get group, mode and owner
@@ -40,5 +40,5 @@ class puppet_objects():
             }
 
 PUPPET_OBJ_MAKER = {
-    'file' : puppet_objects.puppet_file_dir_obj
+    'file' : PuppetObjects.puppet_file_dir_obj
     }

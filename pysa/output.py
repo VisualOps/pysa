@@ -23,7 +23,7 @@ Output container
 from pysa.exception import *
 
 # output container
-class output():
+class Output():
     def __init__(self):
         self.main = ''
         self.c = {}
@@ -35,12 +35,13 @@ class output():
     @GeneralException
     def add(self, output, content):
         if output:
+            self.c[output] = self.c.setdefault(output, '')
             self.c[output] += content
         else:
             self.main += content
 
     @GeneralException
-    def dump(self, manifest_name = ''):
+    def dump(self, manifest_name=None):
         return (self.c[manifest_name] if manifest_name else self.main)
 
     @GeneralException
@@ -51,7 +52,7 @@ class output():
         return l
 
     @GeneralException
-    def mod(self, content, output = ''):
+    def mod(self, content, output=None):
         if output:
             self.c[output] = content
         else:

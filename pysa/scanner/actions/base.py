@@ -25,21 +25,21 @@ import logging
 import re
 
 from pysa.exception import *
-from pysa.scanner.object.package import package
-from pysa.scanner.object.file import file
-from pysa.scanner.object.user import user
-from pysa.scanner.object.service import service
-from pysa.scanner.object.repository import repository
-from pysa.scanner.object.group import group
-from pysa.scanner.object.cron import cron
-from pysa.scanner.object.host import host
-from pysa.scanner.object.mount import mount
-from pysa.scanner.object.sshkey import sshkey
-from pysa.scanner.object.source import source
-from pysa.scanner.object.process import process
+from pysa.scanner.object.package import Package
+from pysa.scanner.object.file import File
+from pysa.scanner.object.user import User
+from pysa.scanner.object.service import Service
+from pysa.scanner.object.repository import Repository
+from pysa.scanner.object.group import Group
+from pysa.scanner.object.cron import Cron
+from pysa.scanner.object.host import Host
+from pysa.scanner.object.mount import Mount
+from pysa.scanner.object.sshkey import SSHKey
+from pysa.scanner.object.source import Source
+from pysa.scanner.object.process import Process
 
 
-class scanner_base():
+class ScannerBase():
     def __init__(self, packages, files, crons, groups, mounts, hosts, repos, services, sshkeys, users, ips, sources, proces):
         self.packages = packages
         self.files = files
@@ -85,7 +85,7 @@ class scanner_base():
 
     @GeneralException
     def add_package(self, *args, **kargs):
-        _package = package(*args, **kargs)
+        _package = Package(*args, **kargs)
 
         if self.rules:
             # attribute filter
@@ -101,7 +101,7 @@ class scanner_base():
 
     @GeneralException
     def add_file(self, *args, **kargs):
-        _file = file(*args, **kargs)
+        _file = File(*args, **kargs)
 
         if self.rules:
             if _file.attr_filter(self.rules['discard']): return
@@ -115,7 +115,7 @@ class scanner_base():
 
     @GeneralException
     def add_user(self, *args, **kargs):
-        _user = user(*args, **kargs)
+        _user = User(*args, **kargs)
 
         if self.rules:
             if _user.attr_filter(self.rules['discard']): return
@@ -129,7 +129,7 @@ class scanner_base():
 
     @GeneralException
     def add_service(self, *args, **kargs):
-        _service = service(*args, **kargs)
+        _service = Service(*args, **kargs)
 
         if self.rules:
             if _service.attr_filter(self.rules['discard']): return
@@ -143,7 +143,7 @@ class scanner_base():
 
     @GeneralException
     def add_repo(self, *args, **kargs):
-        _repo = repository(*args, **kargs)  
+        _repo = Repository(*args, **kargs)  
 
         if self.rules:     
             if _repo.attr_filter(self.rules['discard']): return
@@ -157,7 +157,7 @@ class scanner_base():
 
     @GeneralException
     def add_group(self, *args, **kargs):
-        _group = group(*args, **kargs)
+        _group = Group(*args, **kargs)
 
         if self.rules:
             if _group.attr_filter(self.rules['discard']): return
@@ -171,7 +171,7 @@ class scanner_base():
 
     @GeneralException
     def add_cron(self, *args, **kargs):
-        _cron = cron(*args, **kargs)
+        _cron = Cron(*args, **kargs)
 
         if self.rules:
             if _cron.attr_filter(self.rules['discard']): return
@@ -185,7 +185,7 @@ class scanner_base():
 
     @GeneralException
     def add_host(self, *args, **kargs):
-        _host = host(*args, **kargs)
+        _host = Host(*args, **kargs)
 
         if self.rules:
             if _host.attr_filter(self.rules['discard']): return
@@ -199,7 +199,7 @@ class scanner_base():
 
     @GeneralException
     def add_mount(self, *args, **kargs):
-        _mount = mount(*args, **kargs)
+        _mount = Mount(*args, **kargs)
 
         if self.rules:
             if _mount.attr_filter(self.rules['discard']): return
@@ -213,7 +213,7 @@ class scanner_base():
 
     @GeneralException
     def add_key(self, *args, **kargs):
-        _key = sshkey(*args, **kargs)
+        _key = SSHKey(*args, **kargs)
 
         if self.rules:
             if _key.attr_filter(self.rules['discard']): return
@@ -235,7 +235,7 @@ class scanner_base():
 
     @GeneralException
     def add_source(self, *args, **kargs):
-        _source = source(*args, **kargs)
+        _source = Source(*args, **kargs)
 
         if self.rules:
             if _source.attr_filter(self.rules['discard']): return
@@ -249,7 +249,7 @@ class scanner_base():
 
     @GeneralException
     def add_proc(self, *args, **kargs):
-        _process = process(*args, **kargs)
+        _process = Process(*args, **kargs)
 
         if self.rules:
             if _process.attr_filter(self.rules['discard']): return

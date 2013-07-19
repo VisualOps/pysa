@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class source(object_base):
+class Source(ObjectBase):
 
     def __init__(self, source, name, path, owner, group, mode, scm, branch, checksum=None, password=None, key=None):
         self.source = source

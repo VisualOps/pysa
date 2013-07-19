@@ -25,10 +25,10 @@ import logging
 import os
 
 from pysa.config import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_host(scanner_base):
+class ScannerHost(ScannerBase):
 
     def scan(self):
         """
@@ -46,7 +46,7 @@ class scanner_host(scanner_base):
                 target=dict['target'], host_aliases=dict['host_aliases'])
 
     def parse_hostfile(self):
-        hostfile = config.scan_host
+        hostfile = Config.scan_host
 
         try:
             hosts = []

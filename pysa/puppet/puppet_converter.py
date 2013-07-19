@@ -26,7 +26,7 @@ from pysa.tools import *
 from pysa.config import *
 from pysa.exception import *
 
-from pysa.filter.filter import filter
+from pysa.filter.filter import Filter
 
 
 # define _order section
@@ -148,21 +148,21 @@ APPSEC_EQ = {
     'crons'     : ['environment', 'PATH=']
 }
 
-class puppet_converter():
+class PuppetConverter():
     def __init__(self, minput, filters = None):
         self.__output = {}
-        self.__input = minput
-        self.__filter = filter(filters)
+        self.__input = dict(minput.items())
+        self.__filter = Filter(filters)
         self.__prev_obj = None
 
     # main method
     @GeneralException
     def run(self):
-        tools.l(INFO, "running", 'run', self)
+        Tools.l(INFO, "running", 'run', self)
 
         #empty imput
         if not self.__input:
-            tools.l(ERR, "empty input", 'run', self)
+            Tools.l(ERR, "empty input", 'run', self)
             return {}
 
         # convert
@@ -172,16 +172,16 @@ class puppet_converter():
         if GLOBAL_EXEC_EQ:
             self.__add_global_exec()
 
-        tools.l(INFO, "complete", 'run', self)
+        Tools.l(INFO, "complete", 'run', self)
         return self.__output
 
     # generate global exec
     @GeneralException
     def __add_global_exec(self):
-        tools.l(INFO, "adding Exec section", 'add_global_exec', self)
+        Tools.l(INFO, "adding Exec section", 'add_global_exec', self)
         self.__output[GLOBAL_SEC_EQ['Exec']] = {MAIN_SECTION : {}}
         for key in GLOBAL_EXEC_EQ:
-            tools.l(INFO, "adding key %s" % (key), 'add_global_exec', self)
+            Tools.l(INFO, "adding key %s" % (key), 'add_global_exec', self)
             self.__output[GLOBAL_SEC_EQ['Exec']][MAIN_SECTION][key] = self.__process_values('', 'Exec', key, GLOBAL_EXEC_EQ[key])
 
     # generate sub execs
@@ -195,12 +195,12 @@ class puppet_converter():
                 for r in order[0]:
                     req.append(r)
                 if req:
-                    c = tools.dict_merging(c, {
+                    c = Tools.dict_merging(c, {
                             GLOBAL_SEC_EQ['require'] : req
                             })
         if key in EXEC_EQ:
-            tools.l(INFO, "adding exec section for %s" % (key), 'add_exec', self)
-            c = tools.dict_merging(c, {
+            Tools.l(INFO, "adding exec section for %s" % (key), 'add_exec', self)
+            c = Tools.dict_merging(c, {
                     GLOBAL_SEC_EQ['exec'] : {
                         EXEC_EQ[key] : GLOBAL_EXEC_EQ
                         }
@@ -223,20 +223,20 @@ class puppet_converter():
     # processing on data
     @GeneralException
     def __process_data(self, input, gclass, name, cur_class):
-        tools.l(INFO, "processing data", 'process_data', self)
+        Tools.l(INFO, "processing data", 'process_data', self)
         # modifications
-        kcontent = tools.list_merging(AVOIDSEC_EQ.get(MAIN_SECTION), AVOIDSEC_EQ.get(gclass))
+        kcontent = Tools.list_merging(AVOIDSEC_EQ.get(MAIN_SECTION), AVOIDSEC_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 input[key] = None
-        kcontent = tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(gclass))
         for key in kcontent:
             input[key] = kcontent[key]
-        kcontent = tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 input[kcontent[key]] = input.pop(key)
-        kcontent = tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(gclass))
         for key in kcontent:
             if key in input:
                 if input[key] == kcontent[key][0]:
@@ -244,7 +244,7 @@ class puppet_converter():
 
         # exec dependency
         if cur_class in EXEC_EQ:
-            input['require'] = tools.dict_merging(input.get('require'), {
+            input['require'] = Tools.dict_merging(input.get('require'), {
                     GLOBAL_SEC_EQ['exec'][len(ACTION_ID):].capitalize() : [
                         EXEC_EQ[cur_class]
                         ]
@@ -264,7 +264,7 @@ class puppet_converter():
     # processing on section
     @GeneralException
     def __process_sec(self, data, gclass, name, cur_class):
-        tools.l(INFO, "creating section %s" % (SECTION_EQ[gclass]), 'process_sec', self)
+        Tools.l(INFO, "creating section %s" % (SECTION_EQ[gclass]), 'process_sec', self)
         if (SECTION_EQ[gclass] == ACTION_ID+'package'):
             data[gclass][name] = self.__filter.update_package(data[gclass][name], name, 'latest')
         return self.__process_data(data[gclass][name], gclass, name, cur_class)
@@ -274,15 +274,15 @@ class puppet_converter():
     def __generate_classes(self, data):
         for gclass in data:
             if gclass not in SECTION_EQ:
-                tools.l(INFO, "Ignored unknown class %s" % (gclass), 'generate_classes', self)
+                Tools.l(INFO, "Ignored unknown class %s" % (gclass), 'generate_classes', self)
                 continue
-            tools.l(INFO, "creating class %s" % (gclass), 'generate_classes', self)
+            Tools.l(INFO, "creating class %s" % (gclass), 'generate_classes', self)
             self.__prev_obj = None
             self.__output[gclass] = self.__add_top_class(gclass)
             for name in sorted(data[gclass]):
                 if gclass in SUBCLASS_EQ:
                     subkey = data[gclass][name][SUBCLASS_EQ[gclass][MAIN_SECTION]]
-                    tools.l(INFO, "creating sub class %s" % (subkey), 'generate_classes', self)
+                    Tools.l(INFO, "creating sub class %s" % (subkey), 'generate_classes', self)
                     self.__output[gclass].setdefault(subkey, self.__add_top_class(subkey))
                     self.__output[gclass][subkey].setdefault(SECTION_EQ[gclass], {})
                     self.__output[gclass][subkey][SECTION_EQ[gclass]][name] = self.__process_sec(data, gclass, name, subkey)

@@ -25,14 +25,14 @@ from pysa.exception import *
 
 
 # filter actions
-class filter():
+class Filter():
     def __init__(self, filters):
         self.f = filters
 
     # preprocessing on packages section
     @GeneralException
     def update_package(self, package, pkg_name, update):
-        tools.l(INFO, "selection update packages", 'update_package', self)
+        Tools.l(INFO, "selection update packages", 'update_package', self)
         if (not self.f) or (not self.f.get('update')):
             return package
         mode = (self.f['update']['_update'] if self.f['update'].get('_update') else False)
@@ -50,14 +50,14 @@ class filter():
         global2 = (global1.get(gclass) if global1 else None)
         section = (global2.get(key) if global2 else None)
 
-        replacelist = tools.dict_merging(tools.dict_merging(global1, global2), section)
+        replacelist = Tools.dict_merging(Tools.dict_merging(global1, global2), section)
         if not replacelist:
             return val
  
         mode = (replacelist.pop('_replaceall') if replacelist.get('_replaceall') != None else True)
         excp = (replacelist.pop('_except') if replacelist.get('_except') != None else None)
 
-        replacelist = tools.dict_cleaner(replacelist)
+        replacelist = Tools.dict_cleaner(replacelist)
         if not replacelist:
             return val
         
@@ -71,7 +71,7 @@ class filter():
                                      "%s" % (i),
                                      "%s" % (val))
                 if c != val:
-                    tools.l(INFO,
+                    Tools.l(INFO,
                             "values updated for item %s in section %s"
                             % (name, key),
                             'item_replace',

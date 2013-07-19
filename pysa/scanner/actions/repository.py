@@ -24,10 +24,10 @@ import os
 import logging
 
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_repo(scanner_base):
+class ScannerRepo(ScannerBase):
 
     def scan(self):
         """

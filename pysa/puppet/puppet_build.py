@@ -25,7 +25,7 @@ import re
 from pysa.exception import *
 from pysa.config import *
 from pysa.tools import *
-from pysa.output import output
+from pysa.output import Output
 
 from pysa.puppet.puppet_converter import GLOBAL_SEC_EQ
 
@@ -35,23 +35,23 @@ QUOTED_FORCED_KEYS = ['checksum', 'name', 'group', 'owner']
 QUOTED_FORCED_CONTENT = ['\W', '\d']
 
 # puppet generation class
-class puppet_build():
+class PuppetBuild():
     def __init__(self, input_dict, output_path, module_name):
         self.__quoted_regex = "%s" % ('|'.join(QUOTED_FORCED_CONTENT))
         self.__module_name = module_name
         self.__input_dict = input_dict
-        self.__output_container = output()
+        self.__output_container = Output()
         self.__output_path = output_path+'/'+self.__module_name
         self.__curent_manifest = ''
 
     # main function
     @GeneralException
     def run(self):
-        tools.l(INFO, "running generation engine", 'run', self)
+        Tools.l(INFO, "running generation engine", 'run', self)
         self.__generate(self.__input_dict)
         self.__create_init_file()
         self.dump_in_files()
-        tools.l(INFO, "generation complete", 'run', self)
+        Tools.l(INFO, "generation complete", 'run', self)
         return True
 
     # print the puppet files
@@ -76,7 +76,7 @@ class puppet_build():
     def dump_in_files(self):
         for manifest_name in self.__output_container.list():
             manifest_fname = (manifest_name if manifest_name else 'init')
-            tools.write_in_file(self.__output_path+'/manifests/'+manifest_fname+'.pp',
+            Tools.write_in_file(self.__output_path+'/manifests/'+manifest_fname+'.pp',
                                 self.__output_container.dump(manifest_name))
 
     # init file generation
@@ -136,7 +136,7 @@ class puppet_build():
         else:
             if (section_name == "_file") and (label[0] != '-') and optlabel == 'content':
                 filename = ('/' if label[0] != '/' else '')+label
-                tools.write_in_file(self.__output_path+'/templates'+filename, content)
+                Tools.write_in_file(self.__output_path+'/templates'+filename, content)
                 content = "template('%s')" % (self.__module_name+filename)
             return self.__add_quotes(optlabel, content)
         return None
@@ -144,7 +144,7 @@ class puppet_build():
     # global content generation for pupept config file
     @GeneralException
     def __create_content(self, parent, data, section_name, tab):
-        tools.l(INFO, "creating section %s" % (section_name.lstrip(VOID_EQ)), 'create_content', self)
+        Tools.l(INFO, "creating section %s" % (section_name.lstrip(VOID_EQ)), 'create_content', self)
         if section_name[:len(SINGLE_SEC)] == SINGLE_SEC:
              return self.__single_instruction(parent, data, section_name, tab)
         self.__output_container.add(self.__curent_manifest, "%s%s {\n" % (tab,section_name.lstrip(ACTION_ID)))
@@ -152,9 +152,9 @@ class puppet_build():
             if label in NULL:
                 continue
             if label[0] != ACTION_ID:
-                tab = tools.tab_inc(tab)
+                tab = Tools.tab_inc(tab)
                 self.__output_container.add(self.__curent_manifest, "%s'%s':\n" % (tab,label))
-            tab = tools.tab_inc(tab)
+            tab = Tools.tab_inc(tab)
             wrote = False
             for optlabel in sorted(data[section_name][label]):
                 if (data[section_name][label][optlabel] not in NULL) and (optlabel[0] != ACTION_ID):
@@ -170,21 +170,21 @@ class puppet_build():
                 self.__output_container.add(self.__curent_manifest, ";\n")
             elif wrote and label == MAIN_SECTION:
                 self.__output_container.add(self.__curent_manifest, "\n")
-            tab = tools.tab_dec(tab)
+            tab = Tools.tab_dec(tab)
             if label[0] != ACTION_ID:
-                tab = tools.tab_dec(tab)
+                tab = Tools.tab_dec(tab)
         self.__output_container.add(self.__curent_manifest, "%s}\n" % (tab))
         return tab
 
     # class generation method, applies the recursion
     @GeneralException
     def __create_class(self, parent, data, section_name, tab):
-        tools.l(INFO, "generation class %s" % (section_name), 'create_class', self)
+        Tools.l(INFO, "generation class %s" % (section_name), 'create_class', self)
         self.__output_container.add(self.__curent_manifest, "%sclass %s {\n" % (tab,section_name))
-        tab = tools.tab_inc(tab)
+        tab = Tools.tab_inc(tab)
         # recursion here
         tab = self.__generate(data[section_name], data, tab)
-        tab = tools.tab_dec(tab)
+        tab = Tools.tab_dec(tab)
         self.__output_container.add(self.__curent_manifest, "%s}\n%sinclude %s\n" % (tab,tab,section_name))
         return tab
 

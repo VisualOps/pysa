@@ -57,9 +57,9 @@ global_filters = {
 
 
 # filters parser
-class fparser():
+class FParser():
     def __init__(self, filename):
-        self.__filename = tools.file_exists(filename)
+        self.__filename = Tools.file_exists(filename)
 
     # action
     @GeneralException
@@ -141,4 +141,4 @@ class fparser():
         sec = {}
         for name in parser.sections():
             sec = self.__parse_loop(parser, sec, name)
-        return tools.dict_merging(global_filters, sec)
+        return Tools.dict_merging(global_filters, sec)

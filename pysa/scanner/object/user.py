@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class user(object_base):
+class User(ObjectBase):
     
     def __init__(self, name, uid, gid, group, groups=None, password=None, expiry=None, shell=None, home=None):
         self.name = name

@@ -23,10 +23,10 @@ Scan cron files
 import logging
 import os
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_cron(scanner_base):
+class ScannerCron(ScannerBase):
     
     def scan(self):
 

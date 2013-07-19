@@ -1,5 +1,5 @@
 '''
-Created on 2013-04-19
+Salt Objects
 
     pysa - reverse a complete computer setup
     Copyright (C) 2013  MadeiraCloud Ltd.
@@ -17,19 +17,28 @@ Created on 2013-04-19
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@author: Michael
+@author: Thibault BRONCHAIN
 '''
 
-from pysa.scanner.object.object_base import ObjectBase
+from pysa.exception import *
 
+from pysa.scanner.actions.utils import get_stat
 
-class Process(ObjectBase):
+class SaltObjects():
+    @staticmethod
+    def salt_file_dir_obj(dr):
+        # get group, mode and owner
+        s = get_stat(dr)
+        #s = ('root', oct(0777), 'root')
+        return {
+            'path'      : dr,
+            'ensure'    : 'directory',
+            'name'      : dr,
+            'group'     : s[0],
+            'mode'      : s[1],
+            'owner'     : s[2],
+            }
 
-    def __init__(self, pid, owner, status, cpu, mem, cmd, ppid=None):
-        self.pid    =   pid     # process id
-        self.owner  =   owner
-        self.status =   status  # D:uninterruptible sleep, R:runnable, S:sleeping, T:raced or stopped, Z:defunct process
-        self.cpu    =   cpu     # cpu%
-        self.mem    =   mem     # mem%
-        self.cmd    =   cmd
-        self.ppid   =   ppid    # parent pid
+SALT_OBJ_MAKER = {
+    'file' : SaltObjects.salt_file_dir_obj
+    }

@@ -23,10 +23,10 @@ Created on 2013-04-19
 import logging
 import subprocess
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_process(scanner_base):
+class ScannerProcess(ScannerBase):
 
     def scan(self):
         """

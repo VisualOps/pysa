@@ -26,10 +26,10 @@ import logging
 
 from pysa.config import *
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_file(scanner_base):
+class ScannerFile(ScannerBase):
 
     suf_list = ['.conf', '.cfg', '.ini']
     
@@ -41,7 +41,7 @@ class scanner_file(scanner_base):
         logging.info('searching for config files')
 
         # scan the system directories
-        self.scandir(config.files_path)
+        self.scandir(Config.files_path)
         
     # scan directory and add config files
     def scandir(self, pathdir): 

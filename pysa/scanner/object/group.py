@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class group(object_base):
+class Group(ObjectBase):
     def __init__(self, name, gid, member=None):
         self.name = name
         self.gid = gid

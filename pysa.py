@@ -25,21 +25,26 @@ from optparse import *
 import logging
 import re
 
-from pysa.tools import tools
-from pysa.preprocessing import preprocessing
+from pysa.tools import Tools
+from pysa.preprocessing import Preprocessing
 from pysa.config import *
 from pysa.exception import *
 from pysa.madeira import *
 
-from pysa.filter.parser import fparser
+from pysa.filter.parser import FParser
 from pysa.scanner.scanner_handler import module_scan
-from pysa.puppet.puppet_converter import puppet_converter
-from pysa.puppet.puppet_build import puppet_build
+
+from pysa.puppet.puppet_converter import PuppetConverter
+from pysa.puppet.puppet_build import PuppetBuild
 from pysa.puppet.puppet_objects import *
+
+from pysa.salt.salt_converter import SaltConverter
+from pysa.salt.salt_build import SaltBuild
+from pysa.salt.salt_objects import *
 
 
 # global defines
-USAGE = 'usage: %prog [-hpq] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
+USAGE = 'usage: %prog [-hqps] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
 VERSION_NBR = '0.2.3a'
 VERSION = '%prog '+VERSION_NBR
 
@@ -57,7 +62,7 @@ def __log(lvl):
 
 
 # scanner class
-class scanner():
+class Scanner():
     def __init__(self, filters=None):
         self.resources = None
         self.filters = filters
@@ -67,16 +72,40 @@ class scanner():
     def scan(self):
         logging.info('Scanner.scan(): start scanning')
         self.resources = module_scan(self.filters if self.filters else None)
-    
+
+    @GeneralException
+    # generate puppet files
+    def preprocessing(self):
+        if not self.resources:
+            logging.error('Scanner.preprocessing(): No resources')
+            return
+        logging.info('Scanner.preprocessing(): Running' % path)
+        self.preproc = Preprocessing(PUPPET_OBJ_MAKER, self.resources)
+        self.preprocessed = self.preproc.run()
+
     @GeneralException
     # generate puppet files
     def show_puppet(self, path, module):
+        if not self.preprocessed:
+            logging.error('Scanner.show_puppet(): No data')
+            return
         logging.info('Scanner.show_puppet(): Puppet files will be stored in path: %s' % path)
-        self.preproc = preprocessing(PUPPET_OBJ_MAKER, self.resources)
-        puppetdict = puppet_converter(self.preproc.run(), self.filters)
+        puppetdict = PuppetConverter(self.preprocessed, self.filters)
         p = puppetdict.run()
-        puppet = puppet_build(p, path, module)
+        puppet = PuppetBuild(p, path, module)
         puppet.run()
+
+    @GeneralException
+    # generate salt files
+    def show_salt(self, path, module):
+        if not self.preprocessed:
+            logging.error('Scanner.show_salt(): No data')
+            return
+        logging.info('Scanner.show_salt(): Salt files will be stored in path: %s' % path)
+        saltdict = SaltConverter(self.preprocessed, self.filters)
+        s = saltdict.run()
+        salt = SaltBuild(s, path, module)
+        salt.run()
 
 # print header
 def print_header():
@@ -106,7 +135,10 @@ def main_parse():
                       help="specify config file"
                       )
     parser.add_option("-p", "--puppet", action="store_true", dest="puppet", default=False,
-                      help="scan packages and generate the puppet files"
+                      help="scan packages and generate the puppet manifests"
+                      )
+    parser.add_option("-s", "--salt", action="store_true", dest="salt", default=False,
+                      help="[EXPERIMENTAL] scan packages and generate the salt manifests (not functionnal yet)"
                       )
     parser.add_option("-q", "--quiet", action="store_true", dest="quiet", default=False,
                       help="operate quietly"
@@ -147,19 +179,22 @@ def main():
     config(options.config if options.config else None)
 
     # filters parsing
-    filter_parser = fparser(options.filter if options.filter else None)
+    filter_parser = FParser(options.filter if options.filter else None)
     filters = filter_parser.run()
 
     # scan for files
-    s = scanner(filters)
+    s = Scanner(filters)
     s.scan()
     # generate puppet output
+    if options.puppet:
+        s.show_puppet(output, module)
+    # generate salt output
     if options.puppet:
         s.show_puppet(output, module)
 
     # save to madeira accound
     if options.l:
-        m = madeira(user, uid, output, module)
+        m = Madeira(user, uid, output, module)
         m.send()
 
     

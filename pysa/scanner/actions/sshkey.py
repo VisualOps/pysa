@@ -24,12 +24,12 @@ import logging
 import os
 import re
 
-from pysa.config import config
-from pysa.scanner.actions.base import scanner_base
+from pysa.config import Config
+from pysa.scanner.actions.base import ScannerBase
 from pysa.scanner.actions.utils import *
 
 
-class scanner_key(scanner_base):
+class ScannerKey(ScannerBase):
     
     support_key_type = [
                         'ssh-rsa',
@@ -46,7 +46,7 @@ class scanner_key(scanner_base):
     
     re_pattern = "-----.+-----"
 
-    path_dir = config.key_path
+    path_dir = Config.key_path
 
     def scan(self):
         pathdirs = re.split(":", self.path_dir)

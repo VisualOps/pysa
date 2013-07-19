@@ -25,10 +25,10 @@ import logging
 import os
 
 from pysa.config import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_service(scanner_base):
+class ScannerService(ScannerBase):
     # Patterns for determining which Upstart services should be included, based
     # on the events used to start them.
     UPSTART_PATTERN1 = re.compile(r'start\s+on\s+runlevel\s+\[[2345]', re.S)

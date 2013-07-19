@@ -20,10 +20,10 @@ Created on 2013-04-18
 @author: Michael
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class repository(object_base):
+class Repository(ObjectBase):
 
     def __init__(self, checksum, content, group, mode, owner, path, force=False, provider=None, recurse=None, recurselimit=None, source=None):
         self.checksum   =   checksum

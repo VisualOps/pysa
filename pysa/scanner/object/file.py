@@ -20,10 +20,10 @@ Created on 2013-3-27
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class file(object_base):
+class File(ObjectBase):
     
     def __init__(self, checksum, content, group, mode, owner, path, force=False, provider=None, recurse=None, recurselimit=None, source=None):
         self.checksum   =   checksum

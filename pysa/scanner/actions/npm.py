@@ -23,10 +23,10 @@ Created on 2013-3-29
 import re
 import logging
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_npm(scanner_base):
+class ScannerNpm(ScannerBase):
     def scan(self):
         """
         scan apt

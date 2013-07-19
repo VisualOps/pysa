@@ -26,13 +26,13 @@ import logging
 import subprocess
 
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
 # define the scan modes
 scan_modes = ['yum', 'rpm', 'sub_rpm', 'apt', 'sub_dpkg']
 
-class scanner_package(scanner_base):
+class ScannerPackage(ScannerBase):
     def scan(self):
         """
         scan package

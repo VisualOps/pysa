@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class cron(object_base):
+class Cron(ObjectBase):
     
     def __init__(self, name, command, minute, month, monthday, weekday, hour, target=None, user=None, environment=None):
         self.command = command

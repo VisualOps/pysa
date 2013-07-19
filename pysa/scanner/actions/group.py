@@ -23,10 +23,10 @@ Created on 2013-4-4
 import logging
 import grp
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_group(scanner_base):
+class ScannerGroup(ScannerBase):
     
     def scan(self):
         for g in grp.getgrall():

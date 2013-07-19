@@ -24,10 +24,10 @@ import logging
 import pwd
 import grp
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_user(scanner_base):
+class ScannerUser(ScannerBase):
     def scan(self):
         for p in pwd.getpwall():
             name, password, uid, gid, gecos, home, shell = p

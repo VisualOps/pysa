@@ -20,10 +20,10 @@ Created on 2013-3-28
 @author: Ken
 '''
 
-from pysa.scanner.object.object_base import object_base
+from pysa.scanner.object.object_base import ObjectBase
 
 
-class service(object_base):   
+class Service(ObjectBase):
     
     def __init__(self, enable, hasrestart, name, path, \
                  provider=None, binary=None, control=None, ensure=None, \

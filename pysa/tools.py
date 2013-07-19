@@ -40,7 +40,7 @@ LOGGING_EQ = {
 
 
 # common tools collection
-class tools():
+class Tools():
     # logging
     @staticmethod
     def l(action, content, f, c = None):
@@ -61,7 +61,7 @@ class tools():
     # write data in a specific file
     @staticmethod
     def write_in_file(fname, content):
-        tools.l(INFO, "creating file %s" % (fname), 'write_in_file')
+        Tools.l(INFO, "creating file %s" % (fname), 'write_in_file')
         dirname = os.path.dirname(fname)
         if not os.path.exists(dirname):
             os.makedirs(dirname)
@@ -103,7 +103,7 @@ class tools():
             f = open(filename, 'r')
             file = f.read()
         except IOError:
-            tools.l(ERR, "%s: no such file or directory" % (filename), 'dump_file')
+            Tools.l(ERR, "%s: no such file or directory" % (filename), 'dump_file')
             return None
         return file
 
@@ -114,7 +114,7 @@ class tools():
         try:
             with open(filename): pass
         except IOError:
-            tools.l(ERR, "%s: no such file or directory" % (filename), 'file_exists')
+            Tools.l(ERR, "%s: no such file or directory" % (filename), 'file_exists')
             return None
         return filename
 
@@ -137,7 +137,7 @@ class tools():
     # ensure dictionary existency
     @staticmethod
     def s_dict_merging(first, second):
-        d = tools.dict_merging(first,second)
+        d = Tools.dict_merging(first,second)
         return (d if d else {})
 
     # merge dicts /!\ recursive
@@ -157,7 +157,7 @@ class tools():
                 repl[item] = second[item]
             elif type(second[item]) is dict:
                 # recursion here
-                val = tools.dict_merging(first[item], second.get(item))
+                val = Tools.dict_merging(first[item], second.get(item))
                 if val != None:
                     repl[item] = val
             elif type(second[item]) is list:
@@ -165,3 +165,17 @@ class tools():
             else:
                 repl[item] = second[item]
         return repl
+
+    # merge strings and lists
+    @staticmethod
+    def merge_string_list(first, second):
+        if not first: return second
+        elif not second: return first
+        elif (type(first) is list) and (type(second) is list): return first+second
+        elif (type(first) is list):
+            first.append(second)
+            return first
+        elif (type(second) is list):
+            second.append(first)
+            return second
+        else: return [first, second]

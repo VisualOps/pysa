@@ -25,7 +25,7 @@ from pysa.tools import *
 
 # TODO
 # export data to madeira account
-class madeira():
+class Madeira():
     def __init__(self, user, user_id, output, module):
         self.__user = user
         self.__user_id = user_id
@@ -34,4 +34,4 @@ class madeira():
 
     # send data to Madeira account
     def send(self):
-        tools.l(ERR, "ABORTING: not yet implemented", func.__name__, self)
+        Tools.l(ERR, "ABORTING: not yet implemented", func.__name__, self)

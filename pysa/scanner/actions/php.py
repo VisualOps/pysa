@@ -24,10 +24,10 @@ import logging
 import re
 
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
-class scanner_php(scanner_base):
+class ScannerPhp(ScannerBase):
     def scan(self):
         """
         scan php

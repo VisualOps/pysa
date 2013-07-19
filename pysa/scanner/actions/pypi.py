@@ -26,7 +26,7 @@ import os
 import re
 import subprocess
 
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
 
 # Precompile a pattern to extract the manager from a pathname.
@@ -40,7 +40,7 @@ PATTERN_EGGINFO = re.compile(r'\.egg-info$')
 # Precompile a pattern for extracting package names and version numbers.
 PATTERN = re.compile(r'^([^-]+)-([^-]+).*\.egg(-info)?$')
 
-class scanner_pypi(scanner_base):
+class ScannerPypi(ScannerBase):
 
     def scan(self):
         """

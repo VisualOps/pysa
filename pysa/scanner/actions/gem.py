@@ -26,9 +26,9 @@ import re
 import os
 
 from pysa.scanner.actions.utils import *
-from pysa.scanner.actions.base import scanner_base
+from pysa.scanner.actions.base import ScannerBase
 
-class scanner_gem(scanner_base):
+class ScannerGem(ScannerBase):
 
     def scan(self):
         """
