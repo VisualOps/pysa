@@ -22,6 +22,7 @@ Dictionnary converter for salt scripts generation
 
 import re
 import hashlib
+import copy
 
 from pysa.tools import *
 from pysa.config import *
@@ -47,7 +48,6 @@ def handler_actionkey_pkg(content):
 
 
 # TODO: sources
-# TODO: dependances
 
 # define general sections
 SECTION_EQ = {
@@ -58,7 +58,7 @@ SECTION_EQ = {
         'apt'   : ACTION_ID+'pkg',
         'yum'   : ACTION_ID+'pkg',
         'rpm'   : ACTION_ID+'pkg',
-        'php'   : ACTION_ID+'pecl',
+#        'php'   : ACTION_ID+'pecl',
         'pecl'  : ACTION_ID+'pecl',
         'pear'  : ACTION_ID+'pecl',
         'pip'   : ACTION_ID+'pip',
@@ -80,6 +80,7 @@ SECTION_EQ = {
 #        'hg'    : ACTION_ID+'hg',
 #        }
     }
+SECTION_CALL_EQ = SECTION_EQ
 
 # avoided sections
 AVOIDSEC_EQ = {
@@ -95,7 +96,7 @@ AVOIDSEC_EQ = {
     ACTION_ID+'pip' : ['version','config_files','description','responsefile','provider','instance','category','platform','root','manager','vendor'],
     'repos'     : ['provider','recurse','recurselimit','source'],
     'services'  : ['hasrestart','path','provider','binary','control','ensure','hasstatus','manifest','start','stop','restart'],
-    'keys'      : ['target','host_aliases','type'],
+    'keys'      : ['target','host_aliases','type','name'],
     'users'     : ['uid', 'gid', 'expiry'],
 }
 # content add
@@ -146,6 +147,7 @@ CONTENTKEY_EQ = {
         },
     'keys' : {
         'key'       : 'source',
+        'content'   : 'source',
         'path'      : 'name',
         },
     'users'     : {
@@ -191,7 +193,7 @@ APPSEC_EQ = {
 class SaltConverter():
     def __init__(self, minput, filters=None):
         self.__output = {}
-        self.__input = dict(minput.items())
+        self.__input = copy.deepcopy(minput)
         self.__filter = Filter(filters)
 
     # main method
@@ -224,6 +226,24 @@ class SaltConverter():
         return self.__filter.item_replace(manifest, key, val, name)
 
     # processing on data
+    # recursive
+    @GeneralException
+    def __structure_data(self, data, manifest, name):
+        Tools.l(INFO, "building data structure", 'structure_data', self)
+        for key in data:
+            if type(data[key]) is dict:
+                data[key] = self.__structure_data(data[key], manifest, name)
+            elif type(data[key]) is list:
+                store = []
+                for d in data[key]:
+                    store.append(self.__process_values(manifest, name, key, d))
+                data[key] = store
+            else:
+                data[key] = self.__process_values(manifest, name, key, data[key])
+        Tools.l(INFO, "building data structure complete", 'structure_data', self)
+        return data
+
+    # processing on data
     @GeneralException
     def __process_data(self, data, manifest, name):
         Tools.l(INFO, "processing data", 'process_data', self)
@@ -234,14 +254,14 @@ class SaltConverter():
         for key in kcontent:
             if key in data:
                 data[key] = None
-        kcontent = Tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(sec_key))
+        kcontent = Tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(sec_key), False)
         for key in kcontent:
             data[key] = kcontent[key]
-        kcontent = Tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(sec_key))
+        kcontent = Tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(sec_key), False)
         for key in kcontent:
             if key in data:
                 data[kcontent[key]] = Tools.merge_string_list(data.get(kcontent[key]), data.pop(key))
-        kcontent = Tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(sec_key))
+        kcontent = Tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(sec_key), False)
         for key in kcontent:
             if key in data:
                 if (data[key] == kcontent[key][0]) or (kcontent[key][0] == MAIN_SECTION):
@@ -258,15 +278,8 @@ class SaltConverter():
             data[kcontent(data)] = MAIN_SECTION
 
         # main loop
-        for key in data:
-            if type(data[key]) is list:
-                store = []
-                for d in data[key]:
-                    store.append(self.__process_values(manifest, name, key, d))
-                data[key] = store
-            else:
-                data[key] = self.__process_values(manifest, name, key, data[key])
-
+        data = self.__structure_data(data, manifest, name)
+        Tools.l(INFO, "processing data complete", 'process_data', self)
         return data
 
     # ganaration method

@@ -1,4 +1,4 @@
-.TH Pysa "" "Date: 2013\-06\-13 (Thu, 13 Jun 2013)" 
+.TH Pysa "" "Date: 2013\-07\-23 (Tue, 23 Jul 2013)" 
 .TP
 .B Info
 Reverse Engineer Server Configurations
@@ -12,7 +12,7 @@ Reverse Engineer Server Configurations
 .RE
 .TP
 .B Revision
-v0.2.3a
+v0.2.4a
 .RS
 .RE
 .TP
@@ -26,7 +26,7 @@ replication.
 pysa \- Reverse Engineer Server Configurations
 .SH SYNOPSIS
 .PP
-\f[B]pysa\f[] [ \f[B]\-hpq\f[] ] [ \f[B]\-m\f[] \f[I]module\-name\f[] ]
+\f[B]pysa\f[] [ \f[B]\-hqps\f[] ] [ \f[B]\-m\f[] \f[I]module\-name\f[] ]
 [ \f[B]\-o\f[] \f[I]output\-path\f[] ] [\f[B]\-c\f[]
 \f[I]config\-file\-path\f[]] [ \f[B]\-f\f[]
 \f[I]filter\-config\-path\f[] ]
@@ -41,21 +41,26 @@ to deploy it later on another computer.
 .PP
 See RESOURCES_ section for complete list of managed resources.
 .PP
-\f[B]pysa\f[] is able to generates the configuration in puppet format
-(see Puppet (http://docs.puppetlabs.com/references/latest/type.html)
-documentation).
+\f[B]pysa\f[] is able to generates the configuration in Puppet (see
+Puppet (http://docs.puppetlabs.com/references/latest/type.html)
+documentation) or SaltStack (see
+SaltStack (http://salt.readthedocs.org/en/latest/contents.html)
+documentation) format.
 .SH OPTIONS
 .SS Options list
 .SS \-h, \[en]help
 .PP
 Display the short help.
-.SS \-p, \[en]puppet
-.PP
-Generates Puppet output.
 .SS \-q, \[en]quiet
 .PP
 Activate quiet mode and displays only error messages.
 By default, \f[B]pysa\f[] displays all log messages.
+.SS \-p, \[en]puppet
+.PP
+Generates Puppet output.
+.SS \-s, \[en]salt
+.PP
+Generates SaltStack output.
 .SS \-m module\-name, \[en]module module\-name
 .PP
 Choose output module name.
@@ -82,10 +87,11 @@ There are two ways to use \f[B]pysa\f[] 's output:
 You can manually configure the configuration manager and add
 \f[B]pysa\f[] 's module to it
 .IP \[bu] 2
-You can use the \f[I]pysa2puppet\f[] script to deploy a complete and
-standalone setup based on Puppet.
+If you're using Puppet module, you can use the \f[I]pysa2puppet\f[]
+script to deploy a complete and standalone setup.
 The script is interactive and will ask you all necessaries info (see
 usage first).
+A SaltStack version will be published soon.
 .SH RESOURCES
 .PP
 This section describes all the resources scanned by \f[B]pysa\f[]
@@ -96,14 +102,19 @@ See the FILTERS_ section.
 .PP
 At the current state, the resources objects and keys are similar to
 Puppet types.
+Jump to \f[I]pysa/scanner/object/\f[] for a compelte object description.
+These objects will be documented soon.
 .PP
 Please see AUTOCONF TOOLS MODULES_ section to be sure to be able to
 handle all scanned resources.
+.PP
+Pleese note that in main cases, the scan must be done by an admin user
+(mostly root).
 .SS configuration files \- file
 .PP
 \f[B]pysa\f[] scans (and stores in output module) all files located in a
 specific location.
-Default \f[B]/etc\f[]
+Default \f[B]/etc\f[] and \f[B]/root/.ssh\f[]
 .PP
 Primary key: \f[I]path\f[]
 .SS packages \- package
@@ -158,7 +169,6 @@ Primary key: \f[I]name\f[]
 .PP
 \f[B]pysa\f[] scans and reproduces root SSH keys (default
 \f[I]/root/.ssh\f[]).
-The scan must be done by root to assure this feature.
 .PP
 SSH keys are manages as files.
 .PP
@@ -170,6 +180,9 @@ the most common SCM (\f[I]subversion\f[], \f[I]git\f[] and
 \f[I]mercurial\f[]) present in the system.
 .PP
 Primary key: \f[I]path\f[]
+.PP
+\f[B]Puppet only\f[] The sources scanner is not able to scan sources
+repositories for SaltStack yet.
 .SS package managers repositories \- repository
 .PP
 \f[B]pysa\f[] scans and reproduces \f[I]yum\f[] and \f[I]apt\-get\f[]

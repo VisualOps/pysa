@@ -21,6 +21,7 @@ Output container
 '''
 
 from pysa.exception import *
+from pysa.config import *
 
 # output container
 class Output():
@@ -47,8 +48,9 @@ class Output():
     @GeneralException
     def list(self):
         l = ([''] if self.main else [])
-        for i in self.c:
-            l.append(i)
+        for seq in ORDER_LIST:
+            if seq in self.c:
+                l.append(seq)
         return l
 
     @GeneralException
@@ -56,4 +58,4 @@ class Output():
         if output:
             self.c[output] = content
         else:
-            self.main = content        
+            self.main = content

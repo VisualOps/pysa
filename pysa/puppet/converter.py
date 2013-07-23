@@ -21,6 +21,7 @@ Dictionnary converter for puppet scripts generation
 '''
 
 import re
+import copy
 
 from pysa.tools import *
 from pysa.config import *
@@ -30,22 +31,6 @@ from pysa.filter.filter import Filter
 
 
 # define _order section
-ORDER_EQ = {
-    MAIN_SECTION     : [
-        'mounts',
-        'dirs',
-        'groups',
-        'users',
-        'hosts',
-        'keys',
-        'repos',
-        'packages',
-        'files',
-        'crons',
-        'sources',
-        'services',
-        ]
-    }
 
 # list of ordered sections
 ORDERED_LIST_EQ = ['sources']
@@ -84,7 +69,8 @@ SECTION_EQ = {
     'keys'      : ACTION_ID+'file',
     'users'     : ACTION_ID+'user',
     'sources'   : ACTION_ID+'vcsrepo'
-}
+    }
+SECTION_CALL_EQ = dict([(key,SECTION_EQ[key].capitalize()) for key in SECTION_EQ])
 
 # define subsclasses equivalency
 SUBCLASS_EQ = {
@@ -151,7 +137,7 @@ APPSEC_EQ = {
 class PuppetConverter():
     def __init__(self, minput, filters = None):
         self.__output = {}
-        self.__input = dict(minput.items())
+        self.__input = copy.deepcopy(minput)
         self.__filter = Filter(filters)
         self.__prev_obj = None
 
@@ -205,7 +191,6 @@ class PuppetConverter():
                         EXEC_EQ[key] : GLOBAL_EXEC_EQ
                         }
                     })
-            
         return c
 
     # processing on values
@@ -229,14 +214,14 @@ class PuppetConverter():
         for key in kcontent:
             if key in input:
                 input[key] = None
-        kcontent = Tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTADD_EQ.get(MAIN_SECTION), CONTENTADD_EQ.get(gclass), False)
         for key in kcontent:
             input[key] = kcontent[key]
-        kcontent = Tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTKEY_EQ.get(MAIN_SECTION), CONTENTKEY_EQ.get(gclass), False)
         for key in kcontent:
             if key in input:
                 input[kcontent[key]] = input.pop(key)
-        kcontent = Tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(gclass))
+        kcontent = Tools.s_dict_merging(CONTENTVAL_EQ.get(MAIN_SECTION), CONTENTVAL_EQ.get(gclass), False)
         for key in kcontent:
             if key in input:
                 if input[key] == kcontent[key][0]:

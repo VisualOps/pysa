@@ -32,7 +32,7 @@
                    document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
-<h3 class="date">Date: 2013-06-13 (Thu, 13 Jun 2013)</h3>
+<h3 class="date">Date: 2013-07-23 (Tue, 23 Jul 2013)</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -42,8 +42,9 @@
 <li><a>OPTIONS</a><ul>
 <li><a>Options list</a><ul>
 <li><a>-h, –help</a></li>
-<li><a>-p, –puppet</a></li>
 <li><a>-q, –quiet</a></li>
+<li><a>-p, –puppet</a></li>
+<li><a>-s, –salt</a></li>
 <li><a>-m module-name, –module module-name</a></li>
 <li><a>-c config-file-path, –config config-file-path</a></li>
 <li><a>-o output-path, –output output-path</a></li>
@@ -107,7 +108,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.3a</p>
+<dd><p>v0.2.4a</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>
@@ -116,20 +117,22 @@
 <h1>NAME</h1>
 <p>pysa - Reverse Engineer Server Configurations</p>
 <h1>SYNOPSIS</h1>
-<p><strong>pysa</strong> [ <strong>-hpq</strong> ] [ <strong>-m</strong> <em>module-name</em> ] [ <strong>-o</strong> <em>output-path</em> ] [<strong>-c</strong> <em>config-file-path</em>] [ <strong>-f</strong> <em>filter-config-path</em> ]</p>
+<p><strong>pysa</strong> [ <strong>-hqps</strong> ] [ <strong>-m</strong> <em>module-name</em> ] [ <strong>-o</strong> <em>output-path</em> ] [<strong>-c</strong> <em>config-file-path</em>] [ <strong>-f</strong> <em>filter-config-path</em> ]</p>
 <h1>DESCRIPTION</h1>
 <p><strong>pysa</strong> scans your system and reverse engineers its configurations for easy replication.</p>
 <p><strong>pysa</strong> is able to scan your system, looking for different resources to deploy and generates some “autoconf” tools script to deploy it later on another computer.</p>
 <p>See RESOURCES_ section for complete list of managed resources.</p>
-<p><strong>pysa</strong> is able to generates the configuration in puppet format (see <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet</a> documentation).</p>
+<p><strong>pysa</strong> is able to generates the configuration in Puppet (see <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet</a> documentation) or SaltStack (see <a href="http://salt.readthedocs.org/en/latest/contents.html">SaltStack</a> documentation) format.</p>
 <h1>OPTIONS</h1>
 <h2>Options list</h2>
 <h3>-h, –help</h3>
 <p>Display the short help.</p>
-<h3>-p, –puppet</h3>
-<p>Generates Puppet output.</p>
 <h3>-q, –quiet</h3>
 <p>Activate quiet mode and displays only error messages. By default, <strong>pysa</strong> displays all log messages.</p>
+<h3>-p, –puppet</h3>
+<p>Generates Puppet output.</p>
+<h3>-s, –salt</h3>
+<p>Generates SaltStack output.</p>
 <h3>-m module-name, –module module-name</h3>
 <p>Choose output module name. Default value: <em>pysa</em></p>
 <h3>-c config-file-path, –config config-file-path</h3>
@@ -143,15 +146,16 @@
 <p>There are two ways to use <strong>pysa</strong> ’s output:</p>
 <ul>
 <li>You can manually configure the configuration manager and add <strong>pysa</strong> ’s module to it</li>
-<li>You can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup based on Puppet. The script is interactive and will ask you all necessaries info (see usage first).</li>
+<li>If you’re using Puppet module, you can use the <em>pysa2puppet</em> script to deploy a complete and standalone setup. The script is interactive and will ask you all necessaries info (see usage first). A SaltStack version will be published soon.</li>
 </ul>
 <h1>RESOURCES</h1>
 <p>This section describes all the resources scanned by <strong>pysa</strong></p>
 <p>By default, all item described are scanned. However, you can apply some filters to avoid or specify some. See the FILTERS_ section.</p>
-<p>At the current state, the resources objects and keys are similar to Puppet types.</p>
+<p>At the current state, the resources objects and keys are similar to Puppet types. Jump to <em>pysa/scanner/object/</em> for a compelte object description. These objects will be documented soon.</p>
 <p>Please see AUTOCONF TOOLS MODULES_ section to be sure to be able to handle all scanned resources.</p>
+<p>Pleese note that in main cases, the scan must be done by an admin user (mostly root).</p>
 <h2>configuration files - file</h2>
-<p><strong>pysa</strong> scans (and stores in output module) all files located in a specific location. Default <strong>/etc</strong></p>
+<p><strong>pysa</strong> scans (and stores in output module) all files located in a specific location. Default <strong>/etc</strong> and <strong>/root/.ssh</strong></p>
 <p>Primary key: <em>path</em></p>
 <h2>packages - package</h2>
 <p><strong>pysa</strong> is able to scan all packages provided by <em>yum</em>, <em>apt-get</em>, python pypi (<em>pip</em>), ruby <em>gems</em>, nodejs packaged modules (<em>npm</em>) and php packages managers (<em>pear</em> and <em>pecl</em>).</p>
@@ -177,12 +181,13 @@
 <p><strong>pysa</strong> scans and reproduces user’s crons.</p>
 <p>Primary key: <em>name</em></p>
 <h2>ssh keys - key</h2>
-<p><strong>pysa</strong> scans and reproduces root SSH keys (default <em>/root/.ssh</em>). The scan must be done by root to assure this feature.</p>
+<p><strong>pysa</strong> scans and reproduces root SSH keys (default <em>/root/.ssh</em>).</p>
 <p>SSH keys are manages as files.</p>
 <p>Primary key: <em>name</em></p>
 <h2>sources repositories - source</h2>
 <p><strong>pysa</strong> is able to recognize all source repositories managed by the most common SCM (<em>subversion</em>, <em>git</em> and <em>mercurial</em>) present in the system.</p>
 <p>Primary key: <em>path</em></p>
+<p><strong>Puppet only</strong> The sources scanner is not able to scan sources repositories for SaltStack yet.</p>
 <h2>package managers repositories - repository</h2>
 <p><strong>pysa</strong> scans and reproduces <em>yum</em> and <em>apt-get</em> repositories.</p>
 <p>Primary key: <em>name</em></p>

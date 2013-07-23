@@ -24,6 +24,7 @@ import os
 import os.path
 import logging
 import re
+import copy
 
 from pysa.exception import *
 
@@ -75,6 +76,9 @@ class Tools():
         rpath = re.split('/', path)
         i = 1
         while i < len(rpath):
+#DEBUG
+#            rpath[i] = "%s/%s" % (rpath[i-1] if i else "", rpath[i])
+#/DEBUG
             rpath[i] = os.path.normpath("%s/%s" % (rpath[i-1] if i else "", rpath[i]))
             i += 1
         rpath[0] = '/'
@@ -88,6 +92,9 @@ class Tools():
         rpath = re.split('/', path)
         i = 1
         while i < len(rpath):
+# DEBUG
+#            rpath[i] = "%s/%s" % (rpath[i-1] if i else "", rpath[i])
+#/DEBUG
             rpath[i] = os.path.normpath("%s/%s" % (rpath[i-1] if i else "", rpath[i]))
             i += 1
         rpath[0] = '/'
@@ -136,20 +143,20 @@ class Tools():
 
     # ensure dictionary existency
     @staticmethod
-    def s_dict_merging(first, second):
-        d = Tools.dict_merging(first,second)
+    def s_dict_merging(first, second, duplicate = True):
+        d = Tools.dict_merging(first,second, duplicate)
         return (d if d else {})
 
     # merge dicts /!\ recursive
     @staticmethod
-    def dict_merging(first, second):
+    def dict_merging(first, second, duplicate = True):
         if (not first) and (not second):
             return None
         elif not first:
-            return dict(second.items())
+            return (copy.deepcopy(second) if duplicate else second)
         elif not second:
-            return dict(first.items())
-        repl = dict(first.items())
+            return (copy.deepcopy(first) if duplicate else first)
+        repl = copy.deepcopy(first)
         for item in second:
             if (first.get(item)) and (type(first[item]) != type (second[item])):
                 continue
@@ -157,7 +164,7 @@ class Tools():
                 repl[item] = second[item]
             elif type(second[item]) is dict:
                 # recursion here
-                val = Tools.dict_merging(first[item], second.get(item))
+                val = Tools.dict_merging(first[item], second.get(item), True)
                 if val != None:
                     repl[item] = val
             elif type(second[item]) is list:

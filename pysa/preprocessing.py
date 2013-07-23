@@ -26,25 +26,27 @@ from pysa.config import FILE_CLASS
 
 from pysa.dependencies import Dependencies
 
+import copy
+
 FILE_IDENT = FILE_CLASS + [
     'sources',
     ]
 
 # preprocesser
 class Preprocessing():
-    def __init__(self, obj_maker, data=None):
-        self.__obj_maker = obj_maker
-        self.__data = data
-        self.__deps = Dependencies()
+    def __init__(self, module):
+        exec "from %s.objects import *"%module
+        self.__obj_maker = OBJ_MAKER
+        self.__data = None
+        self.__deps = Dependencies(module)
 
     # action
     @GeneralException
-    def run(self, data=None):
-        if data:
-            self.__data = data
+    def run(self, data):
+        self.__data = copy.deepcopy(data)
         if self.__data:
             self.__prepross_files()
-        self.__deps.run(self.__data)
+        self.__data = self.__deps.run(self.__data)
         return self.__data
 
     # preprocessing on files section

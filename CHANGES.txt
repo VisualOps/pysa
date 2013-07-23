@@ -1,3 +1,5 @@
+v0.2.4a, 2013.7.23 -- Introducing SaltStack module, typo improvement, bug fixes.
+v0.2.3ax, 2013.7.xx -- Bug fixes
 v0.2.3a, 2013.6.29 -- Improvment on puppet module (readability mostly)
 v0.2.2ax, 2013.6.13 -- Minor alpha fix are not written in docs anymore (0.2.2ax -> 0.2.2a)
 v0.2.2a1, 2013.6.13 -- Add manpage try (not functionnal)

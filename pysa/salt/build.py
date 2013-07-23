@@ -85,7 +85,7 @@ class SaltBuild():
     @GeneralException
     def __write_content(self, key, val, tab):
         name = self.__curent_name
-        if (self.__curent_state == ACTION_ID+'file') and (name[0] != '-') and key == 'source':
+        if (self.__curent_manifest in FILE_CLASS) and (name[0] != '-') and key == 'source':
             filename = "%s" % (('/' if name[0] != '/' else '')+name)
             Tools.write_in_file(self.__output_path+'/templates'+filename, val)
             val = "salt://%s" % (self.__module_name+'/templates'+filename)
@@ -107,7 +107,7 @@ class SaltBuild():
             tab += "  "
             self.__output_container.add(self.__curent_manifest, ":\n")
             for d in val:
-                self.__create_section(d, None, tab)
+                self.__create_section(d, MAIN_SECTION, tab)
         else:
             self.__output_container.add(self.__curent_manifest, ": ")
             self.__write_content(key, val, tab)

@@ -27,7 +27,7 @@ from pysa.config import *
 from pysa.tools import *
 from pysa.output import Output
 
-from pysa.puppet.puppet_converter import GLOBAL_SEC_EQ
+from pysa.puppet.converter import GLOBAL_SEC_EQ
 
 # define quoted variables
 QUOTED_AVOIDED_KEYS = ['content', 'before']
@@ -134,7 +134,7 @@ class PuppetBuild():
             if out_size:
                 return "%s%s%s" % (("[" if out_size > 1 else ''),out,("]" if out_size > 1 else ''))
         else:
-            if (section_name == "_file") and (label[0] != '-') and optlabel == 'content':
+            if (self.__curent_manifest in FILE_CLASS) and (label[0] != '-') and optlabel == 'content':
                 filename = ('/' if label[0] != '/' else '')+label
                 Tools.write_in_file(self.__output_path+'/templates'+filename, content)
                 content = "template('%s')" % (self.__module_name+filename)

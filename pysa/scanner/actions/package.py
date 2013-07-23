@@ -25,6 +25,8 @@ import os.path
 import logging
 import subprocess
 
+from pysa.config import Config
+
 from pysa.scanner.actions.utils import *
 from pysa.scanner.actions.base import ScannerBase
 
@@ -48,6 +50,9 @@ class ScannerPackage(ScannerBase):
            if self.scan_rpm()==False:
                 if self.scan_apt()==False:
                     self.scan_subprocess()
+                else: Config.platform = "apt"
+           else: Config.platform = "rpm"
+        else: Config.platform = "yum"
 
         # add the user package list
         self.add_pkgs()
@@ -228,10 +233,12 @@ class ScannerPackage(ScannerBase):
         logging.info('searching with subprocess')
 
         self.scan_mode = 'sub_rpm'
+        Config.platform = 'rpm'
         lines = self.subprocess(['rpm', '--qf=%{NAME}\x1E%{VERSION}\x1E%{RELEASE}\x1E%{ARCH}\x1E%{EPOCH}\x1E%{SUMMARY}\x1E%{VENDOR}\n', '-qa'])
         if lines==None:
             # try apt of the Debian family system
             self.scan_mode = 'sub_dpkg'
+            Config.platform = 'apt'
 
             lines = self.subprocess(['dpkg-query', '-W',
                 '-f=${Status}\x1E${Package}\x1E${Version}\x1E${Architecture}\n'])

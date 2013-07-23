@@ -45,7 +45,7 @@ class Filter():
     @GeneralException
     def item_replace(self, gclass, key, val, name, eq = None):
         if not self.f:
-            return val        
+            return val
         global1 = self.f.get('replace')
         global2 = (global1.get(gclass) if global1 else None)
         section = (global2.get(key) if global2 else None)
@@ -53,14 +53,14 @@ class Filter():
         replacelist = Tools.dict_merging(Tools.dict_merging(global1, global2), section)
         if not replacelist:
             return val
- 
+
         mode = (replacelist.pop('_replaceall') if replacelist.get('_replaceall') != None else True)
         excp = (replacelist.pop('_except') if replacelist.get('_except') != None else None)
 
         replacelist = Tools.dict_cleaner(replacelist)
         if not replacelist:
             return val
-        
+
         if (excp == None
             or self.exception_filter(mode, excp, name, eq)):
             for i in replacelist:

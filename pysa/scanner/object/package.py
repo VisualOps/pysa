@@ -24,7 +24,7 @@ from pysa.scanner.object.object_base import ObjectBase
 
 
 class Package(ObjectBase):
-    
+
     def __init__(self, name, files=None, description=None, version=None, responsefile=None, provider=None,
                  instance=None, category=None, platform=None, manager=None, root=None, vendor=None):
         self.name = name

@@ -1,7 +1,7 @@
 Pysa
 Thibault BRONCHAIN <thibault@mc2.io>; Ken CHEN <ken@mc2.io>; Michael CHO
 <michael@mc2.io>
-Date: 2013-06-13 (Thu, 13 Jun 2013)
+Date: 2013-07-23 (Tue, 23 Jul 2013)
 
 -   NAME
 -   SYNOPSIS
@@ -9,8 +9,9 @@ Date: 2013-06-13 (Thu, 13 Jun 2013)
 -   OPTIONS
     -   Options list
         -   -h, –help
-        -   -p, –puppet
         -   -q, –quiet
+        -   -p, –puppet
+        -   -s, –salt
         -   -m module-name, –module module-name
         -   -c config-file-path, –config config-file-path
         -   -o output-path, –output output-path
@@ -68,7 +69,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.3a
+    v0.2.4a
 
 Description
     Pysa scans your system and reverse engineers its configurations for
@@ -82,7 +83,7 @@ pysa - Reverse Engineer Server Configurations
 SYNOPSIS
 ========
 
-pysa [ -hpq ] [ -m module-name ] [ -o output-path ] [-c
+pysa [ -hqps ] [ -m module-name ] [ -o output-path ] [-c
 config-file-path] [ -f filter-config-path ]
 
 DESCRIPTION
@@ -97,8 +98,8 @@ another computer.
 
 See RESOURCES_ section for complete list of managed resources.
 
-pysa is able to generates the configuration in puppet format (see Puppet
-documentation).
+pysa is able to generates the configuration in Puppet (see Puppet
+documentation) or SaltStack (see SaltStack documentation) format.
 
 OPTIONS
 =======
@@ -110,14 +111,18 @@ Options list
 
 Display the short help.
 
--p, –puppet
-
-Generates Puppet output.
-
 -q, –quiet
 
 Activate quiet mode and displays only error messages. By default, pysa
 displays all log messages.
+
+-p, –puppet
+
+Generates Puppet output.
+
+-s, –salt
+
+Generates SaltStack output.
 
 -m module-name, –module module-name
 
@@ -146,9 +151,10 @@ There are two ways to use pysa ’s output:
 
 -   You can manually configure the configuration manager and add pysa ’s
     module to it
--   You can use the pysa2puppet script to deploy a complete and
-    standalone setup based on Puppet. The script is interactive and will
-    ask you all necessaries info (see usage first).
+-   If you’re using Puppet module, you can use the pysa2puppet script to
+    deploy a complete and standalone setup. The script is interactive
+    and will ask you all necessaries info (see usage first). A SaltStack
+    version will be published soon.
 
 RESOURCES
 =========
@@ -159,16 +165,20 @@ By default, all item described are scanned. However, you can apply some
 filters to avoid or specify some. See the FILTERS_ section.
 
 At the current state, the resources objects and keys are similar to
-Puppet types.
+Puppet types. Jump to pysa/scanner/object/ for a compelte object
+description. These objects will be documented soon.
 
 Please see AUTOCONF TOOLS MODULES_ section to be sure to be able to
 handle all scanned resources.
+
+Pleese note that in main cases, the scan must be done by an admin user
+(mostly root).
 
 configuration files - file
 --------------------------
 
 pysa scans (and stores in output module) all files located in a specific
-location. Default /etc
+location. Default /etc and /root/.ssh
 
 Primary key: path
 
@@ -233,8 +243,7 @@ Primary key: name
 ssh keys - key
 --------------
 
-pysa scans and reproduces root SSH keys (default /root/.ssh). The scan
-must be done by root to assure this feature.
+pysa scans and reproduces root SSH keys (default /root/.ssh).
 
 SSH keys are manages as files.
 
@@ -247,6 +256,9 @@ pysa is able to recognize all source repositories managed by the most
 common SCM (subversion, git and mercurial) present in the system.
 
 Primary key: path
+
+Puppet only The sources scanner is not able to scan sources repositories
+for SaltStack yet.
 
 package managers repositories - repository
 ------------------------------------------

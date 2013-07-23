@@ -28,6 +28,21 @@ from pysa.exception import *
 
 # define who is a file
 FILE_CLASS      = ['keys', 'repos', 'files']
+# order
+ORDER_LIST = [
+    'hosts',
+    'mounts',
+    'groups',
+    'users',
+    'dirs',
+    'keys',
+    'repos',
+    'packages',
+    'files',
+    'crons',
+    'sources',
+    'services',
+    ]
 # null objects (avoid 0)
 NULL            = ['', {}, [], None]
 # build-ins
@@ -49,11 +64,21 @@ class Config():
             },
         'hosts' : {
             'path' : '/etc/hosts'
-            }
+            },
+        'managers' : {
+            '_autoadd' : True,
+            'pear' : 'php-pear',
+            'pecl' : 'php-pear',
+            'pip'  : 'python-pip',
+            'npm'  : 'npm',
+            'gem'  : 'rubygems',
+            },
         }
     files_path = c['files']['path']
     scan_host = c['hosts']['path']
     key_path = c['keys']['path']
+    managers_eq = c['managers']
+    platform = None
 
     # edit default values if config file
     def __init__(self, path=None):
@@ -69,4 +94,6 @@ class Config():
         for name in parser.sections():
             config.c.setdefault(name, {})
             for key, value in parser.items(name):
+                if   value == "True" : value = True
+                elif value == "False": value = False
                 config.c[name][key] = value

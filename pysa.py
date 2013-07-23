@@ -34,18 +34,16 @@ from pysa.madeira import *
 from pysa.filter.parser import FParser
 from pysa.scanner.scanner_handler import module_scan
 
-from pysa.puppet.puppet_converter import PuppetConverter
-from pysa.puppet.puppet_build import PuppetBuild
-from pysa.puppet.puppet_objects import *
+from pysa.puppet.converter import PuppetConverter
+from pysa.puppet.build import PuppetBuild
 
-from pysa.salt.salt_converter import SaltConverter
-from pysa.salt.salt_build import SaltBuild
-from pysa.salt.salt_objects import *
+from pysa.salt.converter import SaltConverter
+from pysa.salt.build import SaltBuild
 
 
 # global defines
 USAGE = 'usage: %prog [-hqps] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
-VERSION_NBR = '0.2.3a'
+VERSION_NBR = '0.2.4a'
 VERSION = '%prog '+VERSION_NBR
 
 # logger settings
@@ -66,7 +64,8 @@ class Scanner():
     def __init__(self, filters=None):
         self.resources = None
         self.filters = filters
-    
+        self.preprocessed = None
+
     @GeneralException
     # get resource from different modules
     def scan(self):
@@ -75,22 +74,21 @@ class Scanner():
 
     @GeneralException
     # generate puppet files
-    def preprocessing(self):
+    def preprocessing(self, module):
         if not self.resources:
             logging.error('Scanner.preprocessing(): No resources')
             return
         logging.info('Scanner.preprocessing(): Running' % path)
-        self.preproc = Preprocessing(PUPPET_OBJ_MAKER, self.resources)
-        self.preprocessed = self.preproc.run()
+        return Preprocessing(module).run(self.resources)
 
     @GeneralException
     # generate puppet files
     def show_puppet(self, path, module):
-        if not self.preprocessed:
-            logging.error('Scanner.show_puppet(): No data')
-            return
+#        if not self.preprocessed:
+#            logging.error('Scanner.show_puppet(): No data')
+#            return
         logging.info('Scanner.show_puppet(): Puppet files will be stored in path: %s' % path)
-        puppetdict = PuppetConverter(self.preprocessed, self.filters)
+        puppetdict = PuppetConverter(self.preprocessing('pysa.puppet'), self.filters)
         p = puppetdict.run()
         puppet = PuppetBuild(p, path, module)
         puppet.run()
@@ -98,11 +96,11 @@ class Scanner():
     @GeneralException
     # generate salt files
     def show_salt(self, path, module):
-        if not self.preprocessed:
-            logging.error('Scanner.show_salt(): No data')
-            return
+#        if not self.preprocessed:
+#            logging.error('Scanner.show_salt(): No data')
+#            return
         logging.info('Scanner.show_salt(): Salt files will be stored in path: %s' % path)
-        saltdict = SaltConverter(self.preprocessed, self.filters)
+        saltdict = SaltConverter(self.preprocessing('pysa.salt'), self.filters)
         s = saltdict.run()
         salt = SaltBuild(s, path, module)
         salt.run()
@@ -138,7 +136,7 @@ def main_parse():
                       help="scan packages and generate the puppet manifests"
                       )
     parser.add_option("-s", "--salt", action="store_true", dest="salt", default=False,
-                      help="[EXPERIMENTAL] scan packages and generate the salt manifests (not functionnal yet)"
+                      help="[EXPERIMENTAL] scan packages and generate the salt manifests"
                       )
     parser.add_option("-q", "--quiet", action="store_true", dest="quiet", default=False,
                       help="operate quietly"
@@ -197,6 +195,6 @@ def main():
         m = Madeira(user, uid, output, module)
         m.send()
 
-    
+
 if __name__ == '__main__':
     main()
