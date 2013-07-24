@@ -78,7 +78,7 @@ class Scanner():
         if not self.resources:
             logging.error('Scanner.preprocessing(): No resources')
             return
-        logging.info('Scanner.preprocessing(): Running' % path)
+        logging.info('Scanner.preprocessing(): Running')
         return Preprocessing(module).run(self.resources)
 
     @GeneralException
