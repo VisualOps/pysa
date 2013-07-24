@@ -174,7 +174,7 @@ def main():
     uid = (options.id if options.id else None)
 
     # config parser
-    config(options.config if options.config else None)
+    Config(options.config if options.config else None)
 
     # filters parsing
     filter_parser = FParser(options.filter if options.filter else None)
