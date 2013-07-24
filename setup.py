@@ -95,5 +95,5 @@ if __name__ == "__main__":
             'Operating System :: POSIX :: Linux',
             'Topic :: System'
             ],
-          cmdclass={"install": pysa_install, "sdist": pysa_sdist}
+#          cmdclass={"install": pysa_install, "sdist": pysa_sdist},
           )
