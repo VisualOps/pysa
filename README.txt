@@ -6,8 +6,8 @@ Pysa
 :Author: Ken CHEN <ken@mc2.io>
 :Author: Michael CHO <michael@mc2.io>
 :Organisation: (c) 2013 - MADEIRACLOUD LTD.
-:Date: Date: 2013-07-23 (Tue, 23 Jul 2013)
-:Revision: v0.2.4a
+:Date: Date: 2013-07-23 (Wed, 24 Jul 2013)
+:Revision: v0.2.5a
 :Description: Pysa scans your system and reverse engineers its configurations for easy replication.
 
 NAME

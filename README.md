@@ -29,7 +29,7 @@
                    document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
                    // -->
                    </script><noscript>&#x6d;&#x69;&#x63;&#104;&#x61;&#x65;&#108;&#32;&#x61;&#116;&#32;&#x6d;&#x63;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x69;&#x6f;</noscript>&gt;</h2>
-<h3 class="date">Date: 2013-07-23 (Tue, 23 Jul 2013)</h3>
+<h3 class="date">Date: 2013-07-23 (Wed, 24 Jul 2013)</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -105,7 +105,7 @@
 </ol>
 </dd>
 <dt>Revision</dt>
-<dd><p>v0.2.4a</p>
+<dd><p>v0.2.5a</p>
 </dd>
 <dt>Description</dt>
 <dd><p>Pysa scans your system and reverse engineers its configurations for easy replication.</p>

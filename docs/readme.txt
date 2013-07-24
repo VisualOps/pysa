@@ -1,7 +1,7 @@
 Pysa
 Thibault BRONCHAIN <thibault@mc2.io>; Ken CHEN <ken@mc2.io>; Michael CHO
 <michael@mc2.io>
-Date: 2013-07-23 (Tue, 23 Jul 2013)
+Date: 2013-07-23 (Wed, 24 Jul 2013)
 
 -   NAME
 -   SYNOPSIS
@@ -69,7 +69,7 @@ Organisation
     (c) 2013 - MADEIRACLOUD LTD.
 
 Revision
-    v0.2.4a
+    v0.2.5a
 
 Description
     Pysa scans your system and reverse engineers its configurations for
