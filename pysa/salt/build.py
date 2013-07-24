@@ -79,13 +79,13 @@ class SaltBuild():
         self.__output_container.add(None, "include:\n")
         for manifest in self.__output_container.list():
             if not manifest: continue
-            self.__output_container.add(None, "  - %s\n"%(manifest))
+            self.__output_container.add(None, "  - %s.%s\n"%(self.__module_name,manifest))
 
     # content writing
     @GeneralException
     def __write_content(self, key, val, tab):
-        name = self.__curent_name
-        if (self.__curent_manifest in FILE_CLASS) and (name[0] != '-') and key == 'source':
+        if (self.__curent_manifest in FILE_CLASS) and key == 'source':
+            name = self.__input_dict[self.__curent_manifest][self.__curent_state][self.__curent_name]['name']
             filename = "%s" % (('/' if name[0] != '/' else '')+name)
             Tools.write_in_file(self.__output_path+'/templates'+filename, val)
             val = "salt://%s" % (self.__module_name+'/templates'+filename)

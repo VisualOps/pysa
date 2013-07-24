@@ -25,13 +25,15 @@ from pysa.exception import *
 from pysa.scanner.actions.utils import get_stat
 from pysa.dependencies import *
 
+CMLABEL="puppet"
+
 class PuppetObjects():
     @staticmethod
     def puppet_file_dir_obj(dr):
         # get group, mode and owner
-        #s = get_stat(dr)
+        s = get_stat(dr)
         #DEBUG
-        s = ('root', oct(0777), 'root')
+        #s = ('root', oct(0777), 'root')
         #/DEBUG
         return {
             'path'      : dr,

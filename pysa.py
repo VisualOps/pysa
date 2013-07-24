@@ -187,8 +187,8 @@ def main():
     if options.puppet:
         s.show_puppet(output, module)
     # generate salt output
-    if options.puppet:
-        s.show_puppet(output, module)
+    if options.salt:
+        s.show_salt(output, module)
 
     # save to madeira accound
     if options.l:

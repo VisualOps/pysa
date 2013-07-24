@@ -37,6 +37,7 @@ class Preprocessing():
     def __init__(self, module):
         exec "from %s.objects import *"%module
         self.__obj_maker = OBJ_MAKER
+        self.__cmlabel = CMLABEL
         self.__data = None
         self.__deps = Dependencies(module)
 
@@ -45,9 +46,21 @@ class Preprocessing():
     def run(self, data):
         self.__data = copy.deepcopy(data)
         if self.__data:
+            if self.__cmlabel == "salt":
+                self.__keys_to_id()
             self.__prepross_files()
-        self.__data = self.__deps.run(self.__data)
+            self.__data = self.__deps.run(self.__data)
         return self.__data
+
+    # create unique ids for salt
+    @GeneralException
+    def __keys_to_id(self):
+        new_data = {}
+        for c in self.__data:
+            new_data[c] = {}
+            for obj in self.__data[c]:
+                new_data[c]["%s_%s"%(c,obj)] = self.__data[c][obj]
+        self.__data = new_data
 
     # preprocessing on files section
     @GeneralException
