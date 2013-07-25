@@ -32,7 +32,7 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.5.1a'
+VERSION             = '0.2.5.2a'
 DESCRIPTION         = 'Reverse Engineer Server Configurations'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
