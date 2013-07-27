@@ -20,12 +20,15 @@ Salt Objects
 @author: Thibault BRONCHAIN
 '''
 
+import re
+
 from pysa.exception import *
 from pysa.dependencies import *
 
 from pysa.scanner.actions.utils import get_stat
 
 CMLABEL="salt"
+ILLEGAL_OBJ_CHAR=None#['\W']
 
 class SaltObjects():
     @staticmethod
@@ -52,10 +55,19 @@ class SaltObjects():
             'version'   : 'latest',
             }
 
+    @staticmethod
+    def salt_key_mod_obj(state, obj):
+        key = "%s_%s"%(state,obj)
+        if not ILLEGAL_OBJ_CHAR: return key
+        illegal_char = "%s" % ('|'.join(ILLEGAL_OBJ_CHAR))
+        key = re.sub(illegal_char, "_", key)
+        return key
+
 
 OBJ_MAKER = {
     'file' : SaltObjects.salt_file_dir_obj,
     'manager' : SaltObjects.salt_pkg_manager_obj,
+    'objkey' : SaltObjects.salt_key_mod_obj,
     }
 
 DEPENDENCIES = {

@@ -46,20 +46,21 @@ class Preprocessing():
     def run(self, data):
         self.__data = copy.deepcopy(data)
         if self.__data:
-            if self.__cmlabel == "salt":
-                self.__keys_to_id()
+            if self.__obj_maker.get('objkey'):
+                self.__keys_mod()
             self.__prepross_files()
             self.__data = self.__deps.run(self.__data)
         return self.__data
 
     # create unique ids for salt
     @GeneralException
-    def __keys_to_id(self):
+    def __keys_mod(self):
         new_data = {}
         for c in self.__data:
             new_data[c] = {}
             for obj in self.__data[c]:
-                new_data[c]["%s_%s"%(c,obj)] = self.__data[c][obj]
+                key = self.__obj_maker['objkey'](c,obj)
+                new_data[c][key] = self.__data[c][obj]
         self.__data = new_data
 
     # preprocessing on files section

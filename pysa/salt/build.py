@@ -102,7 +102,11 @@ class SaltBuild():
             tab += "  "
             self.__output_container.add(self.__curent_manifest, ":\n")
             for sub_key in val:
-                self.__create_section(sub_key, val[sub_key], tab)
+                if key == "require":
+                    for itm in val[sub_key]:
+                        self.__create_section("%s: %s"%(sub_key,itm), MAIN_SECTION, tab)
+                else:
+                    self.__create_section(sub_key, val[sub_key], tab)
         elif type(val) is list:
             tab += "  "
             self.__output_container.add(self.__curent_manifest, ":\n")

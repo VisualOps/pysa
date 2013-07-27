@@ -46,6 +46,8 @@ def handler_actionkey_pkg(content):
         return 'latest'
     return 'installed'
 
+def handler_hosts_names(old, content):
+    return (old if type(old) is list else [old])
 
 # TODO: sources
 
@@ -98,7 +100,7 @@ AVOIDSEC_EQ = {
     'services'  : ['hasrestart','path','provider','binary','control','ensure','hasstatus','manifest','start','stop','restart'],
     'keys'      : ['target','host_aliases','type','name'],
     'users'     : ['uid', 'gid', 'expiry'],
-}
+    }
 # content add
 CONTENTADD_EQ = {
     'files'     : {
@@ -113,7 +115,10 @@ CONTENTADD_EQ = {
     'keys'      : {
         'source_hash' : 'md5',
         },
-}
+    'services'     : {
+        'enable'    : 'True',
+        },
+    }
 # key modifier
 CONTENTKEY_EQ = {
     MAIN_SECTION : {
@@ -153,19 +158,22 @@ CONTENTKEY_EQ = {
     'users'     : {
         'group'     : 'gid',
         }
-}
+    }
 # val modifier (on key)
 CONTENTVAL_EQ = {
-    'files'     : {
+    'files'    : {
         'source_hash' : [MAIN_SECTION,handler_files_checksum],
         },
-    'repos'     : {
+    'repos'    : {
         'source_hash' : [MAIN_SECTION,handler_files_checksum],
         },
     'keys'     : {
         'source_hash' : [MAIN_SECTION,handler_files_checksum],
         },
-}
+    'hosts'    : {
+        'names'       : [MAIN_SECTION,handler_hosts_names],
+        },
+    }
 
 # action key
 ACTIONKEY_EQ = {
@@ -180,14 +188,14 @@ ACTIONKEY_EQ = {
     ACTION_ID+'npm' : 'installed',
     ACTION_ID+'pip' : 'installed',
     'repos'     : 'managed',
-    'service'   : 'running',
+    'services'  : 'running',
     'keys'      : 'managed',
     'users'     : 'present',
-}
+    }
 
 # Append sections
 APPSEC_EQ = {
-}
+    }
 
 
 class SaltConverter():

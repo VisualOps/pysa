@@ -48,25 +48,28 @@ class ScannerHost(ScannerBase):
     def parse_hostfile(self):
         hostfile = Config.scan_host
 
+        hosts = []
         try:
-            hosts = []
             for line in open(hostfile):
                 # ignore blank line
                 if not line.strip(): continue
                 # ignore comment line
-                if line.strip().startswith("#"): continue
+                elif line.strip().startswith("#"): continue
 
                 itemlst = line.strip().split()
-                ip = re.search( r'[0-9]+(?:\.[0-9]+){3}', itemlst[0] )
-                if ip==None:
-                    continue
-                
-                aliases = []
-                if len(itemlst)>=3:
-                    for i in range(2, len(itemlst)-1):
-                        aliases.append(itemlst[i])
-                   
-                hosts.append({'ip':ip.group(), 'name':itemlst[1], 'target':hostfile, 'host_aliases':aliases})
+                if len(itemlst) <= 1: continue
+
+                hosts.append({'ip':itemlst[0], 'name':itemlst[1], 'target':hostfile, 'host_aliases':itemlst[2:]})
+
+                #ip = re.search( r'[0-9]+(?:\.[0-9]+){3}', itemlst[0] )
+                #if ip==None:
+                #    continue
+                #aliases = []
+                #if len(itemlst)>=3:
+                #    for i in range(2, len(itemlst)-1):
+                #        aliases.append(itemlst[i])
+                #print "aliases=%s"%aliases
+                #hosts.append({'ip':ip.group(), 'name':itemlst[1], 'target':hostfile, 'host_aliases':aliases})
 
         except IOError:
             return hosts
