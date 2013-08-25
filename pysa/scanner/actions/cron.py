@@ -27,12 +27,11 @@ from pysa.scanner.actions.base import ScannerBase
 
 
 class ScannerCron(ScannerBase):
-    
     def scan(self):
 
         users = self.get_users()
         res = self.subprocess(['crontab', '-l'])
-        for line in res:        
+        for line in res:
             # ignore the comment lines
             if line.strip().startswith("#"): continue
 
@@ -40,9 +39,9 @@ class ScannerCron(ScannerBase):
             if ary[5] in users.keys():
                 paths = os.path.split(ary[6])
                 self.add_cron(
-                              name=paths[1], 
-                              command=" ".join(ary[6:]), 
-                              environment=paths[0], 
+                              name=paths[1],
+                              command=" ".join(ary[6:]),
+                              environment=paths[0],
                               user=ary[5],
                               minute=ary[0],
                               hour=ary[1],
@@ -53,9 +52,9 @@ class ScannerCron(ScannerBase):
             else:
                 paths = os.path.split(ary[5])
                 self.add_cron(
-                              name=paths[1], 
-                              command=" ".join(ary[5:]), 
-                              environment=paths[0], 
+                              name=paths[1],
+                              command=" ".join(ary[5:]),
+                              environment=paths[0],
                               minute=ary[0],
                               hour=ary[1],
                               monthday=ary[2],
