@@ -31,4 +31,4 @@ You can access the documentation at http://madeira-cloud-pysa-document.readthedo
 
 ## Support or Contact
 
-Having trouble, remarks or suggestions about Pysa? Contact us at pysa@mc2.io and we’ll help you sort it out.
+Having trouble, remarks or suggestions about Pysa? Contact us at pysa@mc2.io and we'll help you sort it out.
