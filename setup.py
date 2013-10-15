@@ -24,12 +24,12 @@ Installation script for setup from pip
 import os
 import sys
 import shutil
-import subprocess
+#import subprocess
 import setuptools
 
 from distutils.core import setup
-from distutils.command.install import install
-from distutils.command.sdist import sdist
+#from distutils.command.install import install
+#from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
 VERSION             = '0.2.5.7a'
@@ -44,31 +44,31 @@ DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERS
 #PACKAGE_DIR         = {'pysa': 'pysa'}
 SCRIPTS             = ['bin/pysa2puppet', 'bin/pysa']
 
-def abspath(path):
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
-class pysa_install(install):
-    user_options = install.user_options
-
-    def initialize_options(self):
-        install.initialize_options(self)
-
-    def run(self):
-        install.run(self)
-
-        man_dir = abspath("./docs/man/")
-        output = subprocess.Popen(
-            [os.path.join(man_dir, "pysa_man.sh")],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=man_dir,
-            env=dict({"PREFIX": self.prefix}, **dict(os.environ))
-            ).communicate()[0]
-        print output
-
-class pysa_sdist(sdist):
-    def run(self):
-        sdist.run(self)
+#def abspath(path):
+#    return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
+#
+#class pysa_install(install):
+#    user_options = install.user_options
+#
+#    def initialize_options(self):
+#        install.initialize_options(self)
+#
+#    def run(self):
+#        install.run(self)
+#
+#        man_dir = abspath("./docs/man/")
+#        output = subprocess.Popen(
+#            [os.path.join(man_dir, "pysa_man.sh")],
+#            stdout=subprocess.PIPE,
+#            stderr=subprocess.PIPE,
+#            cwd=man_dir,
+#            env=dict({"PREFIX": self.prefix}, **dict(os.environ))
+#            ).communicate()[0]
+#        print output
+#
+#class pysa_sdist(sdist):
+#    def run(self):
+#        sdist.run(self)
 
 if __name__ == "__main__":
     pkg = setuptools.find_packages()
