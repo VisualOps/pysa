@@ -32,7 +32,7 @@ from distutils.core import setup
 #from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.3b1'
+VERSION             = '0.3b2'
 DESCRIPTION         = 'Reverse your Servers Configuration'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
@@ -88,7 +88,7 @@ if __name__ == "__main__":
 #          package_dir=PACKAGE_DIR,
           scripts=SCRIPTS,
           classifiers = [
-            'Development Status :: 3 - Alpha',
+            'Development Status :: 4 - Beta',
             'Environment :: Console',
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
