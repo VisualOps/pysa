@@ -1,3 +1,4 @@
+v0.3b1, 2013.10.15 -- Beta1 (0.3) release
 v0.2.5a, 2013.7.24 -- SaltStack module improvements and bug fixes
 v0.2.4a, 2013.7.23 -- Introducing SaltStack module, typo improvement, bug fixes.
 v0.2.3ax, 2013.7.xx -- Bug fixes

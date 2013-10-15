@@ -32,13 +32,13 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.2.5.4a'
-DESCRIPTION         = 'Reverse Engineer Server Configurations'
+VERSION             = '0.2.5.7a'
+DESCRIPTION         = 'Reverse your Servers Configuration'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
 MAINTAINER_EMAIL    = 'pysa@mc2.io'
 LICENSE             = 'LICENSE.txt'
-URL                 = 'http://pypi.python.org/pypi/Pysa/'
+URL                 = 'http://madeiracloud.github.io/pysa/'
 DOWNLOAD_URL        = 'http://pypi.python.org/packages/source/P/Pysa/Pysa-'+VERSION+'.tar.gz'
 #PACKAGES            = ['pysa']
 #PACKAGE_DIR         = {'pysa': 'pysa'}
@@ -93,7 +93,7 @@ if __name__ == "__main__":
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Operating System :: POSIX :: Linux',
-            'Topic :: System'
+            'Topic :: System',
             ],
 #          cmdclass={"install": pysa_install, "sdist": pysa_sdist},
           )
