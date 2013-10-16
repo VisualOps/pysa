@@ -32,8 +32,8 @@ class ScannerCron(ScannerBase):
         users = self.get_users()
         res = self.subprocess(['crontab', '-l'])
         for line in res:
-            # ignore the comment lines
-            if line.strip().startswith("#"): continue
+            # ignore empty and the comment lines
+            if not line.strip() or line.strip().startswith("#"): continue
 
             ary = line.split()
             if ary[5] in users.keys():

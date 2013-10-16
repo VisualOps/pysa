@@ -32,7 +32,7 @@ from distutils.core import setup
 #from distutils.command.sdist import sdist
 
 DISTNAME            = 'Pysa'
-VERSION             = '0.3b2'
+VERSION             = '0.3b3'
 DESCRIPTION         = 'Reverse your Servers Configuration'
 LONG_DESCRIPTION    = open('README.txt').read()
 MAINTAINER          = 'Thibault BRONCHAIN - MadeiraCloud Ltd.'
