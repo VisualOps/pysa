@@ -43,7 +43,7 @@ from pysa.salt.build import SaltBuild
 
 # global defines
 USAGE = 'usage: %prog [-hqps] [-m module_name] [-o output_path] [-c config_file_path] [-f filter_config_path] [-l {-u madeira_username}|{-i madeira_id}]'
-VERSION_NBR = '0.3b1'
+VERSION_NBR = '0.3b'
 VERSION = '%prog '+VERSION_NBR
 
 # logger settings

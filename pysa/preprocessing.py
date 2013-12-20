@@ -56,21 +56,12 @@ class Preprocessing():
     @GeneralException
     def __keys_mod(self):
         new_data = {}
-        print "a"
         for c in self.__data:
             if c not in ORDER_LIST: continue
-            print "b"
             new_data[c] = {}
-            print "c"
             for obj in self.__data[c]:
-                print "d"
                 key = self.__obj_maker['objkey'](c,obj)
-                print "e"
-                print "c=%s key=%s"%(c,key)
                 new_data[c][key] = self.__data[c][obj]
-                print "f"
-            print "g"
-        print "h"
         self.__data = new_data
 
     # preprocessing on files section
