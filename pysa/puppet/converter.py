@@ -72,7 +72,7 @@ SECTION_EQ = {
     }
 SECTION_CALL_EQ = dict([(key,SECTION_EQ[key].capitalize()) for key in SECTION_EQ])
 
-# define subsclasses equivalency
+# define subclasses equivalency
 SUBCLASS_EQ = {
     'packages'  : {
         MAIN_SECTION : 'provider',
@@ -146,7 +146,7 @@ class PuppetConverter():
     def run(self):
         Tools.l(INFO, "running", 'run', self)
 
-        #empty imput
+        #empty input
         if not self.__input:
             Tools.l(ERR, "empty input", 'run', self)
             return {}

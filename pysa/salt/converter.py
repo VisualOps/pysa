@@ -209,7 +209,7 @@ class SaltConverter():
     def run(self):
         Tools.l(INFO, "running", 'run', self)
 
-        #empty imput
+        #empty input
         if not self.__input:
             Tools.l(ERR, "empty input", 'run', self)
             return {}
@@ -290,7 +290,7 @@ class SaltConverter():
         Tools.l(INFO, "processing data complete", 'process_data', self)
         return data
 
-    # ganaration method
+    # generation method
     @GeneralException
     def __generate_classes(self, data):
         for manifest in sorted(data):
