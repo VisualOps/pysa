@@ -190,7 +190,7 @@ def main():
     if options.salt:
         s.show_salt(output, module)
 
-    # save to madeira accound
+    # save to madeira account
     if options.l:
         m = Madeira(user, uid, output, module)
         m.send()

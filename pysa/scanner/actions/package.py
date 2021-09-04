@@ -315,7 +315,7 @@ class ScannerPackage(ScannerBase):
 
     def query_deps(self, package):
         """
-        query package's denpendency in the list and update the user/core package list
+        query package's dependency in the list and update the user/core package list
         """
 
         if self.scan_mode == 'sub_rpm':

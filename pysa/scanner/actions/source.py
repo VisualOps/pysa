@@ -59,7 +59,7 @@ class ScannerSource(ScannerBase):
                 else:
                     continue
 
-                if scm=='svn':  #if svn scm, need to check subdirctory
+                if scm=='svn':  #if svn scm, need to check subdirectory
                     head, tail = os.path.split(dirpath)
                     while head and tail:
                         if head in self.user_repos['svn']:
